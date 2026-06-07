@@ -387,6 +387,10 @@ public class EconomyManager {
                 e.printStackTrace();
                 this.worthConfig = new WorthConfig();
             }
+            // Gson returns null for an empty/blank worth.json; never leave it null.
+            if (this.worthConfig == null) {
+                this.worthConfig = new WorthConfig();
+            }
         }
     }
 

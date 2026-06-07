@@ -4,14 +4,12 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import savage.commoneconomy.EconomyManager;
 
 import java.math.BigDecimal;
@@ -47,6 +45,11 @@ public class SellCommands {
         }
 
         String itemId = Registries.ITEM.getId(stack.getItem()).toString();
+        if (EconomyManager.getInstance().isCurrencyItem(itemId)) {
+            context.getSource().sendFeedback(() -> Text.literal(
+                    itemId + " is currency (1 emerald = $1). Use /withdraw and /deposit."), false);
+            return 1;
+        }
         BigDecimal sell = EconomyManager.getInstance().getSellPrice(itemId);
         BigDecimal buy = EconomyManager.getInstance().getBuyPrice(itemId);
         boolean buyable = EconomyManager.getInstance().isBuyable(itemId);
@@ -114,6 +117,11 @@ public class SellCommands {
 
     private static int checkItemWorth(CommandContext<ServerCommandSource> context) {
         String itemId = StringArgumentType.getString(context, "item");
+        if (EconomyManager.getInstance().isCurrencyItem(itemId)) {
+            context.getSource().sendFeedback(() -> Text.literal(
+                    itemId + " is currency (1 emerald = $1). Use /withdraw and /deposit."), false);
+            return 1;
+        }
         BigDecimal sell = EconomyManager.getInstance().getSellPrice(itemId);
         BigDecimal buy = EconomyManager.getInstance().getBuyPrice(itemId);
         boolean buyable = EconomyManager.getInstance().isBuyable(itemId);

@@ -299,11 +299,16 @@ public class EconomyCommands {
         BigDecimal amount = BigDecimal.valueOf(amountDouble);
 
         // 1 emerald = $1. Withdraw whole emeralds only.
-        int emeralds = amount.setScale(0, java.math.RoundingMode.DOWN).intValueExact();
-        if (emeralds <= 0) {
+        BigDecimal whole = amount.setScale(0, java.math.RoundingMode.DOWN);
+        if (whole.compareTo(BigDecimal.ONE) < 0) {
             context.getSource().sendError(Text.literal("Withdraw at least 1."));
             return 0;
         }
+        if (whole.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) > 0) {
+            context.getSource().sendError(Text.literal("That's too many emeralds to withdraw at once (max " + Integer.MAX_VALUE + ")."));
+            return 0;
+        }
+        int emeralds = whole.intValueExact();
         BigDecimal cost = BigDecimal.valueOf(emeralds);
 
         if (EconomyManager.getInstance().removeBalance(player.getUuid(), cost)) {
