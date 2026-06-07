@@ -152,20 +152,7 @@ public class EconomyCommands {
     }
 
     private static void sendCommandFeedback(CommandContext<ServerCommandSource> context, String message, boolean broadcastToOps) {
-        var config = EconomyManager.getInstance().getConfig();
-        if (config.commandNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.ACTION_BAR) {
-            context.getSource().sendFeedback(() -> Text.literal(message), false); // Commands usually need feedback, but maybe we can suppress?
-            // Actually, for commands, the sender usually EXPECTS chat feedback.
-            // But if they chose ACTION_BAR, we should try to use it.
-            // However, CommandSource.sendFeedback doesn't support Action Bar easily without casting to Player.
-            if (context.getSource().getEntity() instanceof ServerPlayerEntity player) {
-                player.sendMessage(Text.literal(message), true);
-            } else {
-                context.getSource().sendFeedback(() -> Text.literal(message), broadcastToOps);
-            }
-        } else if (config.commandNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.CHAT) {
-            context.getSource().sendFeedback(() -> Text.literal(message), broadcastToOps);
-        }
+        context.getSource().sendFeedback(() -> Text.literal(message), broadcastToOps);
     }
 
     private static int pay(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
@@ -194,43 +181,7 @@ public class EconomyCommands {
             
             ServerPlayerEntity target = context.getSource().getServer().getPlayerManager().getPlayer(targetUUID);
             if (target != null) {
-                // Check notification mode for receiver too? Usually receiver gets generic API notification if enabled.
-                // But this is a specific "You received X from Y" message.
-                // Let's respect commandNotificationMode for this specific feedback as well.
-                var config = EconomyManager.getInstance().getConfig();
-                if (config.commandNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.ACTION_BAR) {
-                    target.sendMessage(Text.literal("Received " + formattedAmount + " from " + sourcePlayer.getName().getString()), true);
-                } else if (config.commandNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.CHAT) {
-                    target.sendMessage(Text.literal("Received " + formattedAmount + " from " + sourcePlayer.getName().getString()), false);
-                }
-                
-                // Player is local, but we still need to invalidate caches on other servers
-                try {
-                    BigDecimal newBalance = EconomyManager.getInstance().getBalance(targetUUID);
-                    savage.commoneconomy.util.RedisManager.getInstance().publishTransaction(
-                        targetUUID,
-                        newBalance,
-                        "pay",
-                        sourcePlayer.getName().getString(),
-                        null // No chat message needed, they got it locally
-                    );
-                } catch (Exception e) {
-                    // Redis is optional
-                }
-            } else {
-                // Player not on this server, publish to Redis with chat message
-                try {
-                    BigDecimal newBalance = EconomyManager.getInstance().getBalance(targetUUID);
-                    savage.commoneconomy.util.RedisManager.getInstance().publishTransaction(
-                        targetUUID,
-                        newBalance,
-                        "pay",
-                        sourcePlayer.getName().getString(),
-                        "Received " + formattedAmount + " from " + sourcePlayer.getName().getString()
-                    );
-                } catch (Exception e) {
-                    // Redis is optional
-                }
+                target.sendMessage(Text.literal("Received " + formattedAmount + " from " + sourcePlayer.getName().getString()), false);
             }
             savage.commoneconomy.util.TransactionLogger.log("PAY", sourcePlayer.getName().getString(), displayName, amount, "Payment");
             return 1;
@@ -259,40 +210,7 @@ public class EconomyCommands {
             
             ServerPlayerEntity target = context.getSource().getServer().getPlayerManager().getPlayer(targetUUID);
             if (target != null) {
-                var config = EconomyManager.getInstance().getConfig();
-                if (config.commandNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.ACTION_BAR) {
-                    target.sendMessage(Text.literal("Received " + formattedAmount + " (Admin Gift)"), true);
-                } else if (config.commandNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.CHAT) {
-                    target.sendMessage(Text.literal("Received " + formattedAmount + " (Admin Gift)"), false);
-                }
-                
-                // Player is local, but we still need to invalidate caches on other servers
-                try {
-                    BigDecimal newBalance = EconomyManager.getInstance().getBalance(targetUUID);
-                    savage.commoneconomy.util.RedisManager.getInstance().publishTransaction(
-                        targetUUID,
-                        newBalance,
-                        "give",
-                        context.getSource().getName(),
-                        null // No chat message needed
-                    );
-                } catch (Exception e) {
-                    // Redis is optional
-                }
-            } else {
-                // Player not on this server, publish to Redis
-                try {
-                    BigDecimal newBalance = EconomyManager.getInstance().getBalance(targetUUID);
-                    savage.commoneconomy.util.RedisManager.getInstance().publishTransaction(
-                        targetUUID,
-                        newBalance,
-                        "give",
-                        context.getSource().getName(),
-                        "Received " + formattedAmount + " (Admin Gift)"
-                    );
-                } catch (Exception e) {
-                    // Redis is optional
-                }
+                target.sendMessage(Text.literal("Received " + formattedAmount + " (Admin Gift)"), false);
             }
             savage.commoneconomy.util.TransactionLogger.log("ADMIN_GIVE", context.getSource().getName(), displayName, amount, "Admin Gift");
             return 1;
@@ -321,21 +239,6 @@ public class EconomyCommands {
             return 0;
         } else {
             sendCommandFeedback(context, "Took " + formattedAmount + " from " + displayName, true);
-            
-            // Publish Redis update to invalidate caches (silent)
-            try {
-                BigDecimal newBalance = EconomyManager.getInstance().getBalance(targetUUID);
-                savage.commoneconomy.util.RedisManager.getInstance().publishTransaction(
-                    targetUUID,
-                    newBalance,
-                    "take",
-                    context.getSource().getName(),
-                    null 
-                );
-            } catch (Exception e) {
-                // Redis is optional
-            }
-            
             savage.commoneconomy.util.TransactionLogger.log("ADMIN_TAKE", context.getSource().getName(), displayName, amount, "Admin Take");
             return 1;
         }
@@ -360,28 +263,8 @@ public class EconomyCommands {
         
         ServerPlayerEntity target = context.getSource().getServer().getPlayerManager().getPlayer(targetUUID);
         if (target != null) {
-            var config = EconomyManager.getInstance().getConfig();
-            if (config.commandNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.ACTION_BAR) {
-                target.sendMessage(Text.literal("Your balance has been set to " + formattedAmount), true);
-            } else if (config.commandNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.CHAT) {
-                target.sendMessage(Text.literal("Your balance has been set to " + formattedAmount), false);
-            }
+            target.sendMessage(Text.literal("Your balance has been set to " + formattedAmount), false);
         }
-        
-        // Publish Redis update
-        try {
-            BigDecimal newBalance = EconomyManager.getInstance().getBalance(targetUUID);
-            savage.commoneconomy.util.RedisManager.getInstance().publishTransaction(
-                targetUUID,
-                newBalance,
-                "set",
-                context.getSource().getName(),
-                target == null ? "Your balance has been set to " + formattedAmount : null // Send message if remote, otherwise silent
-            );
-        } catch (Exception e) {
-            // Redis is optional
-        }
-        
         savage.commoneconomy.util.TransactionLogger.log("ADMIN_SET", context.getSource().getName(), displayName, amount, "Set Balance");
         return 1;
     }
@@ -405,25 +288,7 @@ public class EconomyCommands {
         
         ServerPlayerEntity target = context.getSource().getServer().getPlayerManager().getPlayer(targetUUID);
         if (target != null) {
-            var config = EconomyManager.getInstance().getConfig();
-            if (config.commandNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.ACTION_BAR) {
-                target.sendMessage(Text.literal("Your balance has been reset to " + formattedAmount), true);
-            } else if (config.commandNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.CHAT) {
-                target.sendMessage(Text.literal("Your balance has been reset to " + formattedAmount), false);
-            }
-        }
-        
-        // Publish Redis update
-        try {
-            savage.commoneconomy.util.RedisManager.getInstance().publishTransaction(
-                targetUUID,
-                newBalance,
-                "reset",
-                context.getSource().getName(),
-                target == null ? "Your balance has been reset to " + formattedAmount : null // Send message if remote
-            );
-        } catch (Exception e) {
-            // Redis is optional
+            target.sendMessage(Text.literal("Your balance has been reset to " + formattedAmount), false);
         }
         return 1;
     }
@@ -433,25 +298,24 @@ public class EconomyCommands {
         double amountDouble = DoubleArgumentType.getDouble(context, "amount");
         BigDecimal amount = BigDecimal.valueOf(amountDouble);
 
-        if (EconomyManager.getInstance().removeBalance(player.getUuid(), amount)) {
-            // Create a paper item with NBT data
-            net.minecraft.item.ItemStack note = new net.minecraft.item.ItemStack(net.minecraft.item.Items.PAPER);
-            
-            // Create NBT data for the bank note
-            net.minecraft.nbt.NbtCompound nbt = new net.minecraft.nbt.NbtCompound();
-            nbt.putBoolean("EconomyBankNote", true);
-            nbt.putDouble("Value", amountDouble);
-            note.set(net.minecraft.component.DataComponentTypes.CUSTOM_DATA, 
-                    net.minecraft.component.type.NbtComponent.of(nbt));
-            
-            // Set custom name
-            note.set(net.minecraft.component.DataComponentTypes.CUSTOM_NAME,
-                    Text.literal("Bank Note: " + EconomyManager.getInstance().format(amount))
-                            .formatted(net.minecraft.util.Formatting.GREEN));
+        // 1 emerald = $1. Withdraw whole emeralds only.
+        int emeralds = amount.setScale(0, java.math.RoundingMode.DOWN).intValueExact();
+        if (emeralds <= 0) {
+            context.getSource().sendError(Text.literal("Withdraw at least 1."));
+            return 0;
+        }
+        BigDecimal cost = BigDecimal.valueOf(emeralds);
 
-            player.getInventory().offerOrDrop(note);
-            sendCommandFeedback(context, "Withdrew " + EconomyManager.getInstance().format(amount) + " as a bank note.", false);
-            savage.commoneconomy.util.TransactionLogger.log("WITHDRAW", player.getName().getString(), "Bank Note", amount, "Withdrawal");
+        if (EconomyManager.getInstance().removeBalance(player.getUuid(), cost)) {
+            int remaining = emeralds;
+            int maxStack = new net.minecraft.item.ItemStack(net.minecraft.item.Items.EMERALD).getMaxCount();
+            while (remaining > 0) {
+                int give = Math.min(remaining, maxStack);
+                player.getInventory().offerOrDrop(new net.minecraft.item.ItemStack(net.minecraft.item.Items.EMERALD, give));
+                remaining -= give;
+            }
+            sendCommandFeedback(context, "Withdrew " + EconomyManager.getInstance().format(cost) + " as " + emeralds + " emeralds.", false);
+            savage.commoneconomy.util.TransactionLogger.log("WITHDRAW", player.getName().getString(), "Emeralds", cost, "Withdrawal");
             return 1;
         } else {
             context.getSource().sendError(Text.literal("Insufficient funds."));
