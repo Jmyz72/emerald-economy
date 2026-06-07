@@ -13,7 +13,16 @@ public class EconomyConfig {
     // Percent of deposited emerald value burned as a fee (0-100). 20 = keep 80%.
     public int depositFeePercent = 20;
 
+    // How the Common Economy API notifies players about balance changes.
+    public NotificationMode apiNotificationMode = NotificationMode.ACTION_BAR;
+
     public StorageConfig storage = new StorageConfig();
+
+    public enum NotificationMode {
+        NONE,
+        ACTION_BAR,
+        CHAT
+    }
 
     /**
      * SQLite-only storage settings. The database file name is fixed inside
