@@ -4,9 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import savage.commoneconomy.config.EconomyConfig;
+import savage.commoneconomy.config.ItemPrice;
 import savage.commoneconomy.config.WorthConfig;
 import savage.commoneconomy.storage.EconomyStorage;
-import savage.commoneconomy.storage.JsonStorage;
+import savage.commoneconomy.economy.PriceBook;
+import savage.commoneconomy.storage.SqliteStorage;
 
 import java.io.File;
 import java.io.FileReader;
@@ -68,42 +70,25 @@ public class EconomyManager {
     public void initStorage() {
         if (storage != null) return; // Already initialized
 
-        String type = config.storage.type.toUpperCase();
         int maxRetries = 10;
         int attempt = 0;
-        
+
         while (attempt < maxRetries) {
             try {
-                switch (type) {
-                    case "MYSQL":
-                        storage = new savage.commoneconomy.storage.MysqlStorage(this, config.storage.host, config.storage.port, config.storage.database, config.storage.user, config.storage.password, config.storage.tablePrefix);
-                        break;
-                    case "SQLITE":
-                        storage = new savage.commoneconomy.storage.SqliteStorage(this, config.storage.tablePrefix);
-                        break;
-                    case "POSTGRES":
-                    case "POSTGRESQL":
-                        storage = new savage.commoneconomy.storage.PostgresStorage(this, config.storage.host, config.storage.port, config.storage.database, config.storage.user, config.storage.password, config.storage.tablePrefix);
-                        break;
-                    default:
-                        storage = new JsonStorage(this);
-                        break;
-                }
-                // If successful, break loop
-                savage.commoneconomy.SavsCommonEconomy.LOGGER.info("Economy Storage initialized successfully: " + type);
+                storage = new SqliteStorage(this, config.storage.tablePrefix);
+                savage.commoneconomy.SavsCommonEconomy.LOGGER.info("Economy Storage initialized successfully: SQLITE");
                 break;
             } catch (Exception e) {
                 attempt++;
-                savage.commoneconomy.SavsCommonEconomy.LOGGER.warn("Failed to initialize economy storage (Attempt " + attempt + "/" + maxRetries + "). Retrying in 2 seconds...", e);
-                
+                savage.commoneconomy.SavsCommonEconomy.LOGGER.warn(
+                        "Failed to initialize economy storage (Attempt " + attempt + "/" + maxRetries + "). Retrying in 2 seconds...", e);
+
                 if (attempt >= maxRetries) {
-                    savage.commoneconomy.SavsCommonEconomy.LOGGER.error("Could not initialize economy storage after " + maxRetries + " attempts. Falling back to JSON/Disable.");
-                    // Fallback to JSON or throw?
-                    // Let's fallback to JSON to prevent crash but data might be split.
-                    // Actually, if DB fails, JSON fallback is risky for sync. Better to crash or disable.
-                    throw new RuntimeException("Failed to connect to economy database", e);
+                    savage.commoneconomy.SavsCommonEconomy.LOGGER.error(
+                            "Could not initialize economy storage after " + maxRetries + " attempts.");
+                    throw new RuntimeException("Failed to initialize SQLite economy storage", e);
                 }
-                
+
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException ie) {
@@ -184,10 +169,7 @@ public class EconomyManager {
 
     public void setBalance(UUID uuid, BigDecimal amount, boolean publishToRedis) {
         storage.setBalance(uuid, amount);
-        accountCache.invalidate(uuid); 
-        if (publishToRedis && config.redis.enabled) {
-            savage.commoneconomy.util.RedisManager.getInstance().publishBalanceUpdate(uuid, amount);
-        }
+        accountCache.invalidate(uuid);
     }
 
     public boolean addBalance(UUID uuid, BigDecimal amount) {
@@ -210,10 +192,6 @@ public class EconomyManager {
                     accountCache.put(uuid, data);
                 } else {
                     accountCache.invalidate(uuid);
-                }
-                
-                if (publishToRedis && config.redis.enabled) {
-                    savage.commoneconomy.util.RedisManager.getInstance().publishBalanceUpdate(uuid, current.add(amount));
                 }
                 
                 return true;
@@ -252,10 +230,6 @@ public class EconomyManager {
                         accountCache.put(uuid, data);
                     } else {
                         accountCache.invalidate(uuid);
-                    }
-                    
-                    if (publishToRedis && config.redis.enabled) {
-                        savage.commoneconomy.util.RedisManager.getInstance().publishBalanceUpdate(uuid, current.subtract(amount));
                     }
                     
                     return true;
@@ -342,11 +316,7 @@ public class EconomyManager {
     }
 
     public String format(BigDecimal amount) {
-        if (config.symbolBeforeAmount) {
-            return config.currencySymbol + amount.toString();
-        } else {
-            return amount.toString() + config.currencySymbol;
-        }
+        return config.currencySymbol + amount.toString();
     }
 
     // Leaderboard support
@@ -354,25 +324,49 @@ public class EconomyManager {
         return storage.getTopAccounts(limit);
     }
 
-    // Sell system support
+    // Pricing support
     private WorthConfig worthConfig;
+    private PriceBook priceBook;
 
-    public boolean isSellEnabled() {
-        return config != null && config.enableSellCommands;
+    private PriceBook priceBook() {
+        if (priceBook == null) {
+            if (worthConfig == null) {
+                loadWorthConfig();
+            }
+            priceBook = new PriceBook(
+                    worthConfig.itemPrices,
+                    worthConfig.unbuyable,
+                    config.defaultBuyPrice,
+                    config.defaultSellPrice);
+        }
+        return priceBook;
     }
 
-    public BigDecimal getItemPrice(String itemId) {
+    public BigDecimal getBuyPrice(String itemId) {
+        return priceBook().getBuyPrice(itemId);
+    }
+
+    public BigDecimal getSellPrice(String itemId) {
+        return priceBook().getSellPrice(itemId);
+    }
+
+    public boolean isBuyable(String itemId) {
+        return priceBook().isBuyable(itemId);
+    }
+
+    /** The physical currency item id. Emerald is currency, not a tradeable good. */
+    public static final String CURRENCY_ITEM_ID = "minecraft:emerald";
+
+    public boolean isCurrencyItem(String itemId) {
+        return CURRENCY_ITEM_ID.equals(itemId);
+    }
+
+    /** All curated item prices (for /worth list). Excludes fallback-only items. */
+    public Map<String, ItemPrice> getAllItemPrices() {
         if (worthConfig == null) {
             loadWorthConfig();
         }
-        return worthConfig.itemPrices.getOrDefault(itemId, BigDecimal.ZERO);
-    }
-
-    public Map<String, BigDecimal> getAllItemPrices() {
-        if (worthConfig == null) {
-            loadWorthConfig();
-        }
-        return new HashMap<>(worthConfig.itemPrices);
+        return new java.util.LinkedHashMap<>(worthConfig.itemPrices);
     }
 
     private void loadWorthConfig() {
