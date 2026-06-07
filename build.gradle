@@ -54,6 +54,10 @@ dependencies {
 	// Common Economy API
 	modImplementation "eu.pb4:common-economy-api:1.1.1"
 	include "eu.pb4:common-economy-api:1.1.1"
+
+	// Unit testing (pure-logic only)
+	testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
+	testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 }
 
 repositories {
@@ -89,6 +93,10 @@ java {
 
 	sourceCompatibility = JavaVersion.VERSION_21
 	targetCompatibility = JavaVersion.VERSION_21
+}
+
+test {
+	useJUnitPlatform()
 }
 
 jar {
