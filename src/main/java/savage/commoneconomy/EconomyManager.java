@@ -164,19 +164,11 @@ public class EconomyManager {
     }
 
     public void setBalance(UUID uuid, BigDecimal amount) {
-        setBalance(uuid, amount, true);
-    }
-
-    public void setBalance(UUID uuid, BigDecimal amount, boolean publishToRedis) {
         storage.setBalance(uuid, amount);
         accountCache.invalidate(uuid);
     }
 
     public boolean addBalance(UUID uuid, BigDecimal amount) {
-        return addBalance(uuid, amount, true);
-    }
-
-    public boolean addBalance(UUID uuid, BigDecimal amount, boolean publishToRedis) {
         int retries = 10;
         while (retries > 0) {
             // Reload account data to get latest version
@@ -210,10 +202,6 @@ public class EconomyManager {
     }
 
     public boolean removeBalance(UUID uuid, BigDecimal amount) {
-        return removeBalance(uuid, amount, true);
-    }
-
-    public boolean removeBalance(UUID uuid, BigDecimal amount, boolean publishToRedis) {
         int retries = 10;
         while (retries > 0) {
             // Reload account data to get latest version

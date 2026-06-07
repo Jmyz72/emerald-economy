@@ -174,8 +174,8 @@ public class EconomyCommands {
             return 0;
         }
 
-        if (EconomyManager.getInstance().removeBalance(sourcePlayer.getUuid(), amount, false)) {
-            EconomyManager.getInstance().addBalance(targetUUID, amount, false);
+        if (EconomyManager.getInstance().removeBalance(sourcePlayer.getUuid(), amount)) {
+            EconomyManager.getInstance().addBalance(targetUUID, amount);
             String formattedAmount = EconomyManager.getInstance().format(amount);
             sendCommandFeedback(context, "Paid " + formattedAmount + " to " + displayName, false);
             
@@ -205,7 +205,7 @@ public class EconomyCommands {
             return 0;
         }
 
-        if (EconomyManager.getInstance().addBalance(targetUUID, amount, false)) {
+        if (EconomyManager.getInstance().addBalance(targetUUID, amount)) {
             sendCommandFeedback(context, "Gave " + formattedAmount + " to " + displayName, true);
             
             ServerPlayerEntity target = context.getSource().getServer().getPlayerManager().getPlayer(targetUUID);
@@ -234,7 +234,7 @@ public class EconomyCommands {
             return 0;
         }
 
-        if (!EconomyManager.getInstance().removeBalance(targetUUID, amount, false)) {
+        if (!EconomyManager.getInstance().removeBalance(targetUUID, amount)) {
             context.getSource().sendError(Text.literal("Could not take money (Insufficient funds or transaction failed)."));
             return 0;
         } else {
@@ -258,7 +258,7 @@ public class EconomyCommands {
             return 0;
         }
 
-        EconomyManager.getInstance().setBalance(targetUUID, amount, false);
+        EconomyManager.getInstance().setBalance(targetUUID, amount);
         sendCommandFeedback(context, "Set " + displayName + "'s balance to " + formattedAmount, true);
         
         ServerPlayerEntity target = context.getSource().getServer().getPlayerManager().getPlayer(targetUUID);
