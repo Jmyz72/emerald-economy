@@ -87,12 +87,8 @@ public class SavsEconomyAccount implements EconomyAccount {
         if (server != null) {
             net.minecraft.server.network.ServerPlayerEntity player = server.getPlayerManager().getPlayer(profile.id());
             if (player != null) {
-                var config = EconomyManager.getInstance().getConfig();
-                if (config.apiNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.ACTION_BAR) {
-                    player.sendMessage(Text.literal(message), true);
-                } else if (config.apiNotificationMode == savage.commoneconomy.config.EconomyConfig.NotificationMode.CHAT) {
-                    player.sendMessage(Text.literal(message), false);
-                }
+                // Notification feedback is hardcoded to chat for this server build.
+                player.sendMessage(Text.literal(message), false);
             }
         }
     }
