@@ -44,6 +44,20 @@ public class DepositCommand {
 
         int toDeposit = Math.min(requested, held);
 
+        int feePercent = Math.max(0, Math.min(100, EconomyManager.getInstance().getConfig().depositFeePercent));
+        BigDecimal gross = BigDecimal.valueOf(toDeposit);
+        BigDecimal net = gross
+                .multiply(BigDecimal.valueOf(100 - feePercent))
+                .divide(BigDecimal.valueOf(100), 2, RoundingMode.DOWN);
+        BigDecimal fee = gross.subtract(net);
+
+        // Credit the balance FIRST; only consume emeralds once it succeeds, so a
+        // storage failure never destroys the player's emeralds.
+        if (!EconomyManager.getInstance().addBalance(player.getUuid(), net)) {
+            context.getSource().sendError(Text.literal("Deposit failed, please try again. Your emeralds were not taken."));
+            return 0;
+        }
+
         int remaining = toDeposit;
         for (int i = 0; i < player.getInventory().size() && remaining > 0; i++) {
             ItemStack stack = player.getInventory().getStack(i);
@@ -53,15 +67,6 @@ public class DepositCommand {
                 remaining -= take;
             }
         }
-
-        int feePercent = Math.max(0, Math.min(100, EconomyManager.getInstance().getConfig().depositFeePercent));
-        BigDecimal gross = BigDecimal.valueOf(toDeposit);
-        BigDecimal net = gross
-                .multiply(BigDecimal.valueOf(100 - feePercent))
-                .divide(BigDecimal.valueOf(100), 2, RoundingMode.DOWN);
-        BigDecimal fee = gross.subtract(net);
-
-        EconomyManager.getInstance().addBalance(player.getUuid(), net);
 
         final int depositedFinal = toDeposit;
         context.getSource().sendFeedback(() -> Text.literal(

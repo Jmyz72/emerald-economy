@@ -10,6 +10,7 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import savage.commoneconomy.EconomyManager;
 
 import java.math.BigDecimal;
@@ -121,6 +122,11 @@ public class SellCommands {
             context.getSource().sendFeedback(() -> Text.literal(
                     itemId + " is currency (1 emerald = $1). Use /withdraw and /deposit."), false);
             return 1;
+        }
+        Identifier id = Identifier.tryParse(itemId);
+        if (id == null || !Registries.ITEM.containsId(id)) {
+            context.getSource().sendError(Text.literal("Unknown item: " + itemId));
+            return 0;
         }
         BigDecimal sell = EconomyManager.getInstance().getSellPrice(itemId);
         BigDecimal buy = EconomyManager.getInstance().getBuyPrice(itemId);
