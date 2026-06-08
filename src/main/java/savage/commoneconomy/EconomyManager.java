@@ -10,6 +10,8 @@ import savage.commoneconomy.storage.EconomyStorage;
 import savage.commoneconomy.economy.PriceBook;
 import savage.commoneconomy.storage.SqliteStorage;
 
+import net.minecraft.server.network.ServerPlayerEntity;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -179,6 +181,28 @@ public class EconomyManager {
         BigDecimal fee = gross.subtract(net);
         boolean ok = addBalance(uuid, net);
         return new DepositResult(count, net, fee, feePercent, ok);
+    }
+
+    public enum WithdrawStatus { OK, TOO_SMALL, TOO_LARGE, INSUFFICIENT_FUNDS }
+    public record WithdrawResult(WithdrawStatus status, int emeralds) {}
+
+    /** Debit balance and deliver whole emeralds. Debits first, then delivers. */
+    public WithdrawResult withdrawEmeralds(ServerPlayerEntity player, BigDecimal amount) {
+        BigDecimal whole = amount.setScale(0, java.math.RoundingMode.DOWN);
+        if (whole.compareTo(BigDecimal.ONE) < 0) return new WithdrawResult(WithdrawStatus.TOO_SMALL, 0);
+        if (whole.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) > 0) return new WithdrawResult(WithdrawStatus.TOO_LARGE, 0);
+        int emeralds = whole.intValueExact();
+        BigDecimal cost = BigDecimal.valueOf(emeralds);
+        if (!removeBalance(player.getUuid(), cost)) return new WithdrawResult(WithdrawStatus.INSUFFICIENT_FUNDS, 0);
+        int remaining = emeralds;
+        int maxStack = new net.minecraft.item.ItemStack(net.minecraft.item.Items.EMERALD).getMaxCount();
+        while (remaining > 0) {
+            int give = Math.min(remaining, maxStack);
+            player.getInventory().offerOrDrop(new net.minecraft.item.ItemStack(net.minecraft.item.Items.EMERALD, give));
+            remaining -= give;
+        }
+        savage.commoneconomy.util.TransactionLogger.log("WITHDRAW", player.getName().getString(), "Emeralds", cost, "Withdrawal");
+        return new WithdrawResult(WithdrawStatus.OK, emeralds);
     }
 
     public boolean addBalance(UUID uuid, BigDecimal amount) {
