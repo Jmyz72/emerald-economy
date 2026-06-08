@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 public class SellShopGui extends SimpleGui {
     private static final int DROP_SLOTS = 45; // rows 0-4
     private final SimpleInventory inv = new SimpleInventory(DROP_SLOTS);
+    private boolean settled = false; // guards against onClose firing twice (Back button -> double close)
 
     public SellShopGui(ServerPlayerEntity player) {
         super(ScreenHandlerType.GENERIC_9X6, player, false);
@@ -35,6 +36,8 @@ public class SellShopGui extends SimpleGui {
 
     @Override
     public void onClose() {
+        if (settled) { super.onClose(); return; }
+        settled = true;
         ServerPlayerEntity p = getPlayer();
         BigDecimal totalCredited = BigDecimal.ZERO;
         for (int i = 0; i < inv.size(); i++) {
