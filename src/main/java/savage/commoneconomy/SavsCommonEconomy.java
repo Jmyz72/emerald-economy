@@ -65,5 +65,10 @@ public class SavsCommonEconomy implements ModInitializer {
 						handler.player.getName().getString());
 			}
 		});
+
+		// Settle any open drop-to-sell / deposit GUI on disconnect so dropped items are
+		// never lost (sgui's onClose does not fire on an abrupt disconnect).
+		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) ->
+				savage.commoneconomy.gui.ShopDropGuis.settleOnDisconnect(handler.player.getUuid()));
 	}
 }

@@ -25,13 +25,22 @@ public class DepositShopGui extends SimpleGui {
         }
         setSlot(49, new GuiElementBuilder(Items.BARRIER).setName(Text.literal("Back / Deposit & close"))
                 .setCallback((i, t, a, g) -> close()));
+        // Ensure dropped emeralds are settled even on an abrupt disconnect (sgui onClose won't fire then).
+        ShopDropGuis.register(player.getUuid(), this::settle);
     }
 
     @Override
     public void onClose() {
-        if (settled) { super.onClose(); return; }
+        settle();
+        super.onClose();
+    }
+
+    /** Convert dropped emeralds / return non-emeralds. Runs once (guards against double close and disconnect). */
+    private void settle() {
+        if (settled) return;
         settled = true;
         ServerPlayerEntity p = getPlayer();
+        ShopDropGuis.unregister(p.getUuid());
         int emeralds = 0;
         for (int i = 0; i < inv.size(); i++) {
             ItemStack stack = inv.getStack(i);
@@ -54,6 +63,5 @@ public class DepositShopGui extends SimpleGui {
                 p.sendMessage(Text.literal("Deposit failed; emeralds returned."), false);
             }
         }
-        super.onClose();
     }
 }

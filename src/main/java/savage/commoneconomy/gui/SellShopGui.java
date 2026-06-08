@@ -32,13 +32,22 @@ public class SellShopGui extends SimpleGui {
         }
         setSlot(49, new GuiElementBuilder(Items.BARRIER).setName(Text.literal("Back / Sell & close"))
                 .setCallback((i, t, a, g) -> close()));
+        // Ensure dropped items are settled even on an abrupt disconnect (sgui onClose won't fire then).
+        ShopDropGuis.register(player.getUuid(), this::settle);
     }
 
     @Override
     public void onClose() {
-        if (settled) { super.onClose(); return; }
+        settle();
+        super.onClose();
+    }
+
+    /** Sell/return every dropped stack. Runs once (guards against double close and disconnect). */
+    private void settle() {
+        if (settled) return;
         settled = true;
         ServerPlayerEntity p = getPlayer();
+        ShopDropGuis.unregister(p.getUuid());
         BigDecimal totalCredited = BigDecimal.ZERO;
         for (int i = 0; i < inv.size(); i++) {
             ItemStack stack = inv.getStack(i);
@@ -61,6 +70,5 @@ public class SellShopGui extends SimpleGui {
         if (totalCredited.signum() > 0) {
             p.sendMessage(Text.literal("Sold for " + EconomyManager.getInstance().format(totalCredited)), false);
         }
-        super.onClose();
     }
 }
