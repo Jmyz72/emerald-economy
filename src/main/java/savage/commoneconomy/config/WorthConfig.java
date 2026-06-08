@@ -1,6 +1,5 @@
 package savage.commoneconomy.config;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -26,18 +25,9 @@ public class WorthConfig {
     public WorthConfig() {
     }
 
-    /** A fresh config seeded with a few example prices and the unbuyable defaults. */
+    /** A fresh config with no priced items, seeded only with the unbuyable defaults. */
     public static WorthConfig createDefault() {
         WorthConfig c = new WorthConfig();
-
-        Map<String, ItemPrice> ingredients = new LinkedHashMap<>();
-        ingredients.put("minecraft:diamond", new ItemPrice(BigDecimal.valueOf(100), BigDecimal.valueOf(60)));
-        ingredients.put("minecraft:iron_ingot", new ItemPrice(BigDecimal.valueOf(20), BigDecimal.valueOf(12)));
-        c.categories.put("ingredients", ingredients);
-
-        Map<String, ItemPrice> food = new LinkedHashMap<>();
-        food.put("minecraft:apple", new ItemPrice(BigDecimal.valueOf(10), BigDecimal.valueOf(5)));
-        c.categories.put("food_and_drink", food);
 
         c.unbuyable.add("minecraft:bedrock");
         c.unbuyable.add("minecraft:spawner");
