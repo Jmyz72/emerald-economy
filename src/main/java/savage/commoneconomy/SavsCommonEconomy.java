@@ -6,13 +6,17 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import savage.commoneconomy.command.AdminMoneyCommands;
+import savage.commoneconomy.command.BalanceCommands;
 import savage.commoneconomy.command.BuyCommand;
 import savage.commoneconomy.command.DebugCommands;
 import savage.commoneconomy.command.DepositCommand;
 import savage.commoneconomy.command.EcoCommands;
-import savage.commoneconomy.command.EconomyCommands;
+import savage.commoneconomy.command.EconomyCommand;
 import savage.commoneconomy.command.LogCommand;
 import savage.commoneconomy.command.SellCommands;
+
+import java.util.List;
 
 public class SavsCommonEconomy implements ModInitializer {
 	public static final String MOD_ID = "savs-common-economy";
@@ -28,15 +32,17 @@ public class SavsCommonEconomy implements ModInitializer {
 		LOGGER.info("Savs Common Economy initialized.");
 
 		// Register commands
-		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-			EconomyCommands.register(dispatcher);
-			SellCommands.register(dispatcher);
-			BuyCommand.register(dispatcher);
-			DepositCommand.register(dispatcher);
-			LogCommand.register(dispatcher);
-			DebugCommands.register(dispatcher);
-			EcoCommands.register(dispatcher);
-		});
+		List<EconomyCommand> commands = List.of(
+				BalanceCommands::register,
+				AdminMoneyCommands::register,
+				SellCommands::register,
+				BuyCommand::register,
+				DepositCommand::register,
+				LogCommand::register,
+				DebugCommands::register,
+				EcoCommands::register);
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
+				commands.forEach(command -> command.register(dispatcher)));
 
 		// Load economy data when server starts
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
