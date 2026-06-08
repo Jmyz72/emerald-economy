@@ -35,9 +35,9 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	
-	// Fabric Permissions API
-	modImplementation "me.lucko:fabric-permissions-api:0.5.0"
-	include "me.lucko:fabric-permissions-api:0.5.0"
+	// Fabric Permissions API (0.6.0 targets MC 1.21.11; 0.5.0 is for 1.21.9 and crashes commands)
+	modImplementation "me.lucko:fabric-permissions-api:0.6.0"
+	include "me.lucko:fabric-permissions-api:0.6.0"
 
 	// Savs DB Core
 	modImplementation "com.github.xSaVageAU:savdbcore:1.2.0"
