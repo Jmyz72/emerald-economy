@@ -111,13 +111,13 @@ public class EconomyManager {
             try (FileWriter writer = new FileWriter(configFile)) {
                 gson.toJson(this.config, writer);
             } catch (IOException e) {
-                e.printStackTrace();
+                SavsCommonEconomy.LOGGER.error("Failed to write default economy config", e);
             }
         } else {
             try (FileReader reader = new FileReader(configFile)) {
                 this.config = gson.fromJson(reader, EconomyConfig.class);
             } catch (IOException e) {
-                e.printStackTrace();
+                SavsCommonEconomy.LOGGER.error("Failed to read economy config; using defaults", e);
                 this.config = new EconomyConfig();
             }
         }
@@ -372,7 +372,7 @@ public class EconomyManager {
             try (FileReader reader = new FileReader(worthFile)) {
                 this.worthConfig = gson.fromJson(reader, WorthConfig.class);
             } catch (IOException e) {
-                e.printStackTrace();
+                SavsCommonEconomy.LOGGER.error("Failed to read worth.json; using empty config", e);
                 this.worthConfig = new WorthConfig();
             }
             // Gson returns null for an empty/blank worth.json; never leave it null.
@@ -398,13 +398,13 @@ public class EconomyManager {
                         java.nio.file.StandardCopyOption.REPLACE_EXISTING);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            SavsCommonEconomy.LOGGER.error("Failed to back up worth.json", e);
         }
         worthFile.getParentFile().mkdirs();
         try (FileWriter writer = new FileWriter(worthFile)) {
             gson.toJson(this.worthConfig, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            SavsCommonEconomy.LOGGER.error("Failed to write worth.json", e);
         }
     }
 
