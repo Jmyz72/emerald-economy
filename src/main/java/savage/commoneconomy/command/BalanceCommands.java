@@ -91,26 +91,23 @@ public class BalanceCommands {
             return 0;
         }
 
-        if (sourcePlayer.getUuid().equals(targetUUID)) {
-            context.getSource().sendError(Text.literal("You cannot pay yourself."));
-            return 0;
-        }
-
-        if (EconomyManager.getInstance().removeBalance(sourcePlayer.getUuid(), amount)) {
-            EconomyManager.getInstance().addBalance(targetUUID, amount);
-            String formattedAmount = EconomyManager.getInstance().format(amount);
-            CommandSupport.sendCommandFeedback(context, "Paid " + formattedAmount + " to " + displayName, false);
-
-            ServerPlayerEntity target = context.getSource().getServer().getPlayerManager().getPlayer(targetUUID);
-            if (target != null) {
-                target.sendMessage(Text.literal("Received " + formattedAmount + " from " + sourcePlayer.getName().getString()), false);
-            }
-            savage.commoneconomy.util.TransactionLogger.log("PAY", sourcePlayer.getName().getString(), displayName, amount, "Payment");
-            return 1;
-        } else {
+        EconomyManager.TransferStatus ts = EconomyManager.getInstance().transfer(sourcePlayer.getUuid(), targetUUID, amount);
+        if (ts == EconomyManager.TransferStatus.INSUFFICIENT_FUNDS) {
             context.getSource().sendError(Text.literal("Insufficient funds."));
             return 0;
         }
+        if (ts == EconomyManager.TransferStatus.SELF) {
+            context.getSource().sendError(Text.literal("You cannot pay yourself."));
+            return 0;
+        }
+        String formattedAmount = EconomyManager.getInstance().format(amount);
+        CommandSupport.sendCommandFeedback(context, "Paid " + formattedAmount + " to " + displayName, false);
+        ServerPlayerEntity target = context.getSource().getServer().getPlayerManager().getPlayer(targetUUID);
+        if (target != null) {
+            target.sendMessage(Text.literal("Received " + formattedAmount + " from " + sourcePlayer.getName().getString()), false);
+        }
+        savage.commoneconomy.util.TransactionLogger.log("PAY", sourcePlayer.getName().getString(), displayName, amount, "Payment");
+        return 1;
     }
 
     private static int withdraw(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {

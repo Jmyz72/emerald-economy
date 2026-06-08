@@ -183,6 +183,16 @@ public class EconomyManager {
         return new DepositResult(count, net, fee, feePercent, ok);
     }
 
+    public enum TransferStatus { OK, SELF, INSUFFICIENT_FUNDS }
+
+    /** Move {@code amount} from one account to another. Debits source first, then credits target. */
+    public TransferStatus transfer(UUID from, UUID to, BigDecimal amount) {
+        if (from.equals(to)) return TransferStatus.SELF;
+        if (!removeBalance(from, amount)) return TransferStatus.INSUFFICIENT_FUNDS;
+        addBalance(to, amount);
+        return TransferStatus.OK;
+    }
+
     public enum WithdrawStatus { OK, TOO_SMALL, TOO_LARGE, INSUFFICIENT_FUNDS }
     public record WithdrawResult(WithdrawStatus status, int emeralds) {}
 
