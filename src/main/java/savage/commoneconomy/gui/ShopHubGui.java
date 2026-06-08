@@ -30,7 +30,7 @@ public class ShopHubGui extends SimpleGui {
         setButton(13, Items.EMERALD_BLOCK, "Deposit", () -> new DepositShopGui(p).open());
         setButton(14, Items.GOLD_INGOT, "Withdraw", () -> new WithdrawShopGui(p).open());
         setButton(15, Items.PAPER, "Transfer", () -> new TransferShopGui(p).open());
-        setButton(16, Items.PLAYER_HEAD, "Top Balances", () -> p.sendMessage(Text.literal("Coming soon"), false));
+        setButton(16, Items.PLAYER_HEAD, "Top Balances", () -> new TopBalancesShopGui(p).open());
     }
 
     private void setButton(int slot, Item icon, String name, Runnable onClick) {
