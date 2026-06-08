@@ -52,6 +52,10 @@ dependencies {
 	modImplementation "eu.pb4:common-economy-api:1.1.1"
 	include "eu.pb4:common-economy-api:1.1.1"
 
+	// Server-side GUI library
+	modImplementation "eu.pb4:sgui:1.12.0+1.21.11"
+	include "eu.pb4:sgui:1.12.0+1.21.11"
+
 	// Unit testing (pure-logic only)
 	testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
 	testRuntimeOnly "org.junit.platform:junit-platform-launcher"
