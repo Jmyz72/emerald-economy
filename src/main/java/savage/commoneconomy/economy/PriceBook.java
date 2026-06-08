@@ -31,10 +31,12 @@ public class PriceBook {
         return p != null ? p.sell : null;
     }
 
+    /** True if this item has a non-null buy price in worth.json. */
     public boolean isBuyable(String itemId) {
         return getBuyPrice(itemId) != null;
     }
 
+    /** True if this item has a non-null sell price in worth.json. */
     public boolean isSellable(String itemId) {
         return getSellPrice(itemId) != null;
     }

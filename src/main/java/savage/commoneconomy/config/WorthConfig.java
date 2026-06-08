@@ -33,6 +33,9 @@ public class WorthConfig {
      */
     public boolean normalize() {
         if (categories == null) categories = new LinkedHashMap<>();
+        // Any legacy "unbuyable" array in old worth.json files is silently ignored by Gson
+        // (the field no longer exists); under the whitelist model those items are untradeable
+        // unless they carry an explicit price in categories.
         boolean migrated = false;
         if (itemPrices != null && !itemPrices.isEmpty()) {
             categories.computeIfAbsent("uncategorized", k -> new LinkedHashMap<>()).putAll(itemPrices);
