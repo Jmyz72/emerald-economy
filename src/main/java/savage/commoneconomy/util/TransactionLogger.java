@@ -24,7 +24,7 @@ public class TransactionLogger {
             
             // Try to log to database if available
             savage.commoneconomy.storage.EconomyStorage storage = savage.commoneconomy.EconomyManager.getStorage();
-            if (storage instanceof savage.commoneconomy.storage.SqlStorage) {
+            if (storage instanceof savage.commoneconomy.storage.SqliteStorage) {
                 storage.logTransaction(timestamp, source, target, amount, type, details);
                 return;
             }
@@ -51,7 +51,7 @@ public class TransactionLogger {
     public static java.util.List<LogEntry> searchLogs(String target, LocalDateTime cutoff) {
         // Try to search from database if available
         savage.commoneconomy.storage.EconomyStorage storage = savage.commoneconomy.EconomyManager.getStorage();
-        if (storage instanceof savage.commoneconomy.storage.SqlStorage) {
+        if (storage instanceof savage.commoneconomy.storage.SqliteStorage) {
             long cutoffTimestamp = cutoff.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
             return storage.searchLogs(target, cutoffTimestamp);
         }
