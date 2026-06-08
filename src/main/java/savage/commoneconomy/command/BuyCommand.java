@@ -45,7 +45,8 @@ public class BuyCommand {
             case UNKNOWN_ITEM -> { context.getSource().sendError(Text.literal("Unknown item: " + itemId)); return 0; }
             case IS_CURRENCY -> { context.getSource().sendError(Text.literal("Emeralds are currency — use /withdraw instead.")); return 0; }
             case NOT_TRADEABLE -> { context.getSource().sendError(Text.literal("This item cannot be bought.")); return 0; }
-            case INSUFFICIENT_FUNDS -> { context.getSource().sendError(Text.literal("Insufficient funds.")); return 0; }
+            case INSUFFICIENT_FUNDS -> { context.getSource().sendError(Text.literal("Insufficient funds. Cost: "
+                    + EconomyManager.getInstance().format(r.total()))); return 0; }
             case OK -> {
                 context.getSource().sendFeedback(() -> Text.literal("Bought " + r.amount() + "x " + itemId
                         + " for " + EconomyManager.getInstance().format(r.total())), false);

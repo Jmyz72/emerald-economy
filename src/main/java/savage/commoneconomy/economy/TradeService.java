@@ -35,7 +35,7 @@ public final class TradeService {
 
         BigDecimal unit = eco.getBuyPrice(itemId);
         BigDecimal total = unit.multiply(BigDecimal.valueOf(amount));
-        if (!eco.removeBalance(player.getUuid(), total)) return Result.of(Status.INSUFFICIENT_FUNDS);
+        if (!eco.removeBalance(player.getUuid(), total)) return new Result(Status.INSUFFICIENT_FUNDS, amount, total);
 
         Item item = Registries.ITEM.get(id);
         int remaining = amount;

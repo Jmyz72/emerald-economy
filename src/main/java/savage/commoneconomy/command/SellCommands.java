@@ -180,6 +180,6 @@ public class SellCommands {
                     + " for " + EconomyManager.getInstance().format(r.total())), false); return 1; }
             default -> context.getSource().sendError(Text.literal("Transaction failed. Please try again."));
         }
-        return r.ok() ? 1 : 0;
+        return 0;
     }
 }
