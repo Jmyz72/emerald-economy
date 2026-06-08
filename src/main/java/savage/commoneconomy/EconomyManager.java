@@ -414,23 +414,13 @@ public class EconomyManager {
 
     /** Categories -> buyable items (buy price set), preserving worth.json order. Excludes currency. */
     public Map<String, Map<String, ItemPrice>> getBuyableCategories() {
-        return filterCategories(true);
-    }
-
-    /** Categories -> sellable items (sell price set). Excludes currency. */
-    public Map<String, Map<String, ItemPrice>> getSellableCategories() {
-        return filterCategories(false);
-    }
-
-    private Map<String, Map<String, ItemPrice>> filterCategories(boolean buyable) {
         if (worthConfig == null) loadWorthConfig();
         Map<String, Map<String, ItemPrice>> out = new java.util.LinkedHashMap<>();
         for (Map.Entry<String, Map<String, ItemPrice>> cat : worthConfig.categories.entrySet()) {
             Map<String, ItemPrice> kept = new java.util.LinkedHashMap<>();
             for (Map.Entry<String, ItemPrice> e : cat.getValue().entrySet()) {
                 if (isCurrencyItem(e.getKey())) continue;
-                BigDecimal price = buyable ? e.getValue().buy : e.getValue().sell;
-                if (price != null) kept.put(e.getKey(), e.getValue());
+                if (e.getValue().buy != null) kept.put(e.getKey(), e.getValue());
             }
             if (!kept.isEmpty()) out.put(cat.getKey(), kept);
         }

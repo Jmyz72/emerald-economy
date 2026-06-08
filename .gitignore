@@ -41,3 +41,6 @@ replay_*.log
 
 # project documentation
 PROJECT_SUMMARY.md
+
+# stray decompiled/extracted dependency sources (from API inspection)
+/eu/

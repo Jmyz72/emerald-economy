@@ -83,6 +83,11 @@ public class BalanceCommands {
         double amountDouble = DoubleArgumentType.getDouble(context, "amount");
         BigDecimal amount = BigDecimal.valueOf(amountDouble);
 
+        if (amount.signum() <= 0) {
+            context.getSource().sendError(Text.literal("Enter a positive amount."));
+            return 0;
+        }
+
         UUID targetUUID = CommandSupport.getTargetUUID(context, targetName);
         String displayName = CommandSupport.getTargetName(context, targetName);
 
