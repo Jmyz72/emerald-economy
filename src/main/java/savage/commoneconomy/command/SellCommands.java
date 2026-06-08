@@ -1,6 +1,7 @@
 package savage.commoneconomy.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.command.argument.IdentifierArgumentType;
@@ -18,6 +19,13 @@ import java.util.Map;
 
 public class SellCommands {
 
+    private static final com.mojang.brigadier.suggestion.SuggestionProvider<ServerCommandSource> SELLABLE_SUGGESTIONS =
+            (context, builder) -> net.minecraft.command.CommandSource.suggestMatching(
+                    EconomyManager.getInstance().getAllItemPrices().keySet().stream()
+                            .filter(id -> EconomyManager.getInstance().isSellable(id))
+                            .toList(),
+                    builder);
+
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(CommandManager.literal("worth")
                 .requires(source -> savage.commoneconomy.util.PermissionsHelper.check(source, "savscommoneconomy.command.worth", true))
@@ -33,7 +41,14 @@ public class SellCommands {
                 .requires(source -> savage.commoneconomy.util.PermissionsHelper.check(source, "savscommoneconomy.command.sell", true))
                 .executes(SellCommands::sellHand)
                 .then(CommandManager.literal("all")
-                        .executes(SellCommands::sellAll)));
+                        .executes(SellCommands::sellAll))
+                .then(CommandManager.argument("item", IdentifierArgumentType.identifier())
+                        .suggests(SELLABLE_SUGGESTIONS)
+                        .executes(ctx -> sellItem(ctx, Integer.MAX_VALUE))
+                        .then(CommandManager.literal("all")
+                                .executes(ctx -> sellItem(ctx, Integer.MAX_VALUE)))
+                        .then(CommandManager.argument("quantity", IntegerArgumentType.integer(1))
+                                .executes(ctx -> sellItem(ctx, IntegerArgumentType.getInteger(ctx, "quantity"))))));
     }
 
     private static int checkHandWorth(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
@@ -167,6 +182,18 @@ public class SellCommands {
         String itemId = Registries.ITEM.getId(handStack.getItem()).toString();
         savage.commoneconomy.economy.TradeService.Result r =
                 savage.commoneconomy.economy.TradeService.sell(player, itemId, Integer.MAX_VALUE);
+        return reportSell(context, r, itemId);
+    }
+
+    private static int sellItem(CommandContext<ServerCommandSource> context, int maxAmount) throws CommandSyntaxException {
+        ServerPlayerEntity player = context.getSource().getPlayerOrThrow();
+        String itemId = IdentifierArgumentType.getIdentifier(context, "item").toString();
+        if (!net.minecraft.registry.Registries.ITEM.containsId(net.minecraft.util.Identifier.tryParse(itemId))) {
+            context.getSource().sendError(Text.literal("Unknown item: " + itemId));
+            return 0;
+        }
+        savage.commoneconomy.economy.TradeService.Result r =
+                savage.commoneconomy.economy.TradeService.sell(player, itemId, maxAmount);
         return reportSell(context, r, itemId);
     }
 
