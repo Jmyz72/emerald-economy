@@ -1,6 +1,7 @@
 package savage.commoneconomy.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.command.argument.IdentifierArgumentType;
@@ -18,6 +19,13 @@ import java.util.Map;
 
 public class SellCommands {
 
+    private static final com.mojang.brigadier.suggestion.SuggestionProvider<ServerCommandSource> SELLABLE_SUGGESTIONS =
+            (context, builder) -> net.minecraft.command.CommandSource.suggestMatching(
+                    EconomyManager.getInstance().getAllItemPrices().keySet().stream()
+                            .filter(id -> EconomyManager.getInstance().isSellable(id))
+                            .toList(),
+                    builder);
+
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(CommandManager.literal("worth")
                 .requires(source -> savage.commoneconomy.util.PermissionsHelper.check(source, "savscommoneconomy.command.worth", true))
@@ -33,7 +41,14 @@ public class SellCommands {
                 .requires(source -> savage.commoneconomy.util.PermissionsHelper.check(source, "savscommoneconomy.command.sell", true))
                 .executes(SellCommands::sellHand)
                 .then(CommandManager.literal("all")
-                        .executes(SellCommands::sellAll)));
+                        .executes(SellCommands::sellAll))
+                .then(CommandManager.argument("item", IdentifierArgumentType.identifier())
+                        .suggests(SELLABLE_SUGGESTIONS)
+                        .executes(ctx -> sellItem(ctx, Integer.MAX_VALUE))
+                        .then(CommandManager.literal("all")
+                                .executes(ctx -> sellItem(ctx, Integer.MAX_VALUE)))
+                        .then(CommandManager.argument("quantity", IntegerArgumentType.integer(1))
+                                .executes(ctx -> sellItem(ctx, IntegerArgumentType.getInteger(ctx, "quantity"))))));
     }
 
     private static int checkHandWorth(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
@@ -51,16 +66,18 @@ public class SellCommands {
                     itemId + " is currency (1 emerald = $1). Use /withdraw and /deposit."), false);
             return 1;
         }
+        boolean sellable = EconomyManager.getInstance().isSellable(itemId);
+        boolean buyable = EconomyManager.getInstance().isBuyable(itemId);
         BigDecimal sell = EconomyManager.getInstance().getSellPrice(itemId);
         BigDecimal buy = EconomyManager.getInstance().getBuyPrice(itemId);
-        boolean buyable = EconomyManager.getInstance().isBuyable(itemId);
 
-        BigDecimal stackValue = sell.multiply(BigDecimal.valueOf(stack.getCount()));
-        String buyText = buyable ? EconomyManager.getInstance().format(buy) : "not buyable";
+        String sellText = sellable
+                ? EconomyManager.getInstance().format(sell) + " each (total "
+                    + EconomyManager.getInstance().format(sell.multiply(BigDecimal.valueOf(stack.getCount()))) + ")"
+                : "not sellable";
+        String buyText = buyable ? EconomyManager.getInstance().format(buy) + " each" : "not buyable";
         context.getSource().sendFeedback(() -> Text.literal(
-                stack.getCount() + "x " + itemId
-                        + " | Sell: " + EconomyManager.getInstance().format(sell) + " each (total " + EconomyManager.getInstance().format(stackValue) + ")"
-                        + " | Buy: " + buyText + " each"), false);
+                stack.getCount() + "x " + itemId + " | Sell: " + sellText + " | Buy: " + buyText), false);
         return 1;
     }
 
@@ -78,12 +95,11 @@ public class SellCommands {
             context.getSource().sendError(Text.literal("Emeralds are currency — use /deposit instead."));
             return 0;
         }
-        BigDecimal price = EconomyManager.getInstance().getSellPrice(itemId);
-
-        if (price.compareTo(BigDecimal.ZERO) <= 0) {
+        if (!EconomyManager.getInstance().isSellable(itemId)) {
             context.getSource().sendError(Text.literal("This item cannot be sold."));
             return 0;
         }
+        BigDecimal price = EconomyManager.getInstance().getSellPrice(itemId);
 
         int totalCount = 0;
         for (int i = 0; i < player.getInventory().size(); i++) {
@@ -128,12 +144,14 @@ public class SellCommands {
             context.getSource().sendError(Text.literal("Unknown item: " + itemId));
             return 0;
         }
+        boolean sellable = EconomyManager.getInstance().isSellable(itemId);
+        boolean buyable = EconomyManager.getInstance().isBuyable(itemId);
         BigDecimal sell = EconomyManager.getInstance().getSellPrice(itemId);
         BigDecimal buy = EconomyManager.getInstance().getBuyPrice(itemId);
-        boolean buyable = EconomyManager.getInstance().isBuyable(itemId);
-        String buyText = buyable ? EconomyManager.getInstance().format(buy) : "not buyable";
+        String sellText = sellable ? EconomyManager.getInstance().format(sell) + " each" : "not sellable";
+        String buyText = buyable ? EconomyManager.getInstance().format(buy) + " each" : "not buyable";
         context.getSource().sendFeedback(() -> Text.literal(
-                itemId + " | Sell: " + EconomyManager.getInstance().format(sell) + " each | Buy: " + buyText + " each"), false);
+                itemId + " | Sell: " + sellText + " | Buy: " + buyText), false);
         return 1;
     }
 
@@ -147,32 +165,9 @@ public class SellCommands {
         }
 
         String itemId = Registries.ITEM.getId(stack.getItem()).toString();
-        if (EconomyManager.getInstance().isCurrencyItem(itemId)) {
-            context.getSource().sendError(Text.literal("Emeralds are currency — use /deposit instead."));
-            return 0;
-        }
-        BigDecimal price = EconomyManager.getInstance().getSellPrice(itemId);
-
-        if (price.compareTo(BigDecimal.ZERO) <= 0) {
-            context.getSource().sendError(Text.literal("This item cannot be sold."));
-            return 0;
-        }
-
-        int count = stack.getCount();
-        BigDecimal totalValue = price.multiply(BigDecimal.valueOf(count));
-
-        if (EconomyManager.getInstance().addBalance(player.getUuid(), totalValue)) {
-            player.setStackInHand(net.minecraft.util.Hand.MAIN_HAND, ItemStack.EMPTY);
-            context.getSource().sendFeedback(() -> Text.literal("Sold " + count + "x " + itemId + " for " + EconomyManager.getInstance().format(totalValue)), false);
-            
-
-            
-            savage.commoneconomy.util.TransactionLogger.log("COMMAND_SELL", player.getName().getString(), "Server", totalValue, "Sold " + count + "x " + itemId);
-            return 1;
-        } else {
-            context.getSource().sendError(Text.literal("Transaction failed. Please try again."));
-            return 0;
-        }
+        savage.commoneconomy.economy.TradeService.Result r =
+                savage.commoneconomy.economy.TradeService.sell(player, itemId, stack.getCount());
+        return reportSell(context, r, itemId);
     }
 
     private static int sellAll(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
@@ -185,47 +180,34 @@ public class SellCommands {
         }
 
         String itemId = Registries.ITEM.getId(handStack.getItem()).toString();
-        if (EconomyManager.getInstance().isCurrencyItem(itemId)) {
-            context.getSource().sendError(Text.literal("Emeralds are currency — use /deposit instead."));
+        savage.commoneconomy.economy.TradeService.Result r =
+                savage.commoneconomy.economy.TradeService.sell(player, itemId, Integer.MAX_VALUE);
+        return reportSell(context, r, itemId);
+    }
+
+    private static int sellItem(CommandContext<ServerCommandSource> context, int maxAmount) throws CommandSyntaxException {
+        ServerPlayerEntity player = context.getSource().getPlayerOrThrow();
+        Identifier id = IdentifierArgumentType.getIdentifier(context, "item");
+        String itemId = id.toString();
+        if (!Registries.ITEM.containsId(id)) {
+            context.getSource().sendError(Text.literal("Unknown item: " + itemId));
             return 0;
         }
-        BigDecimal price = EconomyManager.getInstance().getSellPrice(itemId);
+        savage.commoneconomy.economy.TradeService.Result r =
+                savage.commoneconomy.economy.TradeService.sell(player, itemId, maxAmount);
+        return reportSell(context, r, itemId);
+    }
 
-        if (price.compareTo(BigDecimal.ZERO) <= 0) {
-            context.getSource().sendError(Text.literal("This item cannot be sold."));
-            return 0;
+    private static int reportSell(CommandContext<ServerCommandSource> context,
+                                  savage.commoneconomy.economy.TradeService.Result r, String itemId) {
+        switch (r.status()) {
+            case IS_CURRENCY -> context.getSource().sendError(Text.literal("Emeralds are currency — use /deposit instead."));
+            case NOT_TRADEABLE -> context.getSource().sendError(Text.literal("This item cannot be sold."));
+            case NONE_HELD -> context.getSource().sendError(Text.literal("You have none of that item."));
+            case OK -> { context.getSource().sendFeedback(() -> Text.literal("Sold " + r.amount() + "x " + itemId
+                    + " for " + EconomyManager.getInstance().format(r.total())), false); return 1; }
+            default -> context.getSource().sendError(Text.literal("Transaction failed. Please try again."));
         }
-
-        int totalCount = 0;
-        // Calculate total count first
-        for (int i = 0; i < player.getInventory().size(); i++) {
-            ItemStack stack = player.getInventory().getStack(i);
-            if (!stack.isEmpty() && stack.getItem() == handStack.getItem()) {
-                totalCount += stack.getCount();
-            }
-        }
-
-        BigDecimal totalValue = price.multiply(BigDecimal.valueOf(totalCount));
-        
-        if (EconomyManager.getInstance().addBalance(player.getUuid(), totalValue)) {
-            // Only remove items if transaction succeeded
-            for (int i = 0; i < player.getInventory().size(); i++) {
-                ItemStack stack = player.getInventory().getStack(i);
-                if (!stack.isEmpty() && stack.getItem() == handStack.getItem()) {
-                    player.getInventory().setStack(i, ItemStack.EMPTY);
-                }
-            }
-            
-            int finalTotalCount = totalCount;
-            context.getSource().sendFeedback(() -> Text.literal("Sold all " + finalTotalCount + "x " + itemId + " for " + EconomyManager.getInstance().format(totalValue)), false);
-            
-
-            
-            savage.commoneconomy.util.TransactionLogger.log("COMMAND_SELL", player.getName().getString(), "Server", totalValue, "Sold all " + finalTotalCount + "x " + itemId);
-            return 1;
-        } else {
-            context.getSource().sendError(Text.literal("Transaction failed. Please try again."));
-            return 0;
-        }
+        return 0;
     }
 }

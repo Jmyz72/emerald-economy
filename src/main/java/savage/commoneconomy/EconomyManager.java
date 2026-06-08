@@ -10,6 +10,8 @@ import savage.commoneconomy.storage.EconomyStorage;
 import savage.commoneconomy.economy.PriceBook;
 import savage.commoneconomy.storage.SqliteStorage;
 
+import net.minecraft.server.network.ServerPlayerEntity;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -168,6 +170,59 @@ public class EconomyManager {
         accountCache.invalidate(uuid);
     }
 
+    public record DepositResult(int emeralds, BigDecimal net, BigDecimal fee, int feePercent, boolean ok) {}
+
+    /** Convert {@code count} emeralds to balance minus the deposit fee. Credits balance first. */
+    public DepositResult depositEmeralds(UUID uuid, int count) {
+        int feePercent = Math.max(0, Math.min(100, config.depositFeePercent));
+        BigDecimal gross = BigDecimal.valueOf(count);
+        BigDecimal net = gross.multiply(BigDecimal.valueOf(100 - feePercent))
+                .divide(BigDecimal.valueOf(100), 2, java.math.RoundingMode.DOWN);
+        BigDecimal fee = gross.subtract(net);
+        boolean ok = addBalance(uuid, net);
+        return new DepositResult(count, net, fee, feePercent, ok);
+    }
+
+    public enum TransferStatus { OK, SELF, INSUFFICIENT_FUNDS, FAILED }
+
+    /** Move {@code amount} from one account to another. Debits source first, then credits target. */
+    public TransferStatus transfer(UUID from, UUID to, BigDecimal amount) {
+        if (from.equals(to)) return TransferStatus.SELF;
+        if (!removeBalance(from, amount)) return TransferStatus.INSUFFICIENT_FUNDS;
+        if (!addBalance(to, amount)) {
+            // Credit failed after the debit succeeded: refund the sender so money is never
+            // destroyed, log loudly, and report failure to the caller.
+            boolean refunded = addBalance(from, amount);
+            SavsCommonEconomy.LOGGER.error(
+                    "Transfer credit failed after debit (from={} to={} amount={}); sender refund {}",
+                    from, to, amount, refunded ? "succeeded" : "ALSO FAILED — manual correction needed");
+            return TransferStatus.FAILED;
+        }
+        return TransferStatus.OK;
+    }
+
+    public enum WithdrawStatus { OK, TOO_SMALL, TOO_LARGE, INSUFFICIENT_FUNDS }
+    public record WithdrawResult(WithdrawStatus status, int emeralds) {}
+
+    /** Debit balance and deliver whole emeralds. Debits first, then delivers. */
+    public WithdrawResult withdrawEmeralds(ServerPlayerEntity player, BigDecimal amount) {
+        BigDecimal whole = amount.setScale(0, java.math.RoundingMode.DOWN);
+        if (whole.compareTo(BigDecimal.ONE) < 0) return new WithdrawResult(WithdrawStatus.TOO_SMALL, 0);
+        if (whole.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) > 0) return new WithdrawResult(WithdrawStatus.TOO_LARGE, 0);
+        int emeralds = whole.intValueExact();
+        BigDecimal cost = BigDecimal.valueOf(emeralds);
+        if (!removeBalance(player.getUuid(), cost)) return new WithdrawResult(WithdrawStatus.INSUFFICIENT_FUNDS, 0);
+        int remaining = emeralds;
+        int maxStack = new net.minecraft.item.ItemStack(net.minecraft.item.Items.EMERALD).getMaxCount();
+        while (remaining > 0) {
+            int give = Math.min(remaining, maxStack);
+            player.getInventory().offerOrDrop(new net.minecraft.item.ItemStack(net.minecraft.item.Items.EMERALD, give));
+            remaining -= give;
+        }
+        savage.commoneconomy.util.TransactionLogger.log("WITHDRAW", player.getName().getString(), "Emeralds", cost, "Withdrawal");
+        return new WithdrawResult(WithdrawStatus.OK, emeralds);
+    }
+
     public boolean addBalance(UUID uuid, BigDecimal amount) {
         int retries = 10;
         while (retries > 0) {
@@ -321,11 +376,7 @@ public class EconomyManager {
             if (worthConfig == null) {
                 loadWorthConfig();
             }
-            priceBook = new PriceBook(
-                    worthConfig.flatten(),
-                    worthConfig.unbuyable,
-                    config.defaultBuyPrice,
-                    config.defaultSellPrice);
+            priceBook = new PriceBook(worthConfig.flatten());
         }
         return priceBook;
     }
@@ -342,6 +393,10 @@ public class EconomyManager {
         return priceBook().isBuyable(itemId);
     }
 
+    public boolean isSellable(String itemId) {
+        return priceBook().isSellable(itemId);
+    }
+
     /** The physical currency item id. Emerald is currency, not a tradeable good. */
     public static final String CURRENCY_ITEM_ID = "minecraft:emerald";
 
@@ -355,6 +410,21 @@ public class EconomyManager {
             loadWorthConfig();
         }
         return worthConfig.flatten();
+    }
+
+    /** Categories -> buyable items (buy price set), preserving worth.json order. Excludes currency. */
+    public Map<String, Map<String, ItemPrice>> getBuyableCategories() {
+        if (worthConfig == null) loadWorthConfig();
+        Map<String, Map<String, ItemPrice>> out = new java.util.LinkedHashMap<>();
+        for (Map.Entry<String, Map<String, ItemPrice>> cat : worthConfig.categories.entrySet()) {
+            Map<String, ItemPrice> kept = new java.util.LinkedHashMap<>();
+            for (Map.Entry<String, ItemPrice> e : cat.getValue().entrySet()) {
+                if (isCurrencyItem(e.getKey())) continue;
+                if (e.getValue().buy != null) kept.put(e.getKey(), e.getValue());
+            }
+            if (!kept.isEmpty()) out.put(cat.getKey(), kept);
+        }
+        return out;
     }
 
     private File worthFile() {
@@ -416,9 +486,10 @@ public class EconomyManager {
     }
 
     /**
-     * Add a default-priced entry for every item id not already priced, placing it in the
-     * given creative-tab category. Skips air and the currency item. Saves worth.json (with
-     * backup) and rebuilds the price lookup. Returns the number of new items added.
+     * Add a price-less entry (buy = null, sell = null) for every item id not already
+     * listed, placing it in the given creative-tab category. Skips air and the currency
+     * item. Saves worth.json (with backup) and rebuilds the price lookup. Returns the
+     * number of new items added. Admins fill in real prices by editing worth.json.
      */
     public int generatePrices(Map<String, String> idToCategory) {
         if (worthConfig == null) {
@@ -435,7 +506,7 @@ public class EconomyManager {
             }
             String category = entry.getValue() != null ? entry.getValue() : "uncategorized";
             worthConfig.categories.computeIfAbsent(category, k -> new java.util.LinkedHashMap<>())
-                    .put(id, new ItemPrice(config.defaultBuyPrice, config.defaultSellPrice));
+                    .put(id, new ItemPrice(null, null));
             added++;
         }
         saveWorthConfig();

@@ -83,6 +83,11 @@ public class BalanceCommands {
         double amountDouble = DoubleArgumentType.getDouble(context, "amount");
         BigDecimal amount = BigDecimal.valueOf(amountDouble);
 
+        if (amount.signum() <= 0) {
+            context.getSource().sendError(Text.literal("Enter a positive amount."));
+            return 0;
+        }
+
         UUID targetUUID = CommandSupport.getTargetUUID(context, targetName);
         String displayName = CommandSupport.getTargetName(context, targetName);
 
@@ -91,26 +96,27 @@ public class BalanceCommands {
             return 0;
         }
 
-        if (sourcePlayer.getUuid().equals(targetUUID)) {
-            context.getSource().sendError(Text.literal("You cannot pay yourself."));
-            return 0;
-        }
-
-        if (EconomyManager.getInstance().removeBalance(sourcePlayer.getUuid(), amount)) {
-            EconomyManager.getInstance().addBalance(targetUUID, amount);
-            String formattedAmount = EconomyManager.getInstance().format(amount);
-            CommandSupport.sendCommandFeedback(context, "Paid " + formattedAmount + " to " + displayName, false);
-
-            ServerPlayerEntity target = context.getSource().getServer().getPlayerManager().getPlayer(targetUUID);
-            if (target != null) {
-                target.sendMessage(Text.literal("Received " + formattedAmount + " from " + sourcePlayer.getName().getString()), false);
-            }
-            savage.commoneconomy.util.TransactionLogger.log("PAY", sourcePlayer.getName().getString(), displayName, amount, "Payment");
-            return 1;
-        } else {
+        EconomyManager.TransferStatus ts = EconomyManager.getInstance().transfer(sourcePlayer.getUuid(), targetUUID, amount);
+        if (ts == EconomyManager.TransferStatus.INSUFFICIENT_FUNDS) {
             context.getSource().sendError(Text.literal("Insufficient funds."));
             return 0;
         }
+        if (ts == EconomyManager.TransferStatus.FAILED) {
+            context.getSource().sendError(Text.literal("Payment failed, please try again."));
+            return 0;
+        }
+        if (ts == EconomyManager.TransferStatus.SELF) {
+            context.getSource().sendError(Text.literal("You cannot pay yourself."));
+            return 0;
+        }
+        String formattedAmount = EconomyManager.getInstance().format(amount);
+        CommandSupport.sendCommandFeedback(context, "Paid " + formattedAmount + " to " + displayName, false);
+        ServerPlayerEntity target = context.getSource().getServer().getPlayerManager().getPlayer(targetUUID);
+        if (target != null) {
+            target.sendMessage(Text.literal("Received " + formattedAmount + " from " + sourcePlayer.getName().getString()), false);
+        }
+        savage.commoneconomy.util.TransactionLogger.log("PAY", sourcePlayer.getName().getString(), displayName, amount, "Payment");
+        return 1;
     }
 
     private static int withdraw(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
@@ -118,33 +124,16 @@ public class BalanceCommands {
         double amountDouble = DoubleArgumentType.getDouble(context, "amount");
         BigDecimal amount = BigDecimal.valueOf(amountDouble);
 
-        // 1 emerald = $1. Withdraw whole emeralds only.
-        BigDecimal whole = amount.setScale(0, java.math.RoundingMode.DOWN);
-        if (whole.compareTo(BigDecimal.ONE) < 0) {
-            context.getSource().sendError(Text.literal("Withdraw at least 1."));
-            return 0;
-        }
-        if (whole.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) > 0) {
-            context.getSource().sendError(Text.literal("That's too many emeralds to withdraw at once (max " + Integer.MAX_VALUE + ")."));
-            return 0;
-        }
-        int emeralds = whole.intValueExact();
-        BigDecimal cost = BigDecimal.valueOf(emeralds);
-
-        if (EconomyManager.getInstance().removeBalance(player.getUuid(), cost)) {
-            int remaining = emeralds;
-            int maxStack = new net.minecraft.item.ItemStack(net.minecraft.item.Items.EMERALD).getMaxCount();
-            while (remaining > 0) {
-                int give = Math.min(remaining, maxStack);
-                player.getInventory().offerOrDrop(new net.minecraft.item.ItemStack(net.minecraft.item.Items.EMERALD, give));
-                remaining -= give;
+        EconomyManager.WithdrawResult wr = EconomyManager.getInstance().withdrawEmeralds(player, amount);
+        switch (wr.status()) {
+            case TOO_SMALL -> { context.getSource().sendError(Text.literal("Withdraw at least 1.")); return 0; }
+            case TOO_LARGE -> { context.getSource().sendError(Text.literal("That's too many emeralds to withdraw at once (max " + Integer.MAX_VALUE + ").")); return 0; }
+            case INSUFFICIENT_FUNDS -> { context.getSource().sendError(Text.literal("Insufficient funds.")); return 0; }
+            case OK -> {
+                CommandSupport.sendCommandFeedback(context, "Withdrew " + EconomyManager.getInstance().format(BigDecimal.valueOf(wr.emeralds())) + " as " + wr.emeralds() + " emeralds.", false);
+                return 1;
             }
-            CommandSupport.sendCommandFeedback(context, "Withdrew " + EconomyManager.getInstance().format(cost) + " as " + emeralds + " emeralds.", false);
-            savage.commoneconomy.util.TransactionLogger.log("WITHDRAW", player.getName().getString(), "Emeralds", cost, "Withdrawal");
-            return 1;
-        } else {
-            context.getSource().sendError(Text.literal("Insufficient funds."));
-            return 0;
         }
+        return 0;
     }
 }

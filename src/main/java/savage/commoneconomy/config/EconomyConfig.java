@@ -6,10 +6,6 @@ public class EconomyConfig {
     public BigDecimal defaultBalance = BigDecimal.valueOf(1000);
     public String currencySymbol = "$";
 
-    // Fallback prices for items not listed in worth.json.
-    public BigDecimal defaultBuyPrice = BigDecimal.valueOf(10);
-    public BigDecimal defaultSellPrice = BigDecimal.valueOf(5);
-
     // Percent of deposited emerald value burned as a fee (0-100). 20 = keep 80%.
     public int depositFeePercent = 20;
 
