@@ -96,6 +96,10 @@ public class BalanceCommands {
             context.getSource().sendError(Text.literal("Insufficient funds."));
             return 0;
         }
+        if (ts == EconomyManager.TransferStatus.FAILED) {
+            context.getSource().sendError(Text.literal("Payment failed, please try again."));
+            return 0;
+        }
         if (ts == EconomyManager.TransferStatus.SELF) {
             context.getSource().sendError(Text.literal("You cannot pay yourself."));
             return 0;

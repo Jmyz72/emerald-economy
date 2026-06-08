@@ -183,13 +183,21 @@ public class EconomyManager {
         return new DepositResult(count, net, fee, feePercent, ok);
     }
 
-    public enum TransferStatus { OK, SELF, INSUFFICIENT_FUNDS }
+    public enum TransferStatus { OK, SELF, INSUFFICIENT_FUNDS, FAILED }
 
     /** Move {@code amount} from one account to another. Debits source first, then credits target. */
     public TransferStatus transfer(UUID from, UUID to, BigDecimal amount) {
         if (from.equals(to)) return TransferStatus.SELF;
         if (!removeBalance(from, amount)) return TransferStatus.INSUFFICIENT_FUNDS;
-        addBalance(to, amount);
+        if (!addBalance(to, amount)) {
+            // Credit failed after the debit succeeded: refund the sender so money is never
+            // destroyed, log loudly, and report failure to the caller.
+            boolean refunded = addBalance(from, amount);
+            SavsCommonEconomy.LOGGER.error(
+                    "Transfer credit failed after debit (from={} to={} amount={}); sender refund {}",
+                    from, to, amount, refunded ? "succeeded" : "ALSO FAILED — manual correction needed");
+            return TransferStatus.FAILED;
+        }
         return TransferStatus.OK;
     }
 

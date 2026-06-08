@@ -49,6 +49,7 @@ public class TransferAmountGui extends AnvilInputGui {
             }
             case SELF -> sender.sendMessage(Text.literal("You cannot pay yourself."), false);
             case INSUFFICIENT_FUNDS -> sender.sendMessage(Text.literal("Insufficient funds."), false);
+            case FAILED -> sender.sendMessage(Text.literal("Payment failed, please try again."), false);
         }
         new ShopHubGui(sender).open();
     }
