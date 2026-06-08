@@ -1,9 +1,9 @@
 package savage.commoneconomy.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.minecraft.command.argument.IdentifierArgumentType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.command.CommandManager;
@@ -26,7 +26,7 @@ public class SellCommands {
                         .executes(SellCommands::checkAllWorth))
                 .then(CommandManager.literal("list")
                         .executes(SellCommands::listWorth))
-                .then(CommandManager.argument("item", StringArgumentType.string())
+                .then(CommandManager.argument("item", IdentifierArgumentType.identifier())
                         .executes(SellCommands::checkItemWorth)));
 
         dispatcher.register(CommandManager.literal("sell")
@@ -117,14 +117,14 @@ public class SellCommands {
     }
 
     private static int checkItemWorth(CommandContext<ServerCommandSource> context) {
-        String itemId = StringArgumentType.getString(context, "item");
+        Identifier id = IdentifierArgumentType.getIdentifier(context, "item");
+        String itemId = id.toString();
         if (EconomyManager.getInstance().isCurrencyItem(itemId)) {
             context.getSource().sendFeedback(() -> Text.literal(
                     itemId + " is currency (1 emerald = $1). Use /withdraw and /deposit."), false);
             return 1;
         }
-        Identifier id = Identifier.tryParse(itemId);
-        if (id == null || !Registries.ITEM.containsId(id)) {
+        if (!Registries.ITEM.containsId(id)) {
             context.getSource().sendError(Text.literal("Unknown item: " + itemId));
             return 0;
         }

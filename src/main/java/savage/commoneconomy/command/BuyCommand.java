@@ -2,11 +2,11 @@ package savage.commoneconomy.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 import net.minecraft.command.CommandSource;
+import net.minecraft.command.argument.IdentifierArgumentType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -31,7 +31,7 @@ public class BuyCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(CommandManager.literal("buy")
                 .requires(source -> savage.commoneconomy.util.PermissionsHelper.check(source, "savscommoneconomy.command.buy", true))
-                .then(CommandManager.argument("item", StringArgumentType.string())
+                .then(CommandManager.argument("item", IdentifierArgumentType.identifier())
                         .suggests(ITEM_SUGGESTIONS)
                         .then(CommandManager.argument("amount", IntegerArgumentType.integer(1))
                                 .executes(BuyCommand::buy))));
@@ -39,11 +39,11 @@ public class BuyCommand {
 
     private static int buy(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerPlayerEntity player = context.getSource().getPlayerOrThrow();
-        String itemId = StringArgumentType.getString(context, "item");
+        Identifier id = IdentifierArgumentType.getIdentifier(context, "item");
+        String itemId = id.toString();
         int amount = IntegerArgumentType.getInteger(context, "amount");
 
-        Identifier id = Identifier.tryParse(itemId);
-        if (id == null || !Registries.ITEM.containsId(id)) {
+        if (!Registries.ITEM.containsId(id)) {
             context.getSource().sendError(Text.literal("Unknown item: " + itemId));
             return 0;
         }
