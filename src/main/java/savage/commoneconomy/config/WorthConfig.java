@@ -1,22 +1,19 @@
 package savage.commoneconomy.config;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
- * worth.json: per-item buy/sell prices grouped by creative-tab category, plus
- * the unbuyable blacklist. Items not listed use the default buy/sell prices
- * from EconomyConfig. Items in unbuyable cannot be bought (but can still be sold).
+ * worth.json: per-item buy/sell prices grouped by creative-tab category.
+ * Items not listed have no price and cannot be bought or sold. An item with a
+ * buy price can be bought; an item with a sell price can be sold; either may be
+ * null ("-").
  *
  * Structure:
  *   categories: { "<tab>": { "<itemId>": { "buy": n, "sell": n } } }
- *   unbuyable:  [ "<itemId>", ... ]
  */
 public class WorthConfig {
     public Map<String, Map<String, ItemPrice>> categories = new LinkedHashMap<>();
-    public List<String> unbuyable = new ArrayList<>();
 
     /** Legacy flat field from older worth.json files; migrated into categories on load. */
     public Map<String, ItemPrice> itemPrices;
@@ -25,22 +22,9 @@ public class WorthConfig {
     public WorthConfig() {
     }
 
-    /** A fresh config with no priced items, seeded only with the unbuyable defaults. */
+    /** A fresh, empty config. Items are added later by /eco generateprices. */
     public static WorthConfig createDefault() {
-        WorthConfig c = new WorthConfig();
-
-        c.unbuyable.add("minecraft:bedrock");
-        c.unbuyable.add("minecraft:spawner");
-        c.unbuyable.add("minecraft:command_block");
-        c.unbuyable.add("minecraft:chain_command_block");
-        c.unbuyable.add("minecraft:repeating_command_block");
-        c.unbuyable.add("minecraft:barrier");
-        c.unbuyable.add("minecraft:light");
-        c.unbuyable.add("minecraft:structure_block");
-        c.unbuyable.add("minecraft:structure_void");
-        c.unbuyable.add("minecraft:jigsaw");
-        c.unbuyable.add("minecraft:end_portal_frame");
-        return c;
+        return new WorthConfig();
     }
 
     /**
@@ -49,7 +33,6 @@ public class WorthConfig {
      */
     public boolean normalize() {
         if (categories == null) categories = new LinkedHashMap<>();
-        if (unbuyable == null) unbuyable = new ArrayList<>();
         boolean migrated = false;
         if (itemPrices != null && !itemPrices.isEmpty()) {
             categories.computeIfAbsent("uncategorized", k -> new LinkedHashMap<>()).putAll(itemPrices);
