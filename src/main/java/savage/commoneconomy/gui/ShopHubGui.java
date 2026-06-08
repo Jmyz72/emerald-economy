@@ -26,7 +26,7 @@ public class ShopHubGui extends SimpleGui {
 
         // Sub-screens are built in later tasks; stub the actions for now.
         setButton(10, Items.DIAMOND, "Buy", () -> new BuyShopGui(p, null).open());
-        setButton(11, Items.HOPPER, "Sell", () -> p.sendMessage(Text.literal("Coming soon"), false));
+        setButton(11, Items.HOPPER, "Sell", () -> new SellShopGui(p).open());
         setButton(13, Items.EMERALD_BLOCK, "Deposit", () -> p.sendMessage(Text.literal("Coming soon"), false));
         setButton(14, Items.GOLD_INGOT, "Withdraw", () -> p.sendMessage(Text.literal("Coming soon"), false));
         setButton(15, Items.PAPER, "Transfer", () -> p.sendMessage(Text.literal("Coming soon"), false));
