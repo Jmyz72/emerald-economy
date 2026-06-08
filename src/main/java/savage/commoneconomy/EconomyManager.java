@@ -321,11 +321,7 @@ public class EconomyManager {
             if (worthConfig == null) {
                 loadWorthConfig();
             }
-            priceBook = new PriceBook(
-                    worthConfig.flatten(),
-                    worthConfig.unbuyable,
-                    config.defaultBuyPrice,
-                    config.defaultSellPrice);
+            priceBook = new PriceBook(worthConfig.flatten());
         }
         return priceBook;
     }
@@ -340,6 +336,10 @@ public class EconomyManager {
 
     public boolean isBuyable(String itemId) {
         return priceBook().isBuyable(itemId);
+    }
+
+    public boolean isSellable(String itemId) {
+        return priceBook().isSellable(itemId);
     }
 
     /** The physical currency item id. Emerald is currency, not a tradeable good. */
@@ -416,9 +416,10 @@ public class EconomyManager {
     }
 
     /**
-     * Add a default-priced entry for every item id not already priced, placing it in the
-     * given creative-tab category. Skips air and the currency item. Saves worth.json (with
-     * backup) and rebuilds the price lookup. Returns the number of new items added.
+     * Add a price-less entry (buy = null, sell = null) for every item id not already
+     * listed, placing it in the given creative-tab category. Skips air and the currency
+     * item. Saves worth.json (with backup) and rebuilds the price lookup. Returns the
+     * number of new items added. Admins fill in real prices by editing worth.json.
      */
     public int generatePrices(Map<String, String> idToCategory) {
         if (worthConfig == null) {
@@ -435,7 +436,7 @@ public class EconomyManager {
             }
             String category = entry.getValue() != null ? entry.getValue() : "uncategorized";
             worthConfig.categories.computeIfAbsent(category, k -> new java.util.LinkedHashMap<>())
-                    .put(id, new ItemPrice(config.defaultBuyPrice, config.defaultSellPrice));
+                    .put(id, new ItemPrice(null, null));
             added++;
         }
         saveWorthConfig();
