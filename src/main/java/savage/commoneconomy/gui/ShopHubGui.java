@@ -24,7 +24,6 @@ public class ShopHubGui extends SimpleGui {
                 .setName(Text.literal("Balance: " + EconomyManager.getInstance().format(
                         EconomyManager.getInstance().getBalance(p.getUuid())))));
 
-        // Sub-screens are built in later tasks; stub the actions for now.
         setButton(10, Items.DIAMOND, "Buy", () -> new BuyShopGui(p, null).open());
         setButton(11, Items.HOPPER, "Sell", () -> new SellShopGui(p).open());
         setButton(13, Items.EMERALD_BLOCK, "Deposit", () -> new DepositShopGui(p).open());
