@@ -51,16 +51,18 @@ public class SellCommands {
                     itemId + " is currency (1 emerald = $1). Use /withdraw and /deposit."), false);
             return 1;
         }
+        boolean sellable = EconomyManager.getInstance().isSellable(itemId);
+        boolean buyable = EconomyManager.getInstance().isBuyable(itemId);
         BigDecimal sell = EconomyManager.getInstance().getSellPrice(itemId);
         BigDecimal buy = EconomyManager.getInstance().getBuyPrice(itemId);
-        boolean buyable = EconomyManager.getInstance().isBuyable(itemId);
 
-        BigDecimal stackValue = sell.multiply(BigDecimal.valueOf(stack.getCount()));
-        String buyText = buyable ? EconomyManager.getInstance().format(buy) : "not buyable";
+        String sellText = sellable
+                ? EconomyManager.getInstance().format(sell) + " each (total "
+                    + EconomyManager.getInstance().format(sell.multiply(BigDecimal.valueOf(stack.getCount()))) + ")"
+                : "not sellable";
+        String buyText = buyable ? EconomyManager.getInstance().format(buy) + " each" : "not buyable";
         context.getSource().sendFeedback(() -> Text.literal(
-                stack.getCount() + "x " + itemId
-                        + " | Sell: " + EconomyManager.getInstance().format(sell) + " each (total " + EconomyManager.getInstance().format(stackValue) + ")"
-                        + " | Buy: " + buyText + " each"), false);
+                stack.getCount() + "x " + itemId + " | Sell: " + sellText + " | Buy: " + buyText), false);
         return 1;
     }
 
@@ -78,12 +80,11 @@ public class SellCommands {
             context.getSource().sendError(Text.literal("Emeralds are currency — use /deposit instead."));
             return 0;
         }
-        BigDecimal price = EconomyManager.getInstance().getSellPrice(itemId);
-
-        if (price.compareTo(BigDecimal.ZERO) <= 0) {
+        if (!EconomyManager.getInstance().isSellable(itemId)) {
             context.getSource().sendError(Text.literal("This item cannot be sold."));
             return 0;
         }
+        BigDecimal price = EconomyManager.getInstance().getSellPrice(itemId);
 
         int totalCount = 0;
         for (int i = 0; i < player.getInventory().size(); i++) {
@@ -128,12 +129,14 @@ public class SellCommands {
             context.getSource().sendError(Text.literal("Unknown item: " + itemId));
             return 0;
         }
+        boolean sellable = EconomyManager.getInstance().isSellable(itemId);
+        boolean buyable = EconomyManager.getInstance().isBuyable(itemId);
         BigDecimal sell = EconomyManager.getInstance().getSellPrice(itemId);
         BigDecimal buy = EconomyManager.getInstance().getBuyPrice(itemId);
-        boolean buyable = EconomyManager.getInstance().isBuyable(itemId);
-        String buyText = buyable ? EconomyManager.getInstance().format(buy) : "not buyable";
+        String sellText = sellable ? EconomyManager.getInstance().format(sell) + " each" : "not sellable";
+        String buyText = buyable ? EconomyManager.getInstance().format(buy) + " each" : "not buyable";
         context.getSource().sendFeedback(() -> Text.literal(
-                itemId + " | Sell: " + EconomyManager.getInstance().format(sell) + " each | Buy: " + buyText + " each"), false);
+                itemId + " | Sell: " + sellText + " | Buy: " + buyText), false);
         return 1;
     }
 
@@ -151,12 +154,11 @@ public class SellCommands {
             context.getSource().sendError(Text.literal("Emeralds are currency — use /deposit instead."));
             return 0;
         }
-        BigDecimal price = EconomyManager.getInstance().getSellPrice(itemId);
-
-        if (price.compareTo(BigDecimal.ZERO) <= 0) {
+        if (!EconomyManager.getInstance().isSellable(itemId)) {
             context.getSource().sendError(Text.literal("This item cannot be sold."));
             return 0;
         }
+        BigDecimal price = EconomyManager.getInstance().getSellPrice(itemId);
 
         int count = stack.getCount();
         BigDecimal totalValue = price.multiply(BigDecimal.valueOf(count));
@@ -189,12 +191,11 @@ public class SellCommands {
             context.getSource().sendError(Text.literal("Emeralds are currency — use /deposit instead."));
             return 0;
         }
-        BigDecimal price = EconomyManager.getInstance().getSellPrice(itemId);
-
-        if (price.compareTo(BigDecimal.ZERO) <= 0) {
+        if (!EconomyManager.getInstance().isSellable(itemId)) {
             context.getSource().sendError(Text.literal("This item cannot be sold."));
             return 0;
         }
+        BigDecimal price = EconomyManager.getInstance().getSellPrice(itemId);
 
         int totalCount = 0;
         // Calculate total count first
