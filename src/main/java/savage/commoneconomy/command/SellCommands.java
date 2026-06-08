@@ -187,8 +187,9 @@ public class SellCommands {
 
     private static int sellItem(CommandContext<ServerCommandSource> context, int maxAmount) throws CommandSyntaxException {
         ServerPlayerEntity player = context.getSource().getPlayerOrThrow();
-        String itemId = IdentifierArgumentType.getIdentifier(context, "item").toString();
-        if (!net.minecraft.registry.Registries.ITEM.containsId(net.minecraft.util.Identifier.tryParse(itemId))) {
+        Identifier id = IdentifierArgumentType.getIdentifier(context, "item");
+        String itemId = id.toString();
+        if (!Registries.ITEM.containsId(id)) {
             context.getSource().sendError(Text.literal("Unknown item: " + itemId));
             return 0;
         }
