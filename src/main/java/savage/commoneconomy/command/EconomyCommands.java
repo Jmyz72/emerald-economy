@@ -73,9 +73,6 @@ public class EconomyCommands {
         dispatcher.register(CommandManager.literal("baltop")
                 .requires(source -> savage.commoneconomy.util.PermissionsHelper.check(source, "savscommoneconomy.command.baltop", true))
                 .executes(EconomyCommands::balTop));
-        dispatcher.register(CommandManager.literal("balancetop")
-                .requires(source -> savage.commoneconomy.util.PermissionsHelper.check(source, "savscommoneconomy.command.baltop", true))
-                .executes(EconomyCommands::balTop));
 
         dispatcher.register(CommandManager.literal("pay")
                 .requires(source -> savage.commoneconomy.util.PermissionsHelper.check(source, "savscommoneconomy.command.pay", true))
@@ -83,14 +80,6 @@ public class EconomyCommands {
                         .suggests(PLAYER_SUGGESTION_PROVIDER)
                         .then(CommandManager.argument("amount", DoubleArgumentType.doubleArg(0))
                                 .executes(EconomyCommands::pay))));
-
-        dispatcher.register(CommandManager.literal("balance")
-                .requires(source -> savage.commoneconomy.util.PermissionsHelper.check(source, "savscommoneconomy.command.bal", true))
-                .executes(EconomyCommands::checkSelfBalance)
-                .then(CommandManager.argument("target", StringArgumentType.string())
-                        .requires(source -> savage.commoneconomy.util.PermissionsHelper.check(source, "savscommoneconomy.command.bal.others", true))
-                        .suggests(PLAYER_SUGGESTION_PROVIDER)
-                        .executes(EconomyCommands::checkOtherBalance)));
     }
 
     private static int balTop(CommandContext<ServerCommandSource> context) {
