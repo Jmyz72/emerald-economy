@@ -15,6 +15,7 @@ import savage.commoneconomy.command.EcoCommands;
 import savage.commoneconomy.command.EconomyCommand;
 import savage.commoneconomy.command.LogCommand;
 import savage.commoneconomy.command.SellCommands;
+import savage.commoneconomy.command.ShopCommand;
 
 import java.util.List;
 
@@ -40,7 +41,8 @@ public class SavsCommonEconomy implements ModInitializer {
 				DepositCommand::register,
 				LogCommand::register,
 				DebugCommands::register,
-				EcoCommands::register);
+				EcoCommands::register,
+				ShopCommand::register);
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
 				commands.forEach(command -> command.register(dispatcher)));
 
