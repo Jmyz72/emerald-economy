@@ -13,7 +13,6 @@ import net.minecraft.text.Text;
 import savage.commoneconomy.EconomyManager;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class DepositCommand {
 
@@ -44,19 +43,14 @@ public class DepositCommand {
 
         int toDeposit = Math.min(requested, held);
 
-        int feePercent = Math.max(0, Math.min(100, EconomyManager.getInstance().getConfig().depositFeePercent));
-        BigDecimal gross = BigDecimal.valueOf(toDeposit);
-        BigDecimal net = gross
-                .multiply(BigDecimal.valueOf(100 - feePercent))
-                .divide(BigDecimal.valueOf(100), 2, RoundingMode.DOWN);
-        BigDecimal fee = gross.subtract(net);
-
-        // Credit the balance FIRST; only consume emeralds once it succeeds, so a
-        // storage failure never destroys the player's emeralds.
-        if (!EconomyManager.getInstance().addBalance(player.getUuid(), net)) {
+        EconomyManager.DepositResult dr = EconomyManager.getInstance().depositEmeralds(player.getUuid(), toDeposit);
+        if (!dr.ok()) {
             context.getSource().sendError(Text.literal("Deposit failed, please try again. Your emeralds were not taken."));
             return 0;
         }
+        final BigDecimal net = dr.net();
+        final BigDecimal fee = dr.fee();
+        final int feePercent = dr.feePercent();
 
         int remaining = toDeposit;
         for (int i = 0; i < player.getInventory().size() && remaining > 0; i++) {

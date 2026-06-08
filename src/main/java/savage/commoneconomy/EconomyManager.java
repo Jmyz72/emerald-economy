@@ -168,6 +168,19 @@ public class EconomyManager {
         accountCache.invalidate(uuid);
     }
 
+    public record DepositResult(int emeralds, BigDecimal net, BigDecimal fee, int feePercent, boolean ok) {}
+
+    /** Convert {@code count} emeralds to balance minus the deposit fee. Credits balance first. */
+    public DepositResult depositEmeralds(UUID uuid, int count) {
+        int feePercent = Math.max(0, Math.min(100, config.depositFeePercent));
+        BigDecimal gross = BigDecimal.valueOf(count);
+        BigDecimal net = gross.multiply(BigDecimal.valueOf(100 - feePercent))
+                .divide(BigDecimal.valueOf(100), 2, java.math.RoundingMode.DOWN);
+        BigDecimal fee = gross.subtract(net);
+        boolean ok = addBalance(uuid, net);
+        return new DepositResult(count, net, fee, feePercent, ok);
+    }
+
     public boolean addBalance(UUID uuid, BigDecimal amount) {
         int retries = 10;
         while (retries > 0) {
