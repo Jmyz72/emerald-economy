@@ -32,6 +32,8 @@ public class WithdrawShopGui extends AnvilInputGui {
         try {
             amount = new BigDecimal(in.trim());
         } catch (NumberFormatException e) {
+            // Bad input: keep the anvil open so the player can retype (the valid-amount
+            // outcomes below return to the hub).
             p.sendMessage(Text.literal("Enter a number."), false);
             return;
         }
