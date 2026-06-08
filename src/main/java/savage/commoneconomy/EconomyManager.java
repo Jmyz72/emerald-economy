@@ -322,7 +322,7 @@ public class EconomyManager {
                 loadWorthConfig();
             }
             priceBook = new PriceBook(
-                    worthConfig.itemPrices,
+                    worthConfig.flatten(),
                     worthConfig.unbuyable,
                     config.defaultBuyPrice,
                     config.defaultSellPrice);
@@ -349,25 +349,25 @@ public class EconomyManager {
         return CURRENCY_ITEM_ID.equals(itemId);
     }
 
-    /** All curated item prices (for /worth list). Excludes fallback-only items. */
+    /** All curated item prices, flattened across categories (for /worth list and /buy suggestions). */
     public Map<String, ItemPrice> getAllItemPrices() {
         if (worthConfig == null) {
             loadWorthConfig();
         }
-        return new java.util.LinkedHashMap<>(worthConfig.itemPrices);
+        return worthConfig.flatten();
+    }
+
+    private File worthFile() {
+        return FabricLoader.getInstance().getConfigDir()
+                .resolve("savs-common-economy").resolve("worth.json").toFile();
     }
 
     private void loadWorthConfig() {
-        Path worthPath = FabricLoader.getInstance().getConfigDir().resolve("savs-common-economy").resolve("worth.json");
-        File worthFile = worthPath.toFile();
+        File worthFile = worthFile();
 
         if (!worthFile.exists()) {
-            this.worthConfig = new WorthConfig();
-            try (FileWriter writer = new FileWriter(worthFile)) {
-                gson.toJson(this.worthConfig, writer);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            this.worthConfig = WorthConfig.createDefault();
+            saveWorthConfig();
         } else {
             try (FileReader reader = new FileReader(worthFile)) {
                 this.worthConfig = gson.fromJson(reader, WorthConfig.class);
@@ -379,7 +379,68 @@ public class EconomyManager {
             if (this.worthConfig == null) {
                 this.worthConfig = new WorthConfig();
             }
+            // Normalise null maps and migrate any legacy flat itemPrices into categories.
+            if (this.worthConfig.normalize()) {
+                saveWorthConfig(); // upgrade old flat file to the nested format
+            }
         }
+    }
+
+    /** Write worth.json, backing up the previous file to worth.json.bak first. */
+    public void saveWorthConfig() {
+        if (worthConfig == null) return;
+        File worthFile = worthFile();
+        File backup = FabricLoader.getInstance().getConfigDir()
+                .resolve("savs-common-economy").resolve("worth.json.bak").toFile();
+        try {
+            if (worthFile.exists()) {
+                java.nio.file.Files.copy(worthFile.toPath(), backup.toPath(),
+                        java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        worthFile.getParentFile().mkdirs();
+        try (FileWriter writer = new FileWriter(worthFile)) {
+            gson.toJson(this.worthConfig, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /** Reload worth.json from disk and rebuild the price lookup (no restart needed). */
+    public void reloadPrices() {
+        this.worthConfig = null;
+        this.priceBook = null;
+        loadWorthConfig();
+    }
+
+    /**
+     * Add a default-priced entry for every item id not already priced, placing it in the
+     * given creative-tab category. Skips air and the currency item. Saves worth.json (with
+     * backup) and rebuilds the price lookup. Returns the number of new items added.
+     */
+    public int generatePrices(Map<String, String> idToCategory) {
+        if (worthConfig == null) {
+            loadWorthConfig();
+        }
+        int added = 0;
+        for (Map.Entry<String, String> entry : idToCategory.entrySet()) {
+            String id = entry.getKey();
+            if (id.equals("minecraft:air") || isCurrencyItem(id)) {
+                continue;
+            }
+            if (worthConfig.contains(id)) {
+                continue;
+            }
+            String category = entry.getValue() != null ? entry.getValue() : "uncategorized";
+            worthConfig.categories.computeIfAbsent(category, k -> new java.util.LinkedHashMap<>())
+                    .put(id, new ItemPrice(config.defaultBuyPrice, config.defaultSellPrice));
+            added++;
+        }
+        saveWorthConfig();
+        this.priceBook = null; // rebuild lazily with the new entries
+        return added;
     }
 
     public static class AccountData {

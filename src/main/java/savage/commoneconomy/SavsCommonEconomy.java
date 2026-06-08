@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import savage.commoneconomy.command.BuyCommand;
 import savage.commoneconomy.command.DebugCommands;
 import savage.commoneconomy.command.DepositCommand;
+import savage.commoneconomy.command.EcoCommands;
 import savage.commoneconomy.command.EconomyCommands;
 import savage.commoneconomy.command.LogCommand;
 import savage.commoneconomy.command.SellCommands;
@@ -34,6 +35,7 @@ public class SavsCommonEconomy implements ModInitializer {
 			DepositCommand.register(dispatcher);
 			LogCommand.register(dispatcher);
 			DebugCommands.register(dispatcher);
+			EcoCommands.register(dispatcher);
 		});
 
 		// Load economy data when server starts
