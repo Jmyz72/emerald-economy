@@ -54,6 +54,7 @@ public class EmeraldEconomy implements ModInitializer {
 			EconomyManager.getInstance().setServer(server);
 			EconomyManager.getInstance().load();
 			savage.emeraldeconomy.rewards.DailyRewards.getInstance().load();
+			savage.emeraldeconomy.rewards.PlaytimeIncome.load();
 		});
 
 		// Save economy data when server stops
@@ -76,5 +77,8 @@ public class EmeraldEconomy implements ModInitializer {
 
 		// New-player income: reward players for killing mobs.
 		savage.emeraldeconomy.rewards.MobKillRewards.register();
+
+		// New-player income: session-based playtime payout, shown as a welcome-back message.
+		savage.emeraldeconomy.rewards.PlaytimeIncome.register();
 	}
 }
