@@ -47,6 +47,8 @@ public final class MobKillRewards {
                 return;
             }
 
+            // Synchronous balance write on the server thread; only player-dealt kills reach here
+            // (environmental/AFK-farm kills bail at the attacker guard above), so this is cheap.
             if (EconomyManager.getInstance().addBalance(killer.getUuid(), reward)) {
                 killer.sendMessage(Text.literal("+" + EconomyManager.getInstance().format(reward)), true);
                 savage.emeraldeconomy.util.TransactionLogger.log("MOBKILL", "Server",
@@ -55,7 +57,11 @@ public final class MobKillRewards {
         });
     }
 
-    /** Hostile = the MONSTER spawn group. */
+    /**
+     * Hostile = the MONSTER spawn group. This covers most hostiles but not every aggressive mob
+     * (some use other spawn groups); any that should pay the hostile rate can be listed explicitly
+     * in rewards.mobKillRewards, which takes precedence over this classification.
+     */
     static boolean isHostile(LivingEntity entity) {
         return entity.getType().getSpawnGroup() == SpawnGroup.MONSTER;
     }
