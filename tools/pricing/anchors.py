@@ -26,6 +26,13 @@ EXACT = {
     "minecraft:emerald_block": 9,                        # bundled currency: priced at face
     "minecraft:netherite_scrap": 4000, "minecraft:netherite_ingot": 20000,
     "minecraft:glowstone_dust": 75, "minecraft:glowstone": 300,
+    # Create base metals (anchored so storage-block decompose recipes can't loop them cheap)
+    "create:zinc_ingot": 200, "create:zinc_nugget": 22, "create:raw_zinc": 200,
+    "create:brass_ingot": 400, "create:brass_nugget": 44,
+    "create:rose_quartz": 300, "create:experience_nugget": 30,
+    "create:refined_radiance_casing": 1200, "create:shadow_steel_casing": 1200,  # endgame
+    "create:refined_radiance": 1000, "create:shadow_steel": 1000,
+    "autotrader:auto_trader": 5000,  # automation block, notable utility
     # ores (block, mined) ~ their yield
     "minecraft:coal_ore": 40, "minecraft:deepslate_coal_ore": 40,
     "minecraft:iron_ore": 400, "minecraft:deepslate_iron_ore": 400,
@@ -158,7 +165,14 @@ RULES = [
     (re.compile(r"mushroom_block$|warped_wart_block$"), 15),
     (re.compile(r"_mushroom$|mushroom_stem$"), 8),
     (re.compile(r"shroomlight$"), 40),
-    (re.compile(r"(raw_|_ore$)"), 250),          # generic modded ore/raw fallback
+    (re.compile(r"_petal_block$|_petals$"), 12),     # decorative petal blocks
+    (re.compile(r"_sand$"), 5),                       # black/orange/white sand etc.
+    (re.compile(r"rose_quartz"), 80),                # BOP rose-quartz gems/buds/clusters
+    (re.compile(r"_bucket$"), 50),                   # modded fluid buckets
+    (re.compile(r"_toolbox$"), 60),                  # create toolboxes
+    (re.compile(r"_encased_shaft$"), 80),            # create encased shafts
+    (re.compile(r"_valve_handle$"), 40),             # create valve handles
+    (re.compile(r"(raw_|_ore$)"), 250),              # generic modded ore/raw fallback
     (re.compile(r"_ingot$|_gem$|_crystal$"), 250),
     (re.compile(r"potion$|tipped_arrow$"), 100),
 ]

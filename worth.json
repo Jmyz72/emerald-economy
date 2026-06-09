@@ -1118,16 +1118,16 @@
         "sell": 90.0
       },
       "minecraft:dark_prismarine": {
-        "buy": 676,
-        "sell": 160.94
+        "buy": 675,
+        "sell": 160.75
       },
       "minecraft:dark_prismarine_stairs": {
-        "buy": 710,
-        "sell": 160.94
+        "buy": 709,
+        "sell": 160.75
       },
       "minecraft:dark_prismarine_slab": {
         "buy": 355,
-        "sell": 80.47
+        "sell": 80.38
       },
       "minecraft:netherrack": {
         "buy": 5,
@@ -1318,8 +1318,8 @@
         "sell": 8.0
       },
       "minecraft:iron_chain": {
-        "buy": 3.02,
-        "sell": 0.04
+        "buy": 256,
+        "sell": 2.44
       },
       "minecraft:gold_block": {
         "buy": 4720,
@@ -1744,32 +1744,32 @@
     },
     "colored_blocks": {
       "minecraft:white_wool": {
-        "buy": 19.6,
-        "sell": 0.19
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:light_gray_wool": {
-        "buy": 19.9,
-        "sell": 1.09
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:gray_wool": {
-        "buy": 19.9,
-        "sell": 1.09
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:black_wool": {
-        "buy": 19.9,
-        "sell": 1.09
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:brown_wool": {
-        "buy": 19.9,
-        "sell": 1.09
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:red_wool": {
-        "buy": 19.4,
-        "sell": 0.98
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:orange_wool": {
-        "buy": 19.6,
-        "sell": 0.98
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:yellow_wool": {
         "buy": 15.0,
@@ -1784,56 +1784,56 @@
         "sell": 0.77
       },
       "minecraft:cyan_wool": {
-        "buy": 19.4,
-        "sell": 0.93
+        "buy": 18.9,
+        "sell": 0.84
       },
       "minecraft:light_blue_wool": {
-        "buy": 19.9,
-        "sell": 1.09
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:blue_wool": {
-        "buy": 19.9,
-        "sell": 1.09
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:purple_wool": {
-        "buy": 19.8,
-        "sell": 1.04
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:magenta_wool": {
-        "buy": 19.4,
-        "sell": 0.98
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:pink_wool": {
-        "buy": 19.4,
-        "sell": 0.98
+        "buy": 19.1,
+        "sell": 0.9
       },
       "minecraft:white_carpet": {
-        "buy": 13.7,
-        "sell": 0.13
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:light_gray_carpet": {
-        "buy": 13.9,
-        "sell": 0.73
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:gray_carpet": {
-        "buy": 13.9,
-        "sell": 0.73
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:black_carpet": {
-        "buy": 13.9,
-        "sell": 0.73
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:brown_carpet": {
-        "buy": 13.9,
-        "sell": 0.73
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:red_carpet": {
-        "buy": 13.6,
-        "sell": 0.65
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:orange_carpet": {
-        "buy": 13.7,
-        "sell": 0.65
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:yellow_carpet": {
         "buy": 10.5,
@@ -1848,64 +1848,64 @@
         "sell": 0.51
       },
       "minecraft:cyan_carpet": {
-        "buy": 13.6,
-        "sell": 0.62
+        "buy": 13.3,
+        "sell": 0.56
       },
       "minecraft:light_blue_carpet": {
-        "buy": 13.9,
-        "sell": 0.73
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:blue_carpet": {
-        "buy": 13.9,
-        "sell": 0.73
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:purple_carpet": {
-        "buy": 13.9,
-        "sell": 0.69
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:magenta_carpet": {
-        "buy": 13.6,
-        "sell": 0.65
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:pink_carpet": {
-        "buy": 13.6,
-        "sell": 0.65
+        "buy": 13.3,
+        "sell": 0.6
       },
       "minecraft:terracotta": {
         "buy": 14.7,
         "sell": 3.5
       },
       "minecraft:white_terracotta": {
-        "buy": 15.9,
-        "sell": 3.5
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:light_gray_terracotta": {
-        "buy": 16.0,
-        "sell": 3.62
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:gray_terracotta": {
-        "buy": 16.0,
-        "sell": 3.62
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:black_terracotta": {
-        "buy": 16.0,
-        "sell": 3.62
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:brown_terracotta": {
-        "buy": 16.0,
-        "sell": 3.62
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:red_terracotta": {
-        "buy": 15.9,
-        "sell": 3.6
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:orange_terracotta": {
-        "buy": 15.9,
-        "sell": 3.6
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:yellow_terracotta": {
-        "buy": 15.9,
-        "sell": 3.6
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:lime_terracotta": {
         "buy": 15.8,
@@ -1916,28 +1916,28 @@
         "sell": 3.58
       },
       "minecraft:cyan_terracotta": {
-        "buy": 15.9,
-        "sell": 3.6
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:light_blue_terracotta": {
-        "buy": 16.0,
-        "sell": 3.62
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:blue_terracotta": {
-        "buy": 16.0,
-        "sell": 3.62
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:purple_terracotta": {
-        "buy": 15.9,
-        "sell": 3.61
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:magenta_terracotta": {
-        "buy": 15.9,
-        "sell": 3.6
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:pink_terracotta": {
-        "buy": 15.9,
-        "sell": 3.6
+        "buy": 15.8,
+        "sell": 3.59
       },
       "minecraft:white_concrete": {
         "buy": 10.0,
@@ -2004,36 +2004,36 @@
         "sell": 2.5
       },
       "minecraft:white_concrete_powder": {
-        "buy": 5.21,
-        "sell": 1.0
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:light_gray_concrete_powder": {
-        "buy": 5.24,
-        "sell": 1.12
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:gray_concrete_powder": {
-        "buy": 5.24,
-        "sell": 1.12
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:black_concrete_powder": {
-        "buy": 5.24,
-        "sell": 1.12
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:brown_concrete_powder": {
-        "buy": 5.24,
-        "sell": 1.12
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:red_concrete_powder": {
-        "buy": 5.18,
-        "sell": 1.1
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:orange_concrete_powder": {
-        "buy": 5.21,
-        "sell": 1.1
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:yellow_concrete_powder": {
-        "buy": 5.18,
-        "sell": 1.1
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:lime_concrete_powder": {
         "buy": 5.07,
@@ -2044,60 +2044,60 @@
         "sell": 1.08
       },
       "minecraft:cyan_concrete_powder": {
-        "buy": 5.18,
-        "sell": 1.1
+        "buy": 5.12,
+        "sell": 1.09
       },
       "minecraft:light_blue_concrete_powder": {
-        "buy": 5.24,
-        "sell": 1.12
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:blue_concrete_powder": {
-        "buy": 5.24,
-        "sell": 1.12
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:purple_concrete_powder": {
-        "buy": 5.24,
-        "sell": 1.11
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:magenta_concrete_powder": {
-        "buy": 5.18,
-        "sell": 1.1
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:pink_concrete_powder": {
-        "buy": 5.18,
-        "sell": 1.1
+        "buy": 5.14,
+        "sell": 1.09
       },
       "minecraft:white_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.5
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:light_gray_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.62
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:gray_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.62
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:black_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.62
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:brown_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.62
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:red_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.6
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:orange_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.6
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:yellow_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.6
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:lime_glazed_terracotta": {
         "buy": 16.6,
@@ -2108,28 +2108,28 @@
         "sell": 3.58
       },
       "minecraft:cyan_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.6
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:light_blue_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.62
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:blue_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.62
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:purple_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.61
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:magenta_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.6
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:pink_glazed_terracotta": {
-        "buy": 16.7,
-        "sell": 3.6
+        "buy": 16.6,
+        "sell": 3.59
       },
       "minecraft:glass": {
         "buy": 4.2,
@@ -2140,36 +2140,36 @@
         "sell": 80.5
       },
       "minecraft:white_stained_glass": {
-        "buy": 4.89,
-        "sell": 1.0
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:light_gray_stained_glass": {
-        "buy": 4.93,
-        "sell": 1.12
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:gray_stained_glass": {
-        "buy": 4.93,
-        "sell": 1.12
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:black_stained_glass": {
-        "buy": 4.93,
-        "sell": 1.12
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:brown_stained_glass": {
-        "buy": 4.93,
-        "sell": 1.12
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:red_stained_glass": {
-        "buy": 4.87,
-        "sell": 1.1
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:orange_stained_glass": {
-        "buy": 4.89,
-        "sell": 1.1
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:yellow_stained_glass": {
-        "buy": 4.87,
-        "sell": 1.1
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:lime_stained_glass": {
         "buy": 4.75,
@@ -2180,63 +2180,63 @@
         "sell": 1.08
       },
       "minecraft:cyan_stained_glass": {
-        "buy": 4.86,
-        "sell": 1.1
+        "buy": 4.81,
+        "sell": 1.09
       },
       "minecraft:light_blue_stained_glass": {
-        "buy": 4.93,
-        "sell": 1.12
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:blue_stained_glass": {
-        "buy": 4.93,
-        "sell": 1.12
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:purple_stained_glass": {
-        "buy": 4.92,
-        "sell": 1.11
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:magenta_stained_glass": {
-        "buy": 4.87,
-        "sell": 1.1
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:pink_stained_glass": {
-        "buy": 4.87,
-        "sell": 1.1
+        "buy": 4.82,
+        "sell": 1.09
       },
       "minecraft:glass_pane": {
         "buy": 1.65,
         "sell": 0.38
       },
       "minecraft:white_stained_glass_pane": {
-        "buy": 1.93,
-        "sell": 0.38
+        "buy": 1.9,
+        "sell": 0.41
       },
       "minecraft:light_gray_stained_glass_pane": {
-        "buy": 1.94,
-        "sell": 0.42
+        "buy": 1.9,
+        "sell": 0.41
       },
       "minecraft:gray_stained_glass_pane": {
-        "buy": 1.94,
-        "sell": 0.42
+        "buy": 1.9,
+        "sell": 0.41
       },
       "minecraft:black_stained_glass_pane": {
-        "buy": 1.94,
-        "sell": 0.42
+        "buy": 1.9,
+        "sell": 0.41
       },
       "minecraft:brown_stained_glass_pane": {
-        "buy": 1.94,
-        "sell": 0.42
+        "buy": 1.9,
+        "sell": 0.41
       },
       "minecraft:red_stained_glass_pane": {
-        "buy": 1.92,
+        "buy": 1.9,
         "sell": 0.41
       },
       "minecraft:orange_stained_glass_pane": {
-        "buy": 1.93,
+        "buy": 1.9,
         "sell": 0.41
       },
       "minecraft:yellow_stained_glass_pane": {
-        "buy": 1.92,
+        "buy": 1.9,
         "sell": 0.41
       },
       "minecraft:lime_stained_glass_pane": {
@@ -2248,27 +2248,27 @@
         "sell": 0.41
       },
       "minecraft:cyan_stained_glass_pane": {
-        "buy": 1.91,
+        "buy": 1.89,
         "sell": 0.41
       },
       "minecraft:light_blue_stained_glass_pane": {
-        "buy": 1.94,
-        "sell": 0.42
+        "buy": 1.9,
+        "sell": 0.41
       },
       "minecraft:blue_stained_glass_pane": {
-        "buy": 1.94,
-        "sell": 0.42
+        "buy": 1.9,
+        "sell": 0.41
       },
       "minecraft:purple_stained_glass_pane": {
-        "buy": 1.94,
-        "sell": 0.42
+        "buy": 1.9,
+        "sell": 0.41
       },
       "minecraft:magenta_stained_glass_pane": {
-        "buy": 1.92,
+        "buy": 1.9,
         "sell": 0.41
       },
       "minecraft:pink_stained_glass_pane": {
-        "buy": 1.92,
+        "buy": 1.9,
         "sell": 0.41
       },
       "minecraft:shulker_box": {
@@ -2276,36 +2276,36 @@
         "sell": 800.8
       },
       "minecraft:white_shulker_box": {
-        "buy": 1870,
-        "sell": 800.84
+        "buy": 1860,
+        "sell": 801.55
       },
       "minecraft:light_gray_shulker_box": {
-        "buy": 1870,
-        "sell": 801.74
+        "buy": 1860,
+        "sell": 801.55
       },
       "minecraft:gray_shulker_box": {
-        "buy": 1870,
-        "sell": 801.74
+        "buy": 1860,
+        "sell": 801.55
       },
       "minecraft:black_shulker_box": {
-        "buy": 1870,
-        "sell": 801.74
+        "buy": 1860,
+        "sell": 801.55
       },
       "minecraft:brown_shulker_box": {
-        "buy": 1870,
-        "sell": 801.74
+        "buy": 1860,
+        "sell": 801.55
       },
       "minecraft:red_shulker_box": {
         "buy": 1860,
-        "sell": 801.63
+        "sell": 801.55
       },
       "minecraft:orange_shulker_box": {
-        "buy": 1870,
-        "sell": 801.63
+        "buy": 1860,
+        "sell": 801.55
       },
       "minecraft:yellow_shulker_box": {
         "buy": 1860,
-        "sell": 801.63
+        "sell": 801.55
       },
       "minecraft:lime_shulker_box": {
         "buy": 1860,
@@ -2317,55 +2317,55 @@
       },
       "minecraft:cyan_shulker_box": {
         "buy": 1860,
-        "sell": 801.58
+        "sell": 801.49
       },
       "minecraft:light_blue_shulker_box": {
-        "buy": 1870,
-        "sell": 801.74
+        "buy": 1860,
+        "sell": 801.55
       },
       "minecraft:blue_shulker_box": {
-        "buy": 1870,
-        "sell": 801.74
+        "buy": 1860,
+        "sell": 801.55
       },
       "minecraft:purple_shulker_box": {
-        "buy": 1870,
-        "sell": 801.69
+        "buy": 1860,
+        "sell": 801.55
       },
       "minecraft:magenta_shulker_box": {
         "buy": 1860,
-        "sell": 801.63
+        "sell": 801.55
       },
       "minecraft:pink_shulker_box": {
         "buy": 1860,
-        "sell": 801.63
+        "sell": 801.55
       },
       "minecraft:white_bed": {
-        "buy": 88.2,
-        "sell": 0.79
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:light_gray_bed": {
-        "buy": 88.5,
-        "sell": 1.69
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:gray_bed": {
-        "buy": 88.5,
-        "sell": 1.69
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:black_bed": {
-        "buy": 88.5,
-        "sell": 1.69
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:brown_bed": {
-        "buy": 88.5,
-        "sell": 1.69
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:red_bed": {
-        "buy": 88.0,
-        "sell": 1.58
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:orange_bed": {
-        "buy": 88.2,
-        "sell": 1.58
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:yellow_bed": {
         "buy": 80.3,
@@ -2380,64 +2380,64 @@
         "sell": 1.37
       },
       "minecraft:cyan_bed": {
-        "buy": 88.0,
-        "sell": 1.53
+        "buy": 87.5,
+        "sell": 1.44
       },
       "minecraft:light_blue_bed": {
-        "buy": 88.5,
-        "sell": 1.69
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:blue_bed": {
-        "buy": 88.5,
-        "sell": 1.69
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:purple_bed": {
-        "buy": 88.4,
-        "sell": 1.64
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:magenta_bed": {
-        "buy": 88.0,
-        "sell": 1.58
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:pink_bed": {
-        "buy": 88.0,
-        "sell": 1.58
+        "buy": 87.6,
+        "sell": 1.5
       },
       "minecraft:candle": {
         "buy": 47.2,
         "sell": 1.3
       },
       "minecraft:white_candle": {
-        "buy": 53.5,
-        "sell": 1.34
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:light_gray_candle": {
-        "buy": 53.7,
-        "sell": 2.24
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:gray_candle": {
-        "buy": 53.7,
-        "sell": 2.24
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:black_candle": {
-        "buy": 53.7,
-        "sell": 2.24
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:brown_candle": {
-        "buy": 53.7,
-        "sell": 2.24
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:red_candle": {
-        "buy": 53.3,
-        "sell": 2.13
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:orange_candle": {
-        "buy": 53.5,
-        "sell": 2.13
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:yellow_candle": {
-        "buy": 53.3,
-        "sell": 2.13
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:lime_candle": {
         "buy": 52.4,
@@ -2448,56 +2448,56 @@
         "sell": 1.92
       },
       "minecraft:cyan_candle": {
-        "buy": 53.2,
-        "sell": 2.08
+        "buy": 52.8,
+        "sell": 1.99
       },
       "minecraft:light_blue_candle": {
-        "buy": 53.7,
-        "sell": 2.24
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:blue_candle": {
-        "buy": 53.7,
-        "sell": 2.24
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:purple_candle": {
-        "buy": 53.7,
-        "sell": 2.19
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:magenta_candle": {
-        "buy": 53.3,
-        "sell": 2.13
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:pink_candle": {
-        "buy": 53.3,
-        "sell": 2.13
+        "buy": 52.9,
+        "sell": 2.05
       },
       "minecraft:white_banner": {
-        "buy": 129,
-        "sell": 1.19
+        "buy": 126,
+        "sell": 5.45
       },
       "minecraft:light_gray_banner": {
-        "buy": 131,
-        "sell": 6.59
+        "buy": 126,
+        "sell": 5.45
       },
       "minecraft:gray_banner": {
-        "buy": 131,
-        "sell": 6.59
+        "buy": 126,
+        "sell": 5.45
       },
       "minecraft:black_banner": {
-        "buy": 131,
-        "sell": 6.59
+        "buy": 126,
+        "sell": 5.45
       },
       "minecraft:brown_banner": {
-        "buy": 131,
-        "sell": 6.59
+        "buy": 126,
+        "sell": 5.45
       },
       "minecraft:red_banner": {
-        "buy": 128,
-        "sell": 5.93
+        "buy": 126,
+        "sell": 5.45
       },
       "minecraft:orange_banner": {
-        "buy": 129,
-        "sell": 5.93
+        "buy": 126,
+        "sell": 5.45
       },
       "minecraft:yellow_banner": {
         "buy": 100,
@@ -2512,28 +2512,28 @@
         "sell": 4.67
       },
       "minecraft:cyan_banner": {
-        "buy": 128,
-        "sell": 5.63
+        "buy": 125,
+        "sell": 5.09
       },
       "minecraft:light_blue_banner": {
-        "buy": 131,
-        "sell": 6.59
+        "buy": 126,
+        "sell": 5.45
       },
       "minecraft:blue_banner": {
-        "buy": 131,
-        "sell": 6.59
+        "buy": 126,
+        "sell": 5.45
       },
       "minecraft:purple_banner": {
-        "buy": 131,
-        "sell": 6.29
+        "buy": 126,
+        "sell": 5.45
       },
       "minecraft:magenta_banner": {
-        "buy": 128,
-        "sell": 5.93
+        "buy": 126,
+        "sell": 5.45
       },
       "minecraft:pink_banner": {
-        "buy": 128,
-        "sell": 5.93
+        "buy": 126,
+        "sell": 5.45
       }
     },
     "natural_blocks": {
@@ -3620,12 +3620,12 @@
         "sell": 1.3
       },
       "minecraft:item_frame": {
-        "buy": 109,
-        "sell": 1.0
+        "buy": 51.8,
+        "sell": 1.65
       },
       "minecraft:glow_item_frame": {
-        "buy": 157,
-        "sell": 1.4
+        "buy": 96.4,
+        "sell": 2.05
       },
       "minecraft:painting": {
         "buy": 62.1,
@@ -3696,96 +3696,96 @@
         "sell": 0.26
       },
       "minecraft:oak_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "minecraft:spruce_sign": {
         "buy": 29.5,
         "sell": 0.26
       },
       "minecraft:spruce_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "minecraft:birch_sign": {
         "buy": 29.5,
         "sell": 0.26
       },
       "minecraft:birch_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "minecraft:jungle_sign": {
         "buy": 29.5,
         "sell": 0.26
       },
       "minecraft:jungle_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "minecraft:acacia_sign": {
         "buy": 29.5,
         "sell": 0.26
       },
       "minecraft:acacia_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "minecraft:dark_oak_sign": {
         "buy": 29.5,
         "sell": 0.26
       },
       "minecraft:dark_oak_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "minecraft:mangrove_sign": {
         "buy": 29.5,
         "sell": 0.26
       },
       "minecraft:mangrove_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "minecraft:cherry_sign": {
         "buy": 29.5,
         "sell": 0.26
       },
       "minecraft:cherry_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "minecraft:pale_oak_sign": {
         "buy": 29.5,
         "sell": 0.26
       },
       "minecraft:pale_oak_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "minecraft:bamboo_sign": {
         "buy": 24.0,
         "sell": 0.22
       },
       "minecraft:bamboo_hanging_sign": {
-        "buy": 22.1,
-        "sell": 0.21
+        "buy": 111,
+        "sell": 1.01
       },
       "minecraft:crimson_sign": {
         "buy": 29.5,
         "sell": 0.26
       },
       "minecraft:crimson_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "minecraft:warped_sign": {
         "buy": 29.5,
         "sell": 0.26
       },
       "minecraft:warped_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "minecraft:chest": {
         "buy": 88.2,
@@ -4216,36 +4216,36 @@
         "sell": 1.6
       },
       "minecraft:white_bundle": {
-        "buy": 86.5,
-        "sell": 1.64
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:light_gray_bundle": {
-        "buy": 86.8,
-        "sell": 2.54
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:gray_bundle": {
-        "buy": 86.8,
-        "sell": 2.54
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:black_bundle": {
-        "buy": 86.8,
-        "sell": 2.54
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:brown_bundle": {
-        "buy": 86.8,
-        "sell": 2.54
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:red_bundle": {
-        "buy": 86.4,
-        "sell": 2.43
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:orange_bundle": {
-        "buy": 86.5,
-        "sell": 2.43
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:yellow_bundle": {
-        "buy": 86.4,
-        "sell": 2.43
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:lime_bundle": {
         "buy": 85.4,
@@ -4256,28 +4256,28 @@
         "sell": 2.22
       },
       "minecraft:cyan_bundle": {
-        "buy": 86.3,
-        "sell": 2.38
+        "buy": 85.9,
+        "sell": 2.29
       },
       "minecraft:light_blue_bundle": {
-        "buy": 86.8,
-        "sell": 2.54
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:blue_bundle": {
-        "buy": 86.8,
-        "sell": 2.54
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:purple_bundle": {
-        "buy": 86.8,
-        "sell": 2.49
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:magenta_bundle": {
-        "buy": 86.4,
-        "sell": 2.43
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:pink_bundle": {
-        "buy": 86.4,
-        "sell": 2.43
+        "buy": 86.0,
+        "sell": 2.35
       },
       "minecraft:compass": {
         "buy": 1740,
@@ -4325,31 +4325,31 @@
       },
       "minecraft:white_harness": {
         "buy": 218,
-        "sell": 3.99
+        "sell": 4.7
       },
       "minecraft:light_gray_harness": {
-        "buy": 219,
-        "sell": 4.89
+        "buy": 218,
+        "sell": 4.7
       },
       "minecraft:gray_harness": {
-        "buy": 219,
-        "sell": 4.89
+        "buy": 218,
+        "sell": 4.7
       },
       "minecraft:black_harness": {
-        "buy": 219,
-        "sell": 4.89
+        "buy": 218,
+        "sell": 4.7
       },
       "minecraft:brown_harness": {
-        "buy": 219,
-        "sell": 4.89
+        "buy": 218,
+        "sell": 4.7
       },
       "minecraft:red_harness": {
         "buy": 218,
-        "sell": 4.78
+        "sell": 4.7
       },
       "minecraft:orange_harness": {
         "buy": 218,
-        "sell": 4.78
+        "sell": 4.7
       },
       "minecraft:yellow_harness": {
         "buy": 214,
@@ -4365,27 +4365,27 @@
       },
       "minecraft:cyan_harness": {
         "buy": 218,
-        "sell": 4.73
+        "sell": 4.64
       },
       "minecraft:light_blue_harness": {
-        "buy": 219,
-        "sell": 4.89
+        "buy": 218,
+        "sell": 4.7
       },
       "minecraft:blue_harness": {
-        "buy": 219,
-        "sell": 4.89
+        "buy": 218,
+        "sell": 4.7
       },
       "minecraft:purple_harness": {
-        "buy": 219,
-        "sell": 4.84
+        "buy": 218,
+        "sell": 4.7
       },
       "minecraft:magenta_harness": {
         "buy": 218,
-        "sell": 4.78
+        "sell": 4.7
       },
       "minecraft:pink_harness": {
         "buy": 218,
-        "sell": 4.78
+        "sell": 4.7
       },
       "minecraft:carrot_on_a_stick": {
         "buy": 63.9,
@@ -4944,16 +4944,16 @@
         "sell": 7.5
       },
       "minecraft:bread": {
-        "buy": 31.5,
-        "sell": 0.3
+        "buy": 45.9,
+        "sell": 0.42
       },
       "minecraft:cookie": {
         "buy": 12.5,
         "sell": 0.57
       },
       "minecraft:cake": {
-        "buy": 220,
-        "sell": 52.5
+        "buy": 118,
+        "sell": 16.11
       },
       "minecraft:pumpkin_pie": {
         "buy": 33.2,
@@ -5182,36 +5182,36 @@
         "sell": 150.0
       },
       "minecraft:white_dye": {
-        "buy": 3.68,
-        "sell": 0.04
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:light_gray_dye": {
-        "buy": 3.94,
-        "sell": 0.94
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:gray_dye": {
-        "buy": 3.94,
-        "sell": 0.94
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:black_dye": {
-        "buy": 3.94,
-        "sell": 0.94
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:brown_dye": {
-        "buy": 3.94,
-        "sell": 0.94
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:red_dye": {
-        "buy": 3.5,
-        "sell": 0.83
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:orange_dye": {
-        "buy": 3.68,
-        "sell": 0.83
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:yellow_dye": {
-        "buy": 3.5,
-        "sell": 0.83
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:lime_dye": {
         "buy": 2.62,
@@ -5222,28 +5222,28 @@
         "sell": 0.62
       },
       "minecraft:cyan_dye": {
-        "buy": 3.45,
-        "sell": 0.78
+        "buy": 3.03,
+        "sell": 0.69
       },
       "minecraft:light_blue_dye": {
-        "buy": 3.94,
-        "sell": 0.94
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:blue_dye": {
-        "buy": 3.94,
-        "sell": 0.94
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:purple_dye": {
-        "buy": 3.9,
-        "sell": 0.89
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:magenta_dye": {
-        "buy": 3.5,
-        "sell": 0.83
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:pink_dye": {
-        "buy": 3.5,
-        "sell": 0.83
+        "buy": 3.15,
+        "sell": 0.75
       },
       "minecraft:bowl": {
         "buy": 8.27,
@@ -5548,32 +5548,32 @@
     },
     "create.base": {
       "create:copper_backtank": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 2620,
+        "sell": 24.05
       },
       "create:netherite_backtank": {
-        "buy": 59220,
-        "sell": 26001.2
+        "buy": 23750,
+        "sell": 10024.05
       },
       "create:wrench": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 1670,
+        "sell": 15.16
       },
       "create:linked_controller": {
-        "buy": 202,
-        "sell": 30.6
+        "buy": 846,
+        "sell": 7.01
       },
       "create:potato_cannon": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 1600,
+        "sell": 14.29
       },
       "create:extendo_grip": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 2980,
+        "sell": 26.09
       },
       "create:wand_of_symmetry": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 2780,
+        "sell": 124.77
       },
       "create:handheld_worldshaper": {
         "buy": 120,
@@ -5600,36 +5600,36 @@
         "sell": 0.21
       },
       "create:gearbox": {
-        "buy": 175,
-        "sell": 30.44
+        "buy": 73.6,
+        "sell": 0.66
       },
       "create:vertical_gearbox": {
-        "buy": 175,
-        "sell": 30.44
+        "buy": 73.6,
+        "sell": 0.66
       },
       "create:clutch": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 88.3,
+        "sell": 0.83
       },
       "create:gearshift": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 99.9,
+        "sell": 0.93
       },
       "create:encased_chain_drive": {
-        "buy": 127,
-        "sell": 30.03
+        "buy": 93.9,
+        "sell": 0.88
       },
       "create:adjustable_chain_gearshift": {
-        "buy": 398,
-        "sell": 32.43
+        "buy": 650,
+        "sell": 5.68
       },
       "create:belt_connector": {
         "buy": 33.1,
         "sell": 0.3
       },
       "create:chain_conveyor": {
-        "buy": 264,
-        "sell": 60.1
+        "buy": 61.2,
+        "sell": 0.55
       },
       "create:water_wheel": {
         "buy": 88.8,
@@ -5640,8 +5640,8 @@
         "sell": 1.61
       },
       "create:encased_fan": {
-        "buy": 658,
-        "sell": 34.83
+        "buy": 1880,
+        "sell": 16.25
       },
       "create:nozzle": {
         "buy": 25.6,
@@ -5656,52 +5656,52 @@
         "sell": 0.32
       },
       "create:cuckoo_clock": {
-        "buy": 2410,
-        "sell": 50.7
+        "buy": 2310,
+        "sell": 20.92
       },
       "create:millstone": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 43.2,
+        "sell": 1.83
       },
       "create:crushing_wheel": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 44.8,
+        "sell": 1.11
       },
       "create:mechanical_press": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 3990,
+        "sell": 36.23
       },
       "create:mechanical_mixer": {
-        "buy": 805,
-        "sell": 36.15
+        "buy": 2360,
+        "sell": 20.37
       },
       "create:basin": {
         "buy": 12.3,
         "sell": 0.1
       },
       "create:empty_blaze_burner": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 1770,
+        "sell": 17.0
       },
       "create:blaze_burner": {
         "buy": 120,
         "sell": 30.0
       },
       "create:depot": {
-        "buy": 128,
-        "sell": 30.02
+        "buy": 27.1,
+        "sell": 0.24
       },
       "create:weighted_ejector": {
-        "buy": 273,
-        "sell": 31.33
+        "buy": 592,
+        "sell": 5.35
       },
       "create:chute": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 326,
+        "sell": 3.0
       },
       "create:smart_chute": {
-        "buy": 393,
-        "sell": 32.42
+        "buy": 1330,
+        "sell": 11.8
       },
       "create:speedometer": {
         "buy": 126,
@@ -5712,108 +5712,108 @@
         "sell": 30.0
       },
       "create:wooden_bracket": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 10.5,
+        "sell": 0.09
       },
       "create:metal_bracket": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 246,
+        "sell": 2.34
       },
       "create:fluid_pipe": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 163,
+        "sell": 1.5
       },
       "create:mechanical_pump": {
-        "buy": 138,
-        "sell": 30.11
+        "buy": 183,
+        "sell": 1.61
       },
       "create:smart_fluid_pipe": {
-        "buy": 393,
-        "sell": 32.42
+        "buy": 1160,
+        "sell": 10.3
       },
       "create:fluid_valve": {
-        "buy": 252,
-        "sell": 31.2
+        "buy": 612,
+        "sell": 5.5
       },
       "create:copper_valve_handle": {
-        "buy": 31.5,
-        "sell": 7.5
+        "buy": 42.0,
+        "sell": 10.0
       },
       "create:fluid_tank": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 523,
+        "sell": 4.7
       },
       "create:hose_pulley": {
-        "buy": 304,
-        "sell": 2.85
+        "buy": 515,
+        "sell": 4.65
       },
       "create:item_drain": {
-        "buy": 291,
-        "sell": 2.7
+        "buy": 408,
+        "sell": 3.7
       },
       "create:spout": {
-        "buy": 132,
-        "sell": 1.25
+        "buy": 248,
+        "sell": 2.25
       },
       "create:portable_fluid_interface": {
-        "buy": 252,
-        "sell": 31.2
+        "buy": 584,
+        "sell": 5.2
       },
       "create:steam_engine": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 2540,
+        "sell": 23.02
       },
       "create:steam_whistle": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 761,
+        "sell": 7.0
       },
       "create:mechanical_piston": {
-        "buy": 135,
-        "sell": 30.08
+        "buy": 33.6,
+        "sell": 0.3
       },
       "create:sticky_mechanical_piston": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 66.8,
+        "sell": 0.6
       },
       "create:piston_extension_pole": {
         "buy": 3.06,
         "sell": 0.03
       },
       "create:gantry_carriage": {
-        "buy": 144,
-        "sell": 30.16
+        "buy": 42.7,
+        "sell": 0.38
       },
       "create:gantry_shaft": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 8.49,
+        "sell": 0.08
       },
       "create:windmill_bearing": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 12.7,
+        "sell": 1.56
       },
       "create:mechanical_bearing": {
-        "buy": 132,
-        "sell": 30.06
+        "buy": 31.1,
+        "sell": 0.28
       },
       "create:clockwork_bearing": {
-        "buy": 396,
-        "sell": 3.65
+        "buy": 1020,
+        "sell": 9.05
       },
       "create:rope_pulley": {
-        "buy": 268,
-        "sell": 31.35
+        "buy": 481,
+        "sell": 4.37
       },
       "create:elevator_pulley": {
-        "buy": 304,
-        "sell": 2.85
+        "buy": 956,
+        "sell": 8.65
       },
       "create:cart_assembler": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 173,
+        "sell": 1.64
       },
       "create:controller_rail": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 618,
+        "sell": 5.81
       },
       "create:linear_chassis": {
         "buy": 54.1,
@@ -5828,140 +5828,140 @@
         "sell": 0.51
       },
       "create:sticker": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 110,
+        "sell": 2.94
       },
       "create:contraption_controls": {
-        "buy": 399,
-        "sell": 34.4
+        "buy": 585,
+        "sell": 7.02
       },
       "create:mechanical_drill": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 452,
+        "sell": 4.28
       },
       "create:mechanical_saw": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 1770,
+        "sell": 16.22
       },
       "create:deployer": {
-        "buy": 404,
-        "sell": 32.5
+        "buy": 2430,
+        "sell": 21.04
       },
       "create:portable_storage_interface": {
-        "buy": 252,
-        "sell": 60.0
+        "buy": 366,
+        "sell": 3.22
       },
       "create:redstone_contact": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 265,
+        "sell": 4.8
       },
       "create:mechanical_harvester": {
-        "buy": 388,
-        "sell": 32.48
+        "buy": 916,
+        "sell": 8.3
       },
       "create:mechanical_plough": {
-        "buy": 511,
-        "sell": 33.66
+        "buy": 1350,
+        "sell": 12.28
       },
       "create:mechanical_roller": {
-        "buy": 517,
-        "sell": 62.4
+        "buy": 623,
+        "sell": 6.13
       },
       "create:sail_frame": {
-        "buy": 126,
-        "sell": 30.0
+        "buy": 15.6,
+        "sell": 0.14
       },
       "create:white_sail": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 14.9,
+        "sell": 0.14
       },
       "create:andesite_casing": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 23.4,
+        "sell": 0.22
       },
       "create:brass_casing": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 441,
+        "sell": 4.2
       },
       "create:copper_casing": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 231,
+        "sell": 2.2
       },
       "create:mechanical_crafter": {
-        "buy": 146,
-        "sell": 1.33
+        "buy": 354,
+        "sell": 3.13
       },
       "create:sequenced_gearshift": {
-        "buy": 403,
-        "sell": 3.71
+        "buy": 1030,
+        "sell": 9.11
       },
       "create:flywheel": {
-        "buy": 20.2,
-        "sell": 0.17
+        "buy": 3360,
+        "sell": 32.01
       },
       "create:rotation_speed_controller": {
-        "buy": 252,
-        "sell": 31.2
+        "buy": 1130,
+        "sell": 9.97
       },
       "create:mechanical_arm": {
-        "buy": 262,
-        "sell": 31.28
+        "buy": 2450,
+        "sell": 21.99
       },
       "create:track": {
-        "buy": 3.88,
-        "sell": 0.77
+        "buy": 49.5,
+        "sell": 1.19
       },
       "create:railway_casing": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 926,
+        "sell": 104.2
       },
       "create:schedule": {
         "buy": 119,
         "sell": 25.03
       },
       "create:track_station": {
-        "buy": 978,
-        "sell": 23.3
+        "buy": 1400,
+        "sell": 60.4
       },
       "create:track_signal": {
-        "buy": 97.7,
-        "sell": 8.1
+        "buy": 381,
+        "sell": 27.25
       },
       "create:track_observer": {
-        "buy": 71.8,
-        "sell": 17.0
+        "buy": 495,
+        "sell": 54.1
       },
       "create:controls": {
-        "buy": 264,
-        "sell": 61.05
+        "buy": 1650,
+        "sell": 111.02
       },
       "create:andesite_funnel": {
         "buy": 3.98,
         "sell": 0.04
       },
       "create:brass_funnel": {
-        "buy": 136,
-        "sell": 1.23
+        "buy": 488,
+        "sell": 4.43
       },
       "create:andesite_tunnel": {
         "buy": 7.96,
         "sell": 0.07
       },
       "create:brass_tunnel": {
-        "buy": 140,
-        "sell": 1.27
+        "buy": 701,
+        "sell": 6.45
       },
       "create:content_observer": {
-        "buy": 776,
-        "sell": 12.8
+        "buy": 1400,
+        "sell": 18.2
       },
       "create:stockpile_switch": {
-        "buy": 865,
-        "sell": 13.55
+        "buy": 1490,
+        "sell": 18.95
       },
       "create:item_vault": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 964,
+        "sell": 8.7
       },
       "create:item_hatch": {
         "buy": 1770,
@@ -5992,108 +5992,108 @@
         "sell": 30.0
       },
       "create:package_frogport": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 1050,
+        "sell": 9.02
       },
       "create:white_postbox": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:stock_link": {
-        "buy": 252,
-        "sell": 60.0
+        "buy": 2470,
+        "sell": 21.3
       },
       "create:stock_ticker": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 3120,
+        "sell": 27.3
       },
       "create:redstone_requester": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 3070,
+        "sell": 25.9
       },
       "create:factory_gauge": {
-        "buy": 195,
-        "sell": 45.0
+        "buy": 1630,
+        "sell": 13.54
       },
       "create:red_table_cloth": {
-        "buy": 11.4,
-        "sell": 0.5
+        "buy": 11.2,
+        "sell": 0.46
       },
       "create:andesite_table_cloth": {
         "buy": 1.23,
         "sell": 0.01
       },
       "create:brass_table_cloth": {
-        "buy": 1.23,
-        "sell": 0.01
+        "buy": 210,
+        "sell": 2.0
       },
       "create:copper_table_cloth": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:display_link": {
-        "buy": 252,
-        "sell": 31.2
+        "buy": 1920,
+        "sell": 16.8
       },
       "create:display_board": {
-        "buy": 135,
-        "sell": 1.22
+        "buy": 278,
+        "sell": 2.42
       },
       "create:nixie_tube": {
-        "buy": 132,
-        "sell": 1.2
+        "buy": 276,
+        "sell": 2.4
       },
       "create:rose_quartz_lamp": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 357,
+        "sell": 3.4
       },
       "create:redstone_link": {
-        "buy": 126,
-        "sell": 30.0
+        "buy": 740,
+        "sell": 6.41
       },
       "create:analog_lever": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 30.4,
+        "sell": 0.27
       },
       "create:placard": {
-        "buy": 117,
-        "sell": 1.02
+        "buy": 495,
+        "sell": 5.65
       },
       "create:pulse_repeater": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 595,
+        "sell": 9.75
       },
       "create:pulse_extender": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 667,
+        "sell": 10.4
       },
       "create:pulse_timer": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 616,
+        "sell": 49.15
       },
       "create:powered_latch": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 229,
+        "sell": 7.4
       },
       "create:powered_toggle_latch": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 103,
+        "sell": 6.2
       },
       "create:peculiar_bell": {
-        "buy": 23.6,
-        "sell": 0.22
+        "buy": 4410,
+        "sell": 40.0
       },
       "create:haunted_bell": {
         "buy": 120,
         "sell": 30.0
       },
       "create:desk_bell": {
-        "buy": 252,
-        "sell": 31.2
+        "buy": 576,
+        "sell": 5.22
       },
       "create:brown_toolbox": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 1270,
+        "sell": 11.51
       },
       "create:clipboard": {
         "buy": 26.7,
@@ -6112,12 +6112,12 @@
         "sell": 1.0
       },
       "create:rose_quartz": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 300,
+        "sell": 3.0
       },
       "create:polished_rose_quartz": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 80.0,
+        "sell": 0.8
       },
       "create:powdered_obsidian": {
         "buy": 420,
@@ -6128,28 +6128,28 @@
         "sell": 100.0
       },
       "create:propeller": {
-        "buy": 506,
-        "sell": 4.82
+        "buy": 1770,
+        "sell": 16.02
       },
       "create:whisk": {
-        "buy": 635,
-        "sell": 6.04
+        "buy": 2210,
+        "sell": 20.04
       },
       "create:brass_hand": {
-        "buy": 12.7,
-        "sell": 0.1
+        "buy": 1770,
+        "sell": 16.02
       },
       "create:crafter_slot_cover": {
-        "buy": 378,
-        "sell": 3.6
+        "buy": 139,
+        "sell": 1.32
       },
       "create:electron_tube": {
-        "buy": 252,
-        "sell": 2.4
+        "buy": 525,
+        "sell": 4.8
       },
       "create:transmitter": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 1390,
+        "sell": 12.6
       },
       "create:pulp": {
         "buy": 21.0,
@@ -6160,20 +6160,20 @@
         "sell": 1.25
       },
       "create:precision_mechanism": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 635,
+        "sell": 5.77
       },
       "create:blaze_cake": {
-        "buy": 31.5,
-        "sell": 7.5
+        "buy": 13.1,
+        "sell": 1.38
       },
       "create:bar_of_chocolate": {
         "buy": 120,
         "sell": 30.0
       },
       "create:sweet_roll": {
-        "buy": 33.1,
-        "sell": 0.3
+        "buy": 48.2,
+        "sell": 0.42
       },
       "create:chocolate_glazed_berries": {
         "buy": 8.4,
@@ -6188,52 +6188,52 @@
         "sell": 1.0
       },
       "create:cardboard_sword": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 16.8,
+        "sell": 2.55
       },
       "create:raw_zinc": {
-        "buy": 29.2,
-        "sell": 0.28
+        "buy": 200,
+        "sell": 2.0
       },
       "create:andesite_alloy": {
         "buy": 2.33,
         "sell": 0.02
       },
       "create:zinc_ingot": {
-        "buy": 2.33,
-        "sell": 0.02
+        "buy": 200,
+        "sell": 2.0
       },
       "create:brass_ingot": {
-        "buy": 2.33,
-        "sell": 0.02
+        "buy": 400,
+        "sell": 4.0
       },
       "create:zinc_nugget": {
-        "buy": 0.27,
-        "sell": 0.01
+        "buy": 22,
+        "sell": 0.22
       },
       "create:brass_nugget": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 44,
+        "sell": 0.44
       },
       "create:experience_nugget": {
-        "buy": 2.33,
-        "sell": 0.56
+        "buy": 30,
+        "sell": 7.5
       },
       "create:copper_sheet": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 210,
+        "sell": 2.0
       },
       "create:brass_sheet": {
-        "buy": 2.45,
-        "sell": 0.02
+        "buy": 420,
+        "sell": 4.0
       },
       "create:iron_sheet": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 420,
+        "sell": 4.0
       },
       "create:golden_sheet": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 525,
+        "sell": 5.0
       },
       "create:crushed_raw_iron": {
         "buy": 21.0,
@@ -6252,36 +6252,36 @@
         "sell": 5.0
       },
       "create:goggles": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 576,
+        "sell": 8.0
       },
       "create:super_glue": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 551,
+        "sell": 5.05
       },
       "create:minecart_coupling": {
-        "buy": 131,
-        "sell": 1.24
+        "buy": 446,
+        "sell": 4.04
       },
       "create:crafting_blueprint": {
         "buy": 111,
         "sell": 0.95
       },
       "create:copper_diving_helmet": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 1050,
+        "sell": 11.0
       },
       "create:netherite_diving_helmet": {
-        "buy": 45330,
-        "sell": 20001.2
+        "buy": 22110,
+        "sell": 10011.0
       },
       "create:copper_diving_boots": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 845,
+        "sell": 8.04
       },
       "create:netherite_diving_boots": {
-        "buy": 40700,
-        "sell": 18001.2
+        "buy": 21890,
+        "sell": 10008.04
       },
       "create:cardboard_helmet": {
         "buy": 27.6,
@@ -6300,44 +6300,44 @@
         "sell": 5.0
       },
       "create:sand_paper": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 17.4,
+        "sell": 1.12
       },
       "create:red_sand_paper": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 18.5,
+        "sell": 1.37
       },
       "create:tree_fertilizer": {
         "buy": 29.9,
         "sell": 6.29
       },
       "create:filter": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 110,
+        "sell": 1.05
       },
       "create:attribute_filter": {
-        "buy": 268,
-        "sell": 2.55
+        "buy": 108,
+        "sell": 1.03
       },
       "create:package_filter": {
-        "buy": 16.3,
-        "sell": 0.17
+        "buy": 62.0,
+        "sell": 0.59
       },
       "create:empty_schematic": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 16.5,
+        "sell": 0.87
       },
       "create:schematic_and_quill": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 27.9,
+        "sell": 0.97
       },
       "create:honey_bucket": {
-        "buy": 120,
-        "sell": 1.2
+        "buy": 50.0,
+        "sell": 0.5
       },
       "create:chocolate_bucket": {
-        "buy": 120,
-        "sell": 30.0
+        "buy": 50.0,
+        "sell": 12.5
       }
     },
     "create.palettes": {
@@ -6346,72 +6346,72 @@
         "sell": 0.01
       },
       "create:brass_ladder": {
-        "buy": 1.23,
-        "sell": 0.01
+        "buy": 210,
+        "sell": 2.0
       },
       "create:copper_ladder": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:andesite_bars": {
         "buy": 0.61,
         "sell": 0.01
       },
       "create:brass_bars": {
-        "buy": 0.61,
-        "sell": 0.01
+        "buy": 105,
+        "sell": 1.0
       },
       "create:copper_bars": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 52.5,
+        "sell": 0.5
       },
       "create:andesite_scaffolding": {
         "buy": 1.23,
         "sell": 0.01
       },
       "create:brass_scaffolding": {
-        "buy": 1.23,
-        "sell": 0.01
+        "buy": 210,
+        "sell": 2.0
       },
       "create:copper_scaffolding": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:metal_girder": {
-        "buy": 48.2,
-        "sell": 0.46
+        "buy": 166,
+        "sell": 1.51
       },
       "create:copycat_step": {
-        "buy": 0.61,
-        "sell": 0.01
+        "buy": 52.5,
+        "sell": 0.5
       },
       "create:copycat_panel": {
-        "buy": 0.61,
-        "sell": 0.01
+        "buy": 52.5,
+        "sell": 0.5
       },
       "create:red_seat": {
-        "buy": 26.2,
-        "sell": 1.03
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:andesite_door": {
-        "buy": 149,
-        "sell": 30.2
+        "buy": 47.8,
+        "sell": 0.42
       },
       "create:brass_door": {
-        "buy": 149,
-        "sell": 1.4
+        "buy": 486,
+        "sell": 4.4
       },
       "create:copper_door": {
-        "buy": 149,
-        "sell": 1.4
+        "buy": 266,
+        "sell": 2.4
       },
       "create:train_door": {
-        "buy": 149,
-        "sell": 30.2
+        "buy": 996,
+        "sell": 104.4
       },
       "create:train_trapdoor": {
-        "buy": 161,
-        "sell": 30.3
+        "buy": 1010,
+        "sell": 104.5
       },
       "create:framed_glass_door": {
         "buy": 45.2,
@@ -6430,244 +6430,244 @@
         "sell": 2.5
       },
       "create:raw_zinc_block": {
-        "buy": 250,
-        "sell": 2.5
+        "buy": 1890,
+        "sell": 18.0
       },
       "create:zinc_block": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 1890,
+        "sell": 18.0
       },
       "create:andesite_alloy_block": {
         "buy": 20.0,
         "sell": 0.2
       },
       "create:industrial_iron_block": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 210,
+        "sell": 2.0
       },
       "create:weathered_iron_block": {
         "buy": 30.0,
         "sell": 0.3
       },
       "create:brass_block": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 3780,
+        "sell": 36.0
       },
       "create:cardboard_block": {
         "buy": 20.0,
         "sell": 5.0
       },
       "create:bound_cardboard_block": {
-        "buy": 20.0,
-        "sell": 5.0
+        "buy": 36.8,
+        "sell": 6.0
       },
       "create:experience_block": {
-        "buy": 20.0,
-        "sell": 5.0
+        "buy": 284,
+        "sell": 67.5
       },
       "create:rose_quartz_block": {
-        "buy": 63.0,
-        "sell": 0.6
+        "buy": 158,
+        "sell": 1.5
       },
       "create:rose_quartz_tiles": {
-        "buy": 63.0,
-        "sell": 0.6
+        "buy": 42.0,
+        "sell": 0.4
       },
       "create:small_rose_quartz_tiles": {
-        "buy": 63.0,
-        "sell": 0.6
+        "buy": 42.0,
+        "sell": 0.4
       },
       "create:copper_shingles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:exposed_copper_shingles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:weathered_copper_shingles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:oxidized_copper_shingles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:copper_shingle_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:exposed_copper_shingle_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:weathered_copper_shingle_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:oxidized_copper_shingle_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:copper_shingle_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:exposed_copper_shingle_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:weathered_copper_shingle_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:oxidized_copper_shingle_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:waxed_copper_shingles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:waxed_exposed_copper_shingles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:waxed_weathered_copper_shingles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:waxed_oxidized_copper_shingles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:waxed_copper_shingle_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:waxed_exposed_copper_shingle_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:waxed_weathered_copper_shingle_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:waxed_oxidized_copper_shingle_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:waxed_copper_shingle_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:waxed_exposed_copper_shingle_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:waxed_weathered_copper_shingle_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:waxed_oxidized_copper_shingle_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:copper_tiles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:exposed_copper_tiles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:weathered_copper_tiles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:oxidized_copper_tiles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:copper_tile_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:exposed_copper_tile_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:weathered_copper_tile_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:oxidized_copper_tile_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:copper_tile_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:exposed_copper_tile_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:weathered_copper_tile_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:oxidized_copper_tile_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:waxed_copper_tiles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:waxed_exposed_copper_tiles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:waxed_weathered_copper_tiles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:waxed_oxidized_copper_tiles": {
-        "buy": 20.0,
-        "sell": 0.2
+        "buy": 105,
+        "sell": 1.0
       },
       "create:waxed_copper_tile_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:waxed_exposed_copper_tile_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:waxed_weathered_copper_tile_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:waxed_oxidized_copper_tile_slab": {
-        "buy": 10.5,
-        "sell": 0.1
+        "buy": 55.1,
+        "sell": 0.5
       },
       "create:waxed_copper_tile_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:waxed_exposed_copper_tile_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:waxed_weathered_copper_tile_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:waxed_oxidized_copper_tile_stairs": {
-        "buy": 21.0,
-        "sell": 0.2
+        "buy": 110,
+        "sell": 1.0
       },
       "create:tiled_glass": {
         "buy": 21.0,
@@ -6702,112 +6702,112 @@
         "sell": 1.88
       },
       "create:oak_window": {
-        "buy": 31.2,
-        "sell": 2.68
+        "buy": 22.9,
+        "sell": 0.68
       },
       "create:spruce_window": {
-        "buy": 31.2,
-        "sell": 2.68
+        "buy": 22.9,
+        "sell": 0.68
       },
       "create:birch_window": {
-        "buy": 31.2,
-        "sell": 2.68
+        "buy": 22.9,
+        "sell": 0.68
       },
       "create:jungle_window": {
-        "buy": 31.2,
-        "sell": 2.68
+        "buy": 22.9,
+        "sell": 0.68
       },
       "create:acacia_window": {
-        "buy": 31.2,
-        "sell": 2.68
+        "buy": 22.9,
+        "sell": 0.68
       },
       "create:dark_oak_window": {
-        "buy": 31.2,
-        "sell": 2.68
+        "buy": 22.9,
+        "sell": 0.68
       },
       "create:mangrove_window": {
-        "buy": 31.2,
-        "sell": 2.68
+        "buy": 22.9,
+        "sell": 0.68
       },
       "create:crimson_window": {
-        "buy": 31.2,
-        "sell": 2.68
+        "buy": 22.9,
+        "sell": 0.68
       },
       "create:warped_window": {
-        "buy": 31.2,
-        "sell": 2.68
+        "buy": 22.9,
+        "sell": 0.68
       },
       "create:cherry_window": {
-        "buy": 31.2,
-        "sell": 2.68
+        "buy": 22.9,
+        "sell": 0.68
       },
       "create:bamboo_window": {
-        "buy": 27.0,
-        "sell": 2.65
+        "buy": 18.7,
+        "sell": 0.65
       },
       "create:ornate_iron_window": {
-        "buy": 81.4,
-        "sell": 3.17
+        "buy": 73.1,
+        "sell": 1.18
       },
       "create:industrial_iron_window": {
-        "buy": 42.0,
-        "sell": 2.8
+        "buy": 333,
+        "sell": 3.5
       },
       "create:weathered_iron_window": {
         "buy": 30.0,
         "sell": 0.3
       },
       "create:oak_window_pane": {
-        "buy": 12.3,
-        "sell": 1.01
+        "buy": 9.01,
+        "sell": 0.26
       },
       "create:spruce_window_pane": {
-        "buy": 12.3,
-        "sell": 1.01
+        "buy": 9.01,
+        "sell": 0.26
       },
       "create:birch_window_pane": {
-        "buy": 12.3,
-        "sell": 1.01
+        "buy": 9.01,
+        "sell": 0.26
       },
       "create:jungle_window_pane": {
-        "buy": 12.3,
-        "sell": 1.01
+        "buy": 9.01,
+        "sell": 0.26
       },
       "create:acacia_window_pane": {
-        "buy": 12.3,
-        "sell": 1.01
+        "buy": 9.01,
+        "sell": 0.26
       },
       "create:dark_oak_window_pane": {
-        "buy": 12.3,
-        "sell": 1.01
+        "buy": 9.01,
+        "sell": 0.26
       },
       "create:mangrove_window_pane": {
-        "buy": 12.3,
-        "sell": 1.01
+        "buy": 9.01,
+        "sell": 0.26
       },
       "create:crimson_window_pane": {
-        "buy": 12.3,
-        "sell": 1.01
+        "buy": 9.01,
+        "sell": 0.26
       },
       "create:warped_window_pane": {
-        "buy": 12.3,
-        "sell": 1.01
+        "buy": 9.01,
+        "sell": 0.26
       },
       "create:cherry_window_pane": {
-        "buy": 12.3,
-        "sell": 1.01
+        "buy": 9.01,
+        "sell": 0.26
       },
       "create:bamboo_window_pane": {
-        "buy": 10.6,
-        "sell": 0.99
+        "buy": 7.38,
+        "sell": 0.24
       },
       "create:ornate_iron_window_pane": {
-        "buy": 32.0,
-        "sell": 1.19
+        "buy": 28.8,
+        "sell": 0.44
       },
       "create:industrial_iron_window_pane": {
-        "buy": 16.5,
-        "sell": 1.05
+        "buy": 131,
+        "sell": 1.31
       },
       "create:weathered_iron_window_pane": {
         "buy": 30.0,
@@ -7698,8 +7698,8 @@
         "sell": 5.0
       },
       "create:scorchia": {
-        "buy": 21.0,
-        "sell": 5.0
+        "buy": 17.0,
+        "sell": 3.84
       },
       "create:cut_scorchia": {
         "buy": 21.0,
@@ -7852,16 +7852,16 @@
     },
     "farmersdelight.farmersdelight": {
       "farmersdelight:stove": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 1540,
+        "sell": 26.05
       },
       "farmersdelight:cooking_pot": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 2180,
+        "sell": 34.2
       },
       "farmersdelight:skillet": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 1680,
+        "sell": 16.75
       },
       "farmersdelight:cutting_board": {
         "buy": 55.7,
@@ -7996,144 +7996,144 @@
         "sell": 10.15
       },
       "farmersdelight:hanging_canvas_sign": {
-        "buy": 58.1,
-        "sell": 5.35
+        "buy": 147,
+        "sell": 6.15
       },
       "farmersdelight:white_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:white_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:light_gray_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:light_gray_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:gray_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:gray_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:black_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:black_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:brown_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:brown_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:red_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:red_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:orange_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:orange_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:yellow_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:yellow_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:lime_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 66.5,
+        "sell": 10.77
       },
       "farmersdelight:lime_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.77
       },
       "farmersdelight:green_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 66.5,
+        "sell": 10.77
       },
       "farmersdelight:green_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.77
       },
       "farmersdelight:cyan_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 66.9,
+        "sell": 10.84
       },
       "farmersdelight:cyan_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.84
       },
       "farmersdelight:light_blue_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:light_blue_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:blue_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:blue_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:purple_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:purple_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:magenta_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:magenta_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:pink_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 67.1,
+        "sell": 10.9
       },
       "farmersdelight:pink_hanging_canvas_sign": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 157,
+        "sell": 6.9
       },
       "farmersdelight:flint_knife": {
         "buy": 11.0,
         "sell": 1.05
       },
       "farmersdelight:iron_knife": {
-        "buy": 30.0,
-        "sell": 0.3
+        "buy": 426,
+        "sell": 4.05
       },
       "farmersdelight:diamond_knife": {
         "buy": 4210,
@@ -8148,8 +8148,8 @@
         "sell": 5.05
       },
       "farmersdelight:copper_knife": {
-        "buy": 30.0,
-        "sell": 0.3
+        "buy": 216,
+        "sell": 2.05
       },
       "farmersdelight:straw": {
         "buy": 29.2,
@@ -8236,8 +8236,8 @@
         "sell": 7.5
       },
       "farmersdelight:fried_egg": {
-        "buy": 30.0,
-        "sell": 0.3
+        "buy": 5.25,
+        "sell": 0.05
       },
       "farmersdelight:milk_bottle": {
         "buy": 20.4,
@@ -8260,8 +8260,8 @@
         "sell": 15.0
       },
       "farmersdelight:wheat_dough": {
-        "buy": 30.0,
-        "sell": 0.3
+        "buy": 43.8,
+        "sell": 0.42
       },
       "farmersdelight:raw_pasta": {
         "buy": 250,
@@ -8376,11 +8376,11 @@
         "sell": 4.25
       },
       "farmersdelight:glow_berry_custard": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 38.9,
+        "sell": 7.63
       },
       "farmersdelight:fruit_salad": {
-        "buy": 78.8,
+        "buy": 78.0,
         "sell": 6.98
       },
       "farmersdelight:mixed_salad": {
@@ -8396,36 +8396,36 @@
         "sell": 15.3
       },
       "farmersdelight:egg_sandwich": {
-        "buy": 220,
-        "sell": 38.1
+        "buy": 59.3,
+        "sell": 0.52
       },
       "farmersdelight:chicken_sandwich": {
-        "buy": 229,
-        "sell": 45.37
+        "buy": 120,
+        "sell": 8.29
       },
       "farmersdelight:hamburger": {
-        "buy": 285,
-        "sell": 67.5
+        "buy": 176,
+        "sell": 30.42
       },
       "farmersdelight:bacon_sandwich": {
-        "buy": 254,
-        "sell": 60.0
+        "buy": 144,
+        "sell": 22.92
       },
       "farmersdelight:mutton_wrap": {
-        "buy": 248,
-        "sell": 52.75
+        "buy": 139,
+        "sell": 15.67
       },
       "farmersdelight:dumplings": {
-        "buy": 47.2,
-        "sell": 7.65
+        "buy": 54.5,
+        "sell": 7.71
       },
       "farmersdelight:stuffed_potato": {
         "buy": 62.2,
         "sell": 5.12
       },
       "farmersdelight:cabbage_rolls": {
-        "buy": 44.1,
-        "sell": 7.62
+        "buy": 36.8,
+        "sell": 7.55
       },
       "farmersdelight:salmon_roll": {
         "buy": 48.9,
@@ -8448,16 +8448,16 @@
         "sell": 7.5
       },
       "farmersdelight:bone_broth": {
-        "buy": 30.0,
-        "sell": 0.3
+        "buy": 21.0,
+        "sell": 0.2
       },
       "farmersdelight:beef_stew": {
         "buy": 51.5,
         "sell": 0.49
       },
       "farmersdelight:chicken_soup": {
-        "buy": 102,
-        "sell": 15.37
+        "buy": 83.0,
+        "sell": 7.99
       },
       "farmersdelight:vegetable_soup": {
         "buy": 69.3,
@@ -8468,24 +8468,24 @@
         "sell": 22.7
       },
       "farmersdelight:fried_rice": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 82.4,
+        "sell": 15.17
       },
       "farmersdelight:pumpkin_soup": {
         "buy": 111,
         "sell": 12.8
       },
       "farmersdelight:baked_cod_stew": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 70.4,
+        "sell": 7.87
       },
       "farmersdelight:noodle_soup": {
-        "buy": 326,
-        "sell": 63.1
+        "buy": 300,
+        "sell": 62.85
       },
       "farmersdelight:bacon_and_eggs": {
-        "buy": 138,
-        "sell": 15.68
+        "buy": 85.9,
+        "sell": 15.18
       },
       "farmersdelight:pasta_with_meatballs": {
         "buy": 360,
@@ -8504,16 +8504,16 @@
         "sell": 22.7
       },
       "farmersdelight:vegetable_noodles": {
-        "buy": 346,
-        "sell": 79.62
+        "buy": 328,
+        "sell": 72.24
       },
       "farmersdelight:steak_and_potatoes": {
         "buy": 116,
         "sell": 15.45
       },
       "farmersdelight:ratatouille": {
-        "buy": 107,
-        "sell": 22.62
+        "buy": 88.2,
+        "sell": 15.24
       },
       "farmersdelight:squid_ink_pasta": {
         "buy": 331,
@@ -8524,16 +8524,16 @@
         "sell": 17.3
       },
       "farmersdelight:roast_chicken_block": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 173,
+        "sell": 8.78
       },
       "farmersdelight:roast_chicken": {
         "buy": 30.0,
         "sell": 7.5
       },
       "farmersdelight:stuffed_pumpkin_block": {
-        "buy": 126,
-        "sell": 26.62
+        "buy": 107,
+        "sell": 19.24
       },
       "farmersdelight:stuffed_pumpkin": {
         "buy": 30.0,
@@ -8579,7 +8579,7 @@
       },
       "refurbished_furniture:dark_electricity_generator": {
         "buy": 6110,
-        "sell": 68.34
+        "sell": 68.15
       },
       "refurbished_furniture:wrench": {
         "buy": 1350,
@@ -8762,196 +8762,196 @@
         "sell": 1.2
       },
       "refurbished_furniture:white_sofa": {
-        "buy": 783,
-        "sell": 7.42
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:orange_sofa": {
-        "buy": 783,
-        "sell": 8.21
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:magenta_sofa": {
-        "buy": 783,
-        "sell": 8.21
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:light_blue_sofa": {
-        "buy": 783,
-        "sell": 8.32
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:yellow_sofa": {
-        "buy": 783,
-        "sell": 8.21
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:lime_sofa": {
-        "buy": 782,
-        "sell": 8.0
+        "buy": 781,
+        "sell": 9.42
       },
       "refurbished_furniture:pink_sofa": {
-        "buy": 783,
-        "sell": 8.21
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:gray_sofa": {
-        "buy": 783,
-        "sell": 8.32
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:light_gray_sofa": {
-        "buy": 783,
-        "sell": 8.32
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:cyan_sofa": {
-        "buy": 783,
-        "sell": 8.16
+        "buy": 781,
+        "sell": 9.49
       },
       "refurbished_furniture:purple_sofa": {
-        "buy": 783,
-        "sell": 8.27
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:blue_sofa": {
-        "buy": 783,
-        "sell": 8.32
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:brown_sofa": {
-        "buy": 783,
-        "sell": 8.32
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:green_sofa": {
-        "buy": 782,
-        "sell": 8.0
+        "buy": 781,
+        "sell": 9.42
       },
       "refurbished_furniture:red_sofa": {
-        "buy": 783,
-        "sell": 8.21
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:black_sofa": {
-        "buy": 783,
-        "sell": 8.32
+        "buy": 781,
+        "sell": 9.55
       },
       "refurbished_furniture:white_stool": {
-        "buy": 394,
-        "sell": 3.73
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:orange_stool": {
-        "buy": 394,
-        "sell": 4.52
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:magenta_stool": {
-        "buy": 393,
-        "sell": 4.52
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:light_blue_stool": {
-        "buy": 394,
-        "sell": 4.63
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:yellow_stool": {
-        "buy": 393,
-        "sell": 4.52
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:lime_stool": {
         "buy": 392,
-        "sell": 4.31
+        "sell": 5.02
       },
       "refurbished_furniture:pink_stool": {
-        "buy": 393,
-        "sell": 4.52
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:gray_stool": {
-        "buy": 394,
-        "sell": 4.63
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:light_gray_stool": {
-        "buy": 394,
-        "sell": 4.63
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:cyan_stool": {
-        "buy": 393,
-        "sell": 4.47
+        "buy": 392,
+        "sell": 5.09
       },
       "refurbished_furniture:purple_stool": {
-        "buy": 394,
-        "sell": 4.58
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:blue_stool": {
-        "buy": 394,
-        "sell": 4.63
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:brown_stool": {
-        "buy": 394,
-        "sell": 4.63
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:green_stool": {
         "buy": 392,
-        "sell": 4.31
+        "sell": 5.02
       },
       "refurbished_furniture:red_stool": {
-        "buy": 393,
-        "sell": 4.52
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:black_stool": {
-        "buy": 394,
-        "sell": 4.63
+        "buy": 392,
+        "sell": 5.15
       },
       "refurbished_furniture:white_lamp": {
-        "buy": 613,
-        "sell": 5.83
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:orange_lamp": {
-        "buy": 613,
-        "sell": 6.62
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:magenta_lamp": {
-        "buy": 613,
-        "sell": 6.62
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:light_blue_lamp": {
-        "buy": 614,
-        "sell": 6.73
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:yellow_lamp": {
-        "buy": 613,
-        "sell": 6.62
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:lime_lamp": {
         "buy": 612,
-        "sell": 6.41
+        "sell": 7.12
       },
       "refurbished_furniture:pink_lamp": {
-        "buy": 613,
-        "sell": 6.62
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:gray_lamp": {
-        "buy": 614,
-        "sell": 6.73
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:light_gray_lamp": {
-        "buy": 614,
-        "sell": 6.73
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:cyan_lamp": {
-        "buy": 613,
-        "sell": 6.57
+        "buy": 612,
+        "sell": 7.19
       },
       "refurbished_furniture:purple_lamp": {
-        "buy": 614,
-        "sell": 6.68
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:blue_lamp": {
-        "buy": 614,
-        "sell": 6.73
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:brown_lamp": {
-        "buy": 614,
-        "sell": 6.73
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:green_lamp": {
         "buy": 612,
-        "sell": 6.41
+        "sell": 7.12
       },
       "refurbished_furniture:red_lamp": {
-        "buy": 613,
-        "sell": 6.62
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:black_lamp": {
-        "buy": 614,
-        "sell": 6.73
+        "buy": 612,
+        "sell": 7.25
       },
       "refurbished_furniture:oak_light_ceiling_fan": {
         "buy": 1880,
@@ -8999,47 +8999,47 @@
       },
       "refurbished_furniture:oak_dark_ceiling_fan": {
         "buy": 1980,
-        "sell": 18.82
+        "sell": 18.63
       },
       "refurbished_furniture:spruce_dark_ceiling_fan": {
         "buy": 1980,
-        "sell": 18.82
+        "sell": 18.63
       },
       "refurbished_furniture:birch_dark_ceiling_fan": {
         "buy": 1980,
-        "sell": 18.82
+        "sell": 18.63
       },
       "refurbished_furniture:jungle_dark_ceiling_fan": {
         "buy": 1980,
-        "sell": 18.82
+        "sell": 18.63
       },
       "refurbished_furniture:acacia_dark_ceiling_fan": {
         "buy": 1980,
-        "sell": 18.82
+        "sell": 18.63
       },
       "refurbished_furniture:dark_oak_dark_ceiling_fan": {
         "buy": 1980,
-        "sell": 18.82
+        "sell": 18.63
       },
       "refurbished_furniture:mangrove_dark_ceiling_fan": {
         "buy": 1980,
-        "sell": 18.82
+        "sell": 18.63
       },
       "refurbished_furniture:cherry_dark_ceiling_fan": {
         "buy": 1980,
-        "sell": 18.82
+        "sell": 18.63
       },
       "refurbished_furniture:crimson_dark_ceiling_fan": {
         "buy": 1980,
-        "sell": 18.82
+        "sell": 18.63
       },
       "refurbished_furniture:warped_dark_ceiling_fan": {
         "buy": 1980,
-        "sell": 18.82
+        "sell": 18.63
       },
       "refurbished_furniture:pale_oak_dark_ceiling_fan": {
         "buy": 1980,
-        "sell": 18.82
+        "sell": 18.63
       },
       "refurbished_furniture:oak_storage_cabinet": {
         "buy": 530,
@@ -9087,435 +9087,435 @@
       },
       "refurbished_furniture:oak_kitchen_cabinetry": {
         "buy": 114,
-        "sell": 1.0
+        "sell": 1.71
       },
       "refurbished_furniture:spruce_kitchen_cabinetry": {
         "buy": 114,
-        "sell": 1.0
+        "sell": 1.71
       },
       "refurbished_furniture:birch_kitchen_cabinetry": {
         "buy": 114,
-        "sell": 1.0
+        "sell": 1.71
       },
       "refurbished_furniture:jungle_kitchen_cabinetry": {
         "buy": 114,
-        "sell": 1.0
+        "sell": 1.71
       },
       "refurbished_furniture:acacia_kitchen_cabinetry": {
         "buy": 114,
-        "sell": 1.0
+        "sell": 1.71
       },
       "refurbished_furniture:dark_oak_kitchen_cabinetry": {
         "buy": 114,
-        "sell": 1.0
+        "sell": 1.71
       },
       "refurbished_furniture:mangrove_kitchen_cabinetry": {
         "buy": 114,
-        "sell": 1.0
+        "sell": 1.71
       },
       "refurbished_furniture:cherry_kitchen_cabinetry": {
         "buy": 114,
-        "sell": 1.0
+        "sell": 1.71
       },
       "refurbished_furniture:crimson_kitchen_cabinetry": {
         "buy": 114,
-        "sell": 1.0
+        "sell": 1.71
       },
       "refurbished_furniture:warped_kitchen_cabinetry": {
         "buy": 114,
-        "sell": 1.0
+        "sell": 1.71
       },
       "refurbished_furniture:pale_oak_kitchen_cabinetry": {
         "buy": 114,
-        "sell": 1.0
+        "sell": 1.71
       },
       "refurbished_furniture:oak_kitchen_drawer": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:spruce_kitchen_drawer": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:birch_kitchen_drawer": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:jungle_kitchen_drawer": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:acacia_kitchen_drawer": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:dark_oak_kitchen_drawer": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:mangrove_kitchen_drawer": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:cherry_kitchen_drawer": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:crimson_kitchen_drawer": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:warped_kitchen_drawer": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:pale_oak_kitchen_drawer": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:oak_kitchen_sink": {
         "buy": 1230,
-        "sell": 11.24
+        "sell": 11.95
       },
       "refurbished_furniture:spruce_kitchen_sink": {
         "buy": 1230,
-        "sell": 11.24
+        "sell": 11.95
       },
       "refurbished_furniture:birch_kitchen_sink": {
         "buy": 1230,
-        "sell": 11.24
+        "sell": 11.95
       },
       "refurbished_furniture:jungle_kitchen_sink": {
         "buy": 1230,
-        "sell": 11.24
+        "sell": 11.95
       },
       "refurbished_furniture:acacia_kitchen_sink": {
         "buy": 1230,
-        "sell": 11.24
+        "sell": 11.95
       },
       "refurbished_furniture:dark_oak_kitchen_sink": {
         "buy": 1230,
-        "sell": 11.24
+        "sell": 11.95
       },
       "refurbished_furniture:mangrove_kitchen_sink": {
         "buy": 1230,
-        "sell": 11.24
+        "sell": 11.95
       },
       "refurbished_furniture:cherry_kitchen_sink": {
         "buy": 1230,
-        "sell": 11.24
+        "sell": 11.95
       },
       "refurbished_furniture:crimson_kitchen_sink": {
         "buy": 1230,
-        "sell": 11.24
+        "sell": 11.95
       },
       "refurbished_furniture:warped_kitchen_sink": {
         "buy": 1230,
-        "sell": 11.24
+        "sell": 11.95
       },
       "refurbished_furniture:pale_oak_kitchen_sink": {
         "buy": 1230,
-        "sell": 11.24
+        "sell": 11.95
       },
       "refurbished_furniture:oak_kitchen_storage_cabinet": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:spruce_kitchen_storage_cabinet": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:birch_kitchen_storage_cabinet": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:jungle_kitchen_storage_cabinet": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:acacia_kitchen_storage_cabinet": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:dark_oak_kitchen_storage_cabinet": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:mangrove_kitchen_storage_cabinet": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:cherry_kitchen_storage_cabinet": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:crimson_kitchen_storage_cabinet": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:warped_kitchen_storage_cabinet": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:pale_oak_kitchen_storage_cabinet": {
         "buy": 169,
-        "sell": 1.48
+        "sell": 2.19
       },
       "refurbished_furniture:white_kitchen_cabinetry": {
-        "buy": 124,
-        "sell": 1.04
+        "buy": 123,
+        "sell": 2.46
       },
       "refurbished_furniture:orange_kitchen_cabinetry": {
-        "buy": 124,
-        "sell": 1.83
+        "buy": 123,
+        "sell": 2.46
       },
       "refurbished_furniture:magenta_kitchen_cabinetry": {
         "buy": 123,
-        "sell": 1.83
+        "sell": 2.46
       },
       "refurbished_furniture:light_blue_kitchen_cabinetry": {
-        "buy": 124,
-        "sell": 1.94
+        "buy": 123,
+        "sell": 2.46
       },
       "refurbished_furniture:yellow_kitchen_cabinetry": {
         "buy": 123,
-        "sell": 1.83
+        "sell": 2.46
       },
       "refurbished_furniture:lime_kitchen_cabinetry": {
-        "buy": 123,
-        "sell": 1.62
+        "buy": 122,
+        "sell": 2.33
       },
       "refurbished_furniture:pink_kitchen_cabinetry": {
         "buy": 123,
-        "sell": 1.83
+        "sell": 2.46
       },
       "refurbished_furniture:gray_kitchen_cabinetry": {
-        "buy": 124,
-        "sell": 1.94
+        "buy": 123,
+        "sell": 2.46
       },
       "refurbished_furniture:light_gray_kitchen_cabinetry": {
-        "buy": 124,
-        "sell": 1.94
+        "buy": 123,
+        "sell": 2.46
       },
       "refurbished_furniture:cyan_kitchen_cabinetry": {
-        "buy": 123,
-        "sell": 1.78
+        "buy": 122,
+        "sell": 2.4
       },
       "refurbished_furniture:purple_kitchen_cabinetry": {
-        "buy": 124,
-        "sell": 1.89
+        "buy": 123,
+        "sell": 2.46
       },
       "refurbished_furniture:blue_kitchen_cabinetry": {
-        "buy": 124,
-        "sell": 1.94
+        "buy": 123,
+        "sell": 2.46
       },
       "refurbished_furniture:brown_kitchen_cabinetry": {
-        "buy": 124,
-        "sell": 1.94
+        "buy": 123,
+        "sell": 2.46
       },
       "refurbished_furniture:green_kitchen_cabinetry": {
-        "buy": 123,
-        "sell": 1.62
+        "buy": 122,
+        "sell": 2.33
       },
       "refurbished_furniture:red_kitchen_cabinetry": {
         "buy": 123,
-        "sell": 1.83
+        "sell": 2.46
       },
       "refurbished_furniture:black_kitchen_cabinetry": {
-        "buy": 124,
-        "sell": 1.94
+        "buy": 123,
+        "sell": 2.46
       },
       "refurbished_furniture:white_kitchen_drawer": {
-        "buy": 182,
-        "sell": 1.52
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:orange_kitchen_drawer": {
-        "buy": 182,
-        "sell": 2.31
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:magenta_kitchen_drawer": {
-        "buy": 181,
-        "sell": 2.31
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:light_blue_kitchen_drawer": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:yellow_kitchen_drawer": {
-        "buy": 181,
-        "sell": 2.31
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:lime_kitchen_drawer": {
         "buy": 180,
-        "sell": 2.1
+        "sell": 2.81
       },
       "refurbished_furniture:pink_kitchen_drawer": {
-        "buy": 181,
-        "sell": 2.31
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:gray_kitchen_drawer": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:light_gray_kitchen_drawer": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:cyan_kitchen_drawer": {
-        "buy": 181,
-        "sell": 2.26
+        "buy": 180,
+        "sell": 2.88
       },
       "refurbished_furniture:purple_kitchen_drawer": {
-        "buy": 182,
-        "sell": 2.37
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:blue_kitchen_drawer": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:brown_kitchen_drawer": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:green_kitchen_drawer": {
         "buy": 180,
-        "sell": 2.1
+        "sell": 2.81
       },
       "refurbished_furniture:red_kitchen_drawer": {
-        "buy": 181,
-        "sell": 2.31
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:black_kitchen_drawer": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:white_kitchen_sink": {
         "buy": 1300,
-        "sell": 11.28
+        "sell": 12.7
       },
       "refurbished_furniture:orange_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.07
+        "sell": 12.7
       },
       "refurbished_furniture:magenta_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.07
+        "sell": 12.7
       },
       "refurbished_furniture:light_blue_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.18
+        "sell": 12.7
       },
       "refurbished_furniture:yellow_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.07
+        "sell": 12.7
       },
       "refurbished_furniture:lime_kitchen_sink": {
         "buy": 1300,
-        "sell": 11.86
+        "sell": 12.57
       },
       "refurbished_furniture:pink_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.07
+        "sell": 12.7
       },
       "refurbished_furniture:gray_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.18
+        "sell": 12.7
       },
       "refurbished_furniture:light_gray_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.18
+        "sell": 12.7
       },
       "refurbished_furniture:cyan_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.02
+        "sell": 12.64
       },
       "refurbished_furniture:purple_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.13
+        "sell": 12.7
       },
       "refurbished_furniture:blue_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.18
+        "sell": 12.7
       },
       "refurbished_furniture:brown_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.18
+        "sell": 12.7
       },
       "refurbished_furniture:green_kitchen_sink": {
         "buy": 1300,
-        "sell": 11.86
+        "sell": 12.57
       },
       "refurbished_furniture:red_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.07
+        "sell": 12.7
       },
       "refurbished_furniture:black_kitchen_sink": {
         "buy": 1300,
-        "sell": 12.18
+        "sell": 12.7
       },
       "refurbished_furniture:white_kitchen_storage_cabinet": {
-        "buy": 182,
-        "sell": 1.52
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:orange_kitchen_storage_cabinet": {
-        "buy": 182,
-        "sell": 2.31
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:magenta_kitchen_storage_cabinet": {
-        "buy": 181,
-        "sell": 2.31
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:light_blue_kitchen_storage_cabinet": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:yellow_kitchen_storage_cabinet": {
-        "buy": 181,
-        "sell": 2.31
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:lime_kitchen_storage_cabinet": {
         "buy": 180,
-        "sell": 2.1
+        "sell": 2.81
       },
       "refurbished_furniture:pink_kitchen_storage_cabinet": {
-        "buy": 181,
-        "sell": 2.31
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:gray_kitchen_storage_cabinet": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:light_gray_kitchen_storage_cabinet": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:cyan_kitchen_storage_cabinet": {
-        "buy": 181,
-        "sell": 2.26
+        "buy": 180,
+        "sell": 2.88
       },
       "refurbished_furniture:purple_kitchen_storage_cabinet": {
-        "buy": 182,
-        "sell": 2.37
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:blue_kitchen_storage_cabinet": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:brown_kitchen_storage_cabinet": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:green_kitchen_storage_cabinet": {
         "buy": 180,
-        "sell": 2.1
+        "sell": 2.81
       },
       "refurbished_furniture:red_kitchen_storage_cabinet": {
-        "buy": 181,
-        "sell": 2.31
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:black_kitchen_storage_cabinet": {
-        "buy": 182,
-        "sell": 2.42
+        "buy": 180,
+        "sell": 2.94
       },
       "refurbished_furniture:light_fridge": {
         "buy": 4660,
@@ -9523,7 +9523,7 @@
       },
       "refurbished_furniture:dark_fridge": {
         "buy": 4900,
-        "sell": 45.34
+        "sell": 45.15
       },
       "refurbished_furniture:light_toaster": {
         "buy": 1810,
@@ -9531,7 +9531,7 @@
       },
       "refurbished_furniture:dark_toaster": {
         "buy": 1900,
-        "sell": 18.14
+        "sell": 17.95
       },
       "refurbished_furniture:light_microwave": {
         "buy": 2780,
@@ -9539,7 +9539,7 @@
       },
       "refurbished_furniture:dark_microwave": {
         "buy": 2920,
-        "sell": 28.34
+        "sell": 28.15
       },
       "refurbished_furniture:light_stove": {
         "buy": 5420,
@@ -9547,7 +9547,7 @@
       },
       "refurbished_furniture:dark_stove": {
         "buy": 5700,
-        "sell": 53.54
+        "sell": 53.35
       },
       "refurbished_furniture:light_range_hood": {
         "buy": 966,
@@ -9555,11 +9555,11 @@
       },
       "refurbished_furniture:dark_range_hood": {
         "buy": 1020,
-        "sell": 10.14
+        "sell": 9.95
       },
       "refurbished_furniture:frying_pan": {
         "buy": 1330,
-        "sell": 13.54
+        "sell": 13.35
       },
       "refurbished_furniture:recycle_bin": {
         "buy": 4050,
@@ -9711,23 +9711,23 @@
       },
       "refurbished_furniture:white_grill": {
         "buy": 3360,
-        "sell": 32.04
+        "sell": 32.75
       },
       "refurbished_furniture:orange_grill": {
         "buy": 3360,
-        "sell": 32.83
+        "sell": 32.75
       },
       "refurbished_furniture:magenta_grill": {
         "buy": 3360,
-        "sell": 32.83
+        "sell": 32.75
       },
       "refurbished_furniture:light_blue_grill": {
         "buy": 3360,
-        "sell": 32.94
+        "sell": 32.75
       },
       "refurbished_furniture:yellow_grill": {
         "buy": 3360,
-        "sell": 32.83
+        "sell": 32.75
       },
       "refurbished_furniture:lime_grill": {
         "buy": 3360,
@@ -9735,31 +9735,31 @@
       },
       "refurbished_furniture:pink_grill": {
         "buy": 3360,
-        "sell": 32.83
+        "sell": 32.75
       },
       "refurbished_furniture:gray_grill": {
         "buy": 3360,
-        "sell": 32.94
+        "sell": 32.75
       },
       "refurbished_furniture:light_gray_grill": {
         "buy": 3360,
-        "sell": 32.94
+        "sell": 32.75
       },
       "refurbished_furniture:cyan_grill": {
         "buy": 3360,
-        "sell": 32.78
+        "sell": 32.69
       },
       "refurbished_furniture:purple_grill": {
         "buy": 3360,
-        "sell": 32.89
+        "sell": 32.75
       },
       "refurbished_furniture:blue_grill": {
         "buy": 3360,
-        "sell": 32.94
+        "sell": 32.75
       },
       "refurbished_furniture:brown_grill": {
         "buy": 3360,
-        "sell": 32.94
+        "sell": 32.75
       },
       "refurbished_furniture:green_grill": {
         "buy": 3360,
@@ -9767,75 +9767,75 @@
       },
       "refurbished_furniture:red_grill": {
         "buy": 3360,
-        "sell": 32.83
+        "sell": 32.75
       },
       "refurbished_furniture:black_grill": {
         "buy": 3360,
-        "sell": 32.94
+        "sell": 32.75
       },
       "refurbished_furniture:white_cooler": {
-        "buy": 51.8,
-        "sell": 0.48
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:orange_cooler": {
-        "buy": 51.8,
-        "sell": 1.27
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:magenta_cooler": {
-        "buy": 51.6,
-        "sell": 1.27
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:light_blue_cooler": {
-        "buy": 52.1,
-        "sell": 1.38
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:yellow_cooler": {
-        "buy": 51.6,
-        "sell": 1.27
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:lime_cooler": {
-        "buy": 50.7,
-        "sell": 1.06
+        "buy": 50.2,
+        "sell": 1.77
       },
       "refurbished_furniture:pink_cooler": {
-        "buy": 51.6,
-        "sell": 1.27
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:gray_cooler": {
-        "buy": 52.1,
-        "sell": 1.38
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:light_gray_cooler": {
-        "buy": 52.1,
-        "sell": 1.38
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:cyan_cooler": {
-        "buy": 51.6,
-        "sell": 1.22
+        "buy": 50.6,
+        "sell": 1.84
       },
       "refurbished_furniture:purple_cooler": {
-        "buy": 52.1,
-        "sell": 1.33
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:blue_cooler": {
-        "buy": 52.1,
-        "sell": 1.38
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:brown_cooler": {
-        "buy": 52.1,
-        "sell": 1.38
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:green_cooler": {
-        "buy": 50.7,
-        "sell": 1.06
+        "buy": 50.2,
+        "sell": 1.77
       },
       "refurbished_furniture:red_cooler": {
-        "buy": 51.6,
-        "sell": 1.27
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:black_cooler": {
-        "buy": 52.1,
-        "sell": 1.38
+        "buy": 50.7,
+        "sell": 1.9
       },
       "refurbished_furniture:oak_mail_box": {
         "buy": 110,
@@ -9883,27 +9883,27 @@
       },
       "refurbished_furniture:post_box": {
         "buy": 4290,
-        "sell": 41.74
+        "sell": 41.55
       },
       "refurbished_furniture:white_trampoline": {
         "buy": 1840,
-        "sell": 24.34
+        "sell": 25.05
       },
       "refurbished_furniture:orange_trampoline": {
         "buy": 1840,
-        "sell": 25.13
+        "sell": 25.05
       },
       "refurbished_furniture:magenta_trampoline": {
         "buy": 1840,
-        "sell": 25.13
+        "sell": 25.05
       },
       "refurbished_furniture:light_blue_trampoline": {
         "buy": 1840,
-        "sell": 25.24
+        "sell": 25.05
       },
       "refurbished_furniture:yellow_trampoline": {
         "buy": 1840,
-        "sell": 25.13
+        "sell": 25.05
       },
       "refurbished_furniture:lime_trampoline": {
         "buy": 1840,
@@ -9911,31 +9911,31 @@
       },
       "refurbished_furniture:pink_trampoline": {
         "buy": 1840,
-        "sell": 25.13
+        "sell": 25.05
       },
       "refurbished_furniture:gray_trampoline": {
         "buy": 1840,
-        "sell": 25.24
+        "sell": 25.05
       },
       "refurbished_furniture:light_gray_trampoline": {
         "buy": 1840,
-        "sell": 25.24
+        "sell": 25.05
       },
       "refurbished_furniture:cyan_trampoline": {
         "buy": 1840,
-        "sell": 25.08
+        "sell": 24.99
       },
       "refurbished_furniture:purple_trampoline": {
         "buy": 1840,
-        "sell": 25.19
+        "sell": 25.05
       },
       "refurbished_furniture:blue_trampoline": {
         "buy": 1840,
-        "sell": 25.24
+        "sell": 25.05
       },
       "refurbished_furniture:brown_trampoline": {
         "buy": 1840,
-        "sell": 25.24
+        "sell": 25.05
       },
       "refurbished_furniture:green_trampoline": {
         "buy": 1840,
@@ -9943,11 +9943,11 @@
       },
       "refurbished_furniture:red_trampoline": {
         "buy": 1840,
-        "sell": 25.13
+        "sell": 25.05
       },
       "refurbished_furniture:black_trampoline": {
         "buy": 1840,
-        "sell": 25.24
+        "sell": 25.05
       },
       "refurbished_furniture:oak_hedge": {
         "buy": 12.6,
@@ -10147,23 +10147,23 @@
       },
       "refurbished_furniture:white_toilet": {
         "buy": 5340,
-        "sell": 46.4
+        "sell": 47.11
       },
       "refurbished_furniture:orange_toilet": {
         "buy": 5340,
-        "sell": 47.19
+        "sell": 47.11
       },
       "refurbished_furniture:magenta_toilet": {
         "buy": 5340,
-        "sell": 47.19
+        "sell": 47.11
       },
       "refurbished_furniture:light_blue_toilet": {
         "buy": 5340,
-        "sell": 47.3
+        "sell": 47.11
       },
       "refurbished_furniture:yellow_toilet": {
         "buy": 5340,
-        "sell": 47.19
+        "sell": 47.11
       },
       "refurbished_furniture:lime_toilet": {
         "buy": 5340,
@@ -10171,31 +10171,31 @@
       },
       "refurbished_furniture:pink_toilet": {
         "buy": 5340,
-        "sell": 47.19
+        "sell": 47.11
       },
       "refurbished_furniture:gray_toilet": {
         "buy": 5340,
-        "sell": 47.3
+        "sell": 47.11
       },
       "refurbished_furniture:light_gray_toilet": {
         "buy": 5340,
-        "sell": 47.3
+        "sell": 47.11
       },
       "refurbished_furniture:cyan_toilet": {
         "buy": 5340,
-        "sell": 47.14
+        "sell": 47.05
       },
       "refurbished_furniture:purple_toilet": {
         "buy": 5340,
-        "sell": 47.25
+        "sell": 47.11
       },
       "refurbished_furniture:blue_toilet": {
         "buy": 5340,
-        "sell": 47.3
+        "sell": 47.11
       },
       "refurbished_furniture:brown_toilet": {
         "buy": 5340,
-        "sell": 47.3
+        "sell": 47.11
       },
       "refurbished_furniture:green_toilet": {
         "buy": 5340,
@@ -10203,11 +10203,11 @@
       },
       "refurbished_furniture:red_toilet": {
         "buy": 5340,
-        "sell": 47.19
+        "sell": 47.11
       },
       "refurbished_furniture:black_toilet": {
         "buy": 5340,
-        "sell": 47.3
+        "sell": 47.11
       },
       "refurbished_furniture:oak_basin": {
         "buy": 4620,
@@ -10255,23 +10255,23 @@
       },
       "refurbished_furniture:white_basin": {
         "buy": 4850,
-        "sell": 42.4
+        "sell": 43.11
       },
       "refurbished_furniture:orange_basin": {
         "buy": 4850,
-        "sell": 43.19
+        "sell": 43.11
       },
       "refurbished_furniture:magenta_basin": {
         "buy": 4850,
-        "sell": 43.19
+        "sell": 43.11
       },
       "refurbished_furniture:light_blue_basin": {
         "buy": 4850,
-        "sell": 43.3
+        "sell": 43.11
       },
       "refurbished_furniture:yellow_basin": {
         "buy": 4850,
-        "sell": 43.19
+        "sell": 43.11
       },
       "refurbished_furniture:lime_basin": {
         "buy": 4850,
@@ -10279,31 +10279,31 @@
       },
       "refurbished_furniture:pink_basin": {
         "buy": 4850,
-        "sell": 43.19
+        "sell": 43.11
       },
       "refurbished_furniture:gray_basin": {
         "buy": 4850,
-        "sell": 43.3
+        "sell": 43.11
       },
       "refurbished_furniture:light_gray_basin": {
         "buy": 4850,
-        "sell": 43.3
+        "sell": 43.11
       },
       "refurbished_furniture:cyan_basin": {
         "buy": 4850,
-        "sell": 43.14
+        "sell": 43.05
       },
       "refurbished_furniture:purple_basin": {
         "buy": 4850,
-        "sell": 43.25
+        "sell": 43.11
       },
       "refurbished_furniture:blue_basin": {
         "buy": 4850,
-        "sell": 43.3
+        "sell": 43.11
       },
       "refurbished_furniture:brown_basin": {
         "buy": 4850,
-        "sell": 43.3
+        "sell": 43.11
       },
       "refurbished_furniture:green_basin": {
         "buy": 4850,
@@ -10311,11 +10311,11 @@
       },
       "refurbished_furniture:red_basin": {
         "buy": 4850,
-        "sell": 43.19
+        "sell": 43.11
       },
       "refurbished_furniture:black_basin": {
         "buy": 4850,
-        "sell": 43.3
+        "sell": 43.11
       },
       "refurbished_furniture:oak_bath": {
         "buy": 8170,
@@ -10363,23 +10363,23 @@
       },
       "refurbished_furniture:white_bath": {
         "buy": 8590,
-        "sell": 74.64
+        "sell": 75.35
       },
       "refurbished_furniture:orange_bath": {
         "buy": 8590,
-        "sell": 75.43
+        "sell": 75.35
       },
       "refurbished_furniture:magenta_bath": {
         "buy": 8590,
-        "sell": 75.43
+        "sell": 75.35
       },
       "refurbished_furniture:light_blue_bath": {
         "buy": 8590,
-        "sell": 75.54
+        "sell": 75.35
       },
       "refurbished_furniture:yellow_bath": {
         "buy": 8590,
-        "sell": 75.43
+        "sell": 75.35
       },
       "refurbished_furniture:lime_bath": {
         "buy": 8590,
@@ -10387,31 +10387,31 @@
       },
       "refurbished_furniture:pink_bath": {
         "buy": 8590,
-        "sell": 75.43
+        "sell": 75.35
       },
       "refurbished_furniture:gray_bath": {
         "buy": 8590,
-        "sell": 75.54
+        "sell": 75.35
       },
       "refurbished_furniture:light_gray_bath": {
         "buy": 8590,
-        "sell": 75.54
+        "sell": 75.35
       },
       "refurbished_furniture:cyan_bath": {
         "buy": 8590,
-        "sell": 75.38
+        "sell": 75.29
       },
       "refurbished_furniture:purple_bath": {
         "buy": 8590,
-        "sell": 75.49
+        "sell": 75.35
       },
       "refurbished_furniture:blue_bath": {
         "buy": 8590,
-        "sell": 75.54
+        "sell": 75.35
       },
       "refurbished_furniture:brown_bath": {
         "buy": 8590,
-        "sell": 75.54
+        "sell": 75.35
       },
       "refurbished_furniture:green_bath": {
         "buy": 8590,
@@ -10419,19 +10419,19 @@
       },
       "refurbished_furniture:red_bath": {
         "buy": 8590,
-        "sell": 75.43
+        "sell": 75.35
       },
       "refurbished_furniture:black_bath": {
         "buy": 8590,
-        "sell": 75.54
+        "sell": 75.35
       },
       "refurbished_furniture:light_ceiling_light": {
         "buy": 1340,
         "sell": 12.8
       },
       "refurbished_furniture:dark_ceiling_light": {
-        "buy": 1420,
-        "sell": 13.74
+        "buy": 1410,
+        "sell": 13.55
       },
       "refurbished_furniture:light_lightswitch": {
         "buy": 1030,
@@ -10439,7 +10439,7 @@
       },
       "refurbished_furniture:dark_lightswitch": {
         "buy": 1080,
-        "sell": 10.74
+        "sell": 10.55
       },
       "refurbished_furniture:doorbell": {
         "buy": 1550,
@@ -10532,140 +10532,140 @@
     },
     "biomesoplenty.main": {
       "biomesoplenty:white_sand": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 5.0,
+        "sell": 1.25
       },
       "biomesoplenty:white_sandstone": {
-        "buy": 63.0,
-        "sell": 15.0
+        "buy": 21.0,
+        "sell": 5.0
       },
       "biomesoplenty:cut_white_sandstone": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:cut_white_sandstone_slab": {
-        "buy": 33.1,
-        "sell": 7.5
+        "buy": 11.0,
+        "sell": 2.5
       },
       "biomesoplenty:chiseled_white_sandstone": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:smooth_white_sandstone": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:smooth_white_sandstone_slab": {
-        "buy": 34.7,
-        "sell": 7.5
+        "buy": 11.6,
+        "sell": 2.5
       },
       "biomesoplenty:smooth_white_sandstone_stairs": {
-        "buy": 69.5,
-        "sell": 15.0
+        "buy": 23.2,
+        "sell": 5.0
       },
       "biomesoplenty:white_sandstone_slab": {
-        "buy": 33.1,
-        "sell": 7.5
+        "buy": 11.0,
+        "sell": 2.5
       },
       "biomesoplenty:white_sandstone_stairs": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:white_sandstone_wall": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:orange_sand": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 5.0,
+        "sell": 1.25
       },
       "biomesoplenty:orange_sandstone": {
-        "buy": 63.0,
-        "sell": 15.0
+        "buy": 21.0,
+        "sell": 5.0
       },
       "biomesoplenty:cut_orange_sandstone": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:cut_orange_sandstone_slab": {
-        "buy": 33.1,
-        "sell": 7.5
+        "buy": 11.0,
+        "sell": 2.5
       },
       "biomesoplenty:chiseled_orange_sandstone": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:smooth_orange_sandstone": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:smooth_orange_sandstone_slab": {
-        "buy": 34.7,
-        "sell": 7.5
+        "buy": 11.6,
+        "sell": 2.5
       },
       "biomesoplenty:smooth_orange_sandstone_stairs": {
-        "buy": 69.5,
-        "sell": 15.0
+        "buy": 23.2,
+        "sell": 5.0
       },
       "biomesoplenty:orange_sandstone_slab": {
-        "buy": 33.1,
-        "sell": 7.5
+        "buy": 11.0,
+        "sell": 2.5
       },
       "biomesoplenty:orange_sandstone_stairs": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:orange_sandstone_wall": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:mossy_black_sand": {
-        "buy": 31.5,
-        "sell": 7.5
+        "buy": 21.0,
+        "sell": 5.0
       },
       "biomesoplenty:black_sand": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 5.0,
+        "sell": 1.25
       },
       "biomesoplenty:black_sandstone": {
-        "buy": 63.0,
-        "sell": 15.0
+        "buy": 21.0,
+        "sell": 5.0
       },
       "biomesoplenty:cut_black_sandstone": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:cut_black_sandstone_slab": {
-        "buy": 33.1,
-        "sell": 7.5
+        "buy": 11.0,
+        "sell": 2.5
       },
       "biomesoplenty:chiseled_black_sandstone": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:smooth_black_sandstone": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:smooth_black_sandstone_slab": {
-        "buy": 34.7,
-        "sell": 7.5
+        "buy": 11.6,
+        "sell": 2.5
       },
       "biomesoplenty:smooth_black_sandstone_stairs": {
-        "buy": 69.5,
-        "sell": 15.0
+        "buy": 23.2,
+        "sell": 5.0
       },
       "biomesoplenty:black_sandstone_slab": {
-        "buy": 33.1,
-        "sell": 7.5
+        "buy": 11.0,
+        "sell": 2.5
       },
       "biomesoplenty:black_sandstone_stairs": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:black_sandstone_wall": {
-        "buy": 66.2,
-        "sell": 15.0
+        "buy": 22.1,
+        "sell": 5.0
       },
       "biomesoplenty:thermal_calcite": {
         "buy": 15.0,
@@ -10680,8 +10680,8 @@
         "sell": 3.75
       },
       "biomesoplenty:flesh": {
-        "buy": 36.8,
-        "sell": 7.75
+        "buy": 73.5,
+        "sell": 16.5
       },
       "biomesoplenty:porous_flesh": {
         "buy": 15.0,
@@ -10704,8 +10704,8 @@
         "sell": 3.75
       },
       "biomesoplenty:blood_bucket": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 50.0,
+        "sell": 12.5
       },
       "biomesoplenty:brimstone": {
         "buy": 15.0,
@@ -10752,28 +10752,28 @@
         "sell": 76.0
       },
       "biomesoplenty:rose_quartz_block": {
-        "buy": 63.0,
-        "sell": 0.6
+        "buy": 336,
+        "sell": 3.2
       },
       "biomesoplenty:rose_quartz_cluster": {
-        "buy": 15.0,
-        "sell": 0.15
+        "buy": 80.0,
+        "sell": 0.8
       },
       "biomesoplenty:large_rose_quartz_bud": {
-        "buy": 15.0,
-        "sell": 0.15
+        "buy": 80.0,
+        "sell": 0.8
       },
       "biomesoplenty:medium_rose_quartz_bud": {
-        "buy": 15.0,
-        "sell": 0.15
+        "buy": 80.0,
+        "sell": 0.8
       },
       "biomesoplenty:small_rose_quartz_bud": {
-        "buy": 15.0,
-        "sell": 0.15
+        "buy": 80.0,
+        "sell": 0.8
       },
       "biomesoplenty:rose_quartz_chunk": {
-        "buy": 15.0,
-        "sell": 0.15
+        "buy": 80.0,
+        "sell": 0.8
       },
       "biomesoplenty:barnacles": {
         "buy": 15.0,
@@ -10788,8 +10788,8 @@
         "sell": 5.75
       },
       "biomesoplenty:unmapped_end_stone": {
-        "buy": 12.3,
-        "sell": 2.94
+        "buy": 21.5,
+        "sell": 5.12
       },
       "biomesoplenty:null_end_stone": {
         "buy": 10.5,
@@ -10804,8 +10804,8 @@
         "sell": 0.5
       },
       "biomesoplenty:liquid_null_bucket": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 50.0,
+        "sell": 12.5
       },
       "biomesoplenty:anomaly": {
         "buy": 15.0,
@@ -10852,68 +10852,68 @@
         "sell": 3.75
       },
       "biomesoplenty:white_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:light_gray_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:gray_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:black_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:brown_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:red_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:orange_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:yellow_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:lime_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:green_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:cyan_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:light_blue_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:blue_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:purple_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:magenta_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:pink_flower_petal_block": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:origin_grass_block": {
         "buy": 15.0,
@@ -11012,8 +11012,8 @@
         "sell": 0.26
       },
       "biomesoplenty:origin_oak_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:origin_oak_boat": {
         "buy": 68.9,
@@ -11092,8 +11092,8 @@
         "sell": 0.26
       },
       "biomesoplenty:fir_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:fir_boat": {
         "buy": 68.9,
@@ -11172,8 +11172,8 @@
         "sell": 0.26
       },
       "biomesoplenty:pine_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:pine_boat": {
         "buy": 68.9,
@@ -11280,8 +11280,8 @@
         "sell": 0.26
       },
       "biomesoplenty:maple_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:maple_boat": {
         "buy": 68.9,
@@ -11360,8 +11360,8 @@
         "sell": 0.26
       },
       "biomesoplenty:redwood_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:redwood_boat": {
         "buy": 68.9,
@@ -11440,8 +11440,8 @@
         "sell": 0.26
       },
       "biomesoplenty:mahogany_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:mahogany_boat": {
         "buy": 68.9,
@@ -11520,8 +11520,8 @@
         "sell": 0.26
       },
       "biomesoplenty:jacaranda_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:jacaranda_boat": {
         "buy": 68.9,
@@ -11600,8 +11600,8 @@
         "sell": 0.26
       },
       "biomesoplenty:palm_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:palm_boat": {
         "buy": 68.9,
@@ -11688,8 +11688,8 @@
         "sell": 0.26
       },
       "biomesoplenty:willow_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:willow_boat": {
         "buy": 68.9,
@@ -11772,8 +11772,8 @@
         "sell": 0.26
       },
       "biomesoplenty:dead_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:dead_boat": {
         "buy": 68.9,
@@ -11852,8 +11852,8 @@
         "sell": 0.26
       },
       "biomesoplenty:magic_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:magic_boat": {
         "buy": 68.9,
@@ -11932,8 +11932,8 @@
         "sell": 0.26
       },
       "biomesoplenty:umbran_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:umbran_boat": {
         "buy": 68.9,
@@ -12012,8 +12012,8 @@
         "sell": 0.26
       },
       "biomesoplenty:hellbark_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:hellbark_boat": {
         "buy": 68.9,
@@ -12092,8 +12092,8 @@
         "sell": 0.26
       },
       "biomesoplenty:empyreal_hanging_sign": {
-        "buy": 53.6,
-        "sell": 0.51
+        "buy": 142,
+        "sell": 1.31
       },
       "biomesoplenty:empyreal_boat": {
         "buy": 68.9,
@@ -12164,8 +12164,8 @@
         "sell": 2.5
       },
       "biomesoplenty:white_petals": {
-        "buy": 15.0,
-        "sell": 3.75
+        "buy": 12.0,
+        "sell": 3.0
       },
       "biomesoplenty:icy_iris": {
         "buy": 15.0,
@@ -12274,124 +12274,124 @@
     },
     "uncategorized": {
       "create:gray_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:light_blue_table_cloth": {
-        "buy": 11.7,
-        "sell": 0.56
+        "buy": 11.2,
+        "sell": 0.46
       },
       "create:yellow_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:white_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "minecraft:filled_map": {
         "buy": 50,
         "sell": 12.5
       },
       "create:magenta_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:refined_radiance_casing": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 1200,
+        "sell": 300.0
       },
       "create:yellow_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:pink_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:light_gray_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:pink_table_cloth": {
-        "buy": 11.4,
-        "sell": 0.5
+        "buy": 11.2,
+        "sell": 0.46
       },
       "create:blue_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:light_gray_seat": {
-        "buy": 26.7,
-        "sell": 1.14
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:magenta_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:gray_table_cloth": {
-        "buy": 11.7,
-        "sell": 0.56
+        "buy": 11.2,
+        "sell": 0.46
       },
       "create:light_blue_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:magenta_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:blue_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:lime_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:magenta_table_cloth": {
-        "buy": 11.4,
-        "sell": 0.5
+        "buy": 11.2,
+        "sell": 0.46
       },
       "create:crushed_raw_osmium": {
         "buy": 250,
         "sell": 62.5
       },
       "create:white_seat": {
-        "buy": 26.4,
-        "sell": 0.24
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:green_table_cloth": {
         "buy": 10.9,
         "sell": 0.4
       },
       "create:gray_seat": {
-        "buy": 26.7,
-        "sell": 1.14
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:black_seat": {
-        "buy": 26.7,
-        "sell": 1.14
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:cyan_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.2,
+        "sell": 10.69
       },
       "create:gray_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:orange_table_cloth": {
-        "buy": 11.5,
-        "sell": 0.5
+        "buy": 11.2,
+        "sell": 0.46
       },
       "create:green_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 86.8,
+        "sell": 1.34
       },
       "create:red_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:green_seat": {
         "buy": 25.2,
@@ -12402,60 +12402,60 @@
         "sell": 7.5
       },
       "create:cyan_seat": {
-        "buy": 26.1,
-        "sell": 0.98
+        "buy": 25.7,
+        "sell": 0.89
       },
       "create:purple_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:pink_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:yellow_table_cloth": {
         "buy": 9.1,
         "sell": 0.08
       },
       "create:yellow_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:crushed_raw_platinum": {
         "buy": 250,
         "sell": 62.5
       },
       "create:purple_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:black_table_cloth": {
-        "buy": 11.7,
-        "sell": 0.56
+        "buy": 11.2,
+        "sell": 0.46
       },
       "create:orange_seat": {
-        "buy": 26.4,
-        "sell": 1.03
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:purple_table_cloth": {
-        "buy": 11.6,
-        "sell": 0.53
+        "buy": 11.2,
+        "sell": 0.46
       },
       "autotrader:auto_trader": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 5000,
+        "sell": 1250.0
       },
       "create:light_gray_table_cloth": {
-        "buy": 11.7,
-        "sell": 0.56
+        "buy": 11.2,
+        "sell": 0.46
       },
       "create:shopping_list": {
         "buy": 30.0,
         "sell": 7.5
       },
       "create:blue_seat": {
-        "buy": 26.7,
-        "sell": 1.14
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:crushed_raw_quicksilver": {
         "buy": 250,
@@ -12466,8 +12466,8 @@
         "sell": 7.5
       },
       "create:lime_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 44.8,
+        "sell": 10.62
       },
       "create:crushed_raw_tin": {
         "buy": 250,
@@ -12478,36 +12478,36 @@
         "sell": 0.82
       },
       "create:green_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:pink_seat": {
-        "buy": 26.2,
-        "sell": 1.03
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:white_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:brown_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:blue_table_cloth": {
-        "buy": 11.7,
-        "sell": 0.56
+        "buy": 11.2,
+        "sell": 0.46
       },
       "create:purple_seat": {
-        "buy": 26.6,
-        "sell": 1.09
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:red_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:orange_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:crushed_raw_uranium": {
         "buy": 250,
@@ -12518,44 +12518,44 @@
         "sell": 62.5
       },
       "create:brass_encased_shaft": {
-        "buy": 30.0,
-        "sell": 0.3
+        "buy": 80.0,
+        "sell": 0.8
       },
       "create:orange_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:magenta_seat": {
-        "buy": 26.2,
-        "sell": 1.03
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:blaze_cake_base": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 12.5,
+        "sell": 1.38
       },
       "create:lime_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 86.8,
+        "sell": 1.34
       },
       "create:red_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:cyan_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:purple_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:cyan_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.2,
+        "sell": 1.41
       },
       "create:white_table_cloth": {
-        "buy": 11.5,
-        "sell": 0.1
+        "buy": 11.2,
+        "sell": 0.46
       },
       "create:crushed_raw_lead": {
         "buy": 250,
@@ -12566,52 +12566,52 @@
         "sell": 0.2
       },
       "create:light_gray_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:pink_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:brown_table_cloth": {
-        "buy": 11.7,
-        "sell": 0.56
+        "buy": 11.2,
+        "sell": 0.46
       },
       "create:gray_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:lime_table_cloth": {
         "buy": 10.9,
         "sell": 0.4
       },
       "create:light_blue_seat": {
-        "buy": 26.7,
-        "sell": 1.14
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:blue_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:orange_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:brown_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:black_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       },
       "create:andesite_encased_shaft": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 80.0,
+        "sell": 20.0
       },
       "create:mysterious_cuckoo_clock": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 2590,
+        "sell": 22.52
       },
       "create:unprocessed_obsidian_sheet": {
         "buy": 30.0,
@@ -12622,16 +12622,16 @@
         "sell": 62.5
       },
       "create:cyan_table_cloth": {
-        "buy": 11.4,
-        "sell": 0.48
+        "buy": 11.2,
+        "sell": 0.43
       },
       "create:light_gray_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 45.3,
+        "sell": 10.75
       },
       "create:black_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "minecraft:written_book": {
         "buy": 50,
@@ -12646,28 +12646,28 @@
         "sell": 62.5
       },
       "create:black_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 40.0,
+        "sell": 10.0
       },
       "create:green_valve_handle": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 44.8,
+        "sell": 10.62
       },
       "create:brown_seat": {
-        "buy": 26.7,
-        "sell": 1.14
+        "buy": 25.8,
+        "sell": 0.95
       },
       "create:light_blue_toolbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 60.0,
+        "sell": 15.0
       },
       "create:shadow_steel_casing": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 1200,
+        "sell": 300.0
       },
       "create:light_blue_postbox": {
-        "buy": 30.0,
-        "sell": 7.5
+        "buy": 87.4,
+        "sell": 1.47
       }
     }
   }

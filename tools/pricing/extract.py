@@ -17,6 +17,7 @@ import zipfile, json, os, sys
 MODS = r"C:\Users\carso\AppData\Roaming\.minecraft\mods"
 JARS = {
     "vanilla": r"C:\Users\carso\AppData\Roaming\.minecraft\versions\fabric-loader-0.18.3-1.21.11\fabric-loader-0.18.3-1.21.11.jar",
+    "fabricapi": os.path.join(MODS, "fabric-api-0.140.0+1.21.11.jar"),  # #c: conventional tags
     "create": os.path.join(MODS, "create-fly-1.21.11-6.0.8-3.jar"),
     "fd":     os.path.join(MODS, "FarmersDelight-1.21.11-3.4.2+refabricated.jar"),
     "bop":    os.path.join(MODS, "BiomesOPlenty-fabric-1.21.11-21.11.0.1.jar"),
@@ -32,6 +33,7 @@ CONSTRUCT = {
     "create:deploying", "create:pressing", "create:compacting",
     "create:filling", "create:sequenced_assembly",
     "minecraft:smithing_transform", "minecraft:crafting_transmute",
+    "create:item_application", "create:mechanical_crafting",
     "farmersdelight:cooking",
     "refurbished_furniture:workbench_constructing",
     "refurbished_furniture:oven_baking", "refurbished_furniture:frying_pan_cooking",
@@ -42,7 +44,7 @@ SKIP = {
     "refurbished_furniture:cutting_board_slicing",
     "refurbished_furniture:cutting_board_combining",
     "create:splashing", "create:haunting", "create:emptying",
-    "create:item_application", "create:sandpaper_polishing",
+    "create:sandpaper_polishing",
 }
 
 
@@ -101,7 +103,7 @@ def parse(d, source):
         if n:
             inputs.append({"id": n, "count": c, "catalyst": catalyst})
 
-    if t == "minecraft:crafting_shaped":
+    if t in ("minecraft:crafting_shaped", "create:mechanical_crafting"):
         key = d.get("key", {})
         counts = {}
         for row in d.get("pattern", []):
@@ -131,6 +133,9 @@ def parse(d, source):
             add(d.get("ingredient"), 1, catalyst=True)
     elif t == "create:filling":
         add(d.get("ingredient"), 1)
+    elif t == "create:item_application":
+        add(d.get("target"), 1)        # the converted block
+        add(d.get("ingredient"), 1)    # the applied item
     elif t == "minecraft:smithing_transform":
         add(d.get("base"), 1)
         add(d.get("addition"), 1)
@@ -176,9 +181,11 @@ def main():
                     d = json.loads(z.read(n))
                 except Exception:
                     continue
-                # data/<ns>/tags/item/<path>.json  -> #<ns>:<path>
+                # data/<ns>/tags/item/<path>.json -> #<ns>:<path>
+                # Fabric override path data/fabric/<ns>/tags/item/... contributes to <ns>.
                 parts = n.split("/tags/item/")
-                ns = parts[0].split("/")[1]
+                segs = parts[0].split("/")          # ["data", ns, ...] or ["data","fabric",ns]
+                ns = segs[2] if len(segs) >= 3 and segs[1] == "fabric" else segs[1]
                 name = parts[1][:-5]
                 key = f"#{ns}:{name}"
                 vals = []
