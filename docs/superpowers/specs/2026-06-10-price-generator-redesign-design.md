@@ -51,6 +51,15 @@ Three inputs, each assigned by **layered classification** (see below):
 - **effort** → `effort_factor` (how hard to obtain)
 - **rarity** → `rarity_factor` (how scarce in the world)
 
+**Decision (Way A): effort × rarity carry the price magnitude; `band_base` is a small
+offset.** `band_base` only ever applies to *roots* (raw mats, mob drops, natural blocks,
+plants). The "categories cost different amounts" effect (combat ≈ 300, food ≈ 25) lives
+in *crafted* items, which the recipe graph already prices for free from their ingredients
+— so big per-category bases are unnecessary and would compress the ladder range. For the
+items `band_base` actually governs, effort + rarity *are* the real differentiator
+(dirt vs diamond = trivial+abundant vs hard+very-rare). So the ladders are the big lever
+and `band_base` just separates two items sitting in the same cell (a bone vs a pebble).
+
 #### Effort ladder (5 levels, shared globally)
 
 | level | meaning | factor |
@@ -92,16 +101,21 @@ formula output.
 The factor values above are **starting points**. During implementation they are
 **calibrated** against a small set of reference anchors so magnitudes land sensibly:
 
-| reference | classification | target buy |
-|---|---|---|
-| cobblestone | band raw-stone, effort 1, rarity 1 | ~5 |
-| coal | band raw-metal/ore, effort 2, rarity 3 | ~40 |
-| iron ingot | band raw-metal, effort 3, rarity 4 | ~400-500 |
-| gold ingot | band raw-metal, effort 3, rarity 4 | ~500 |
-| diamond | band raw-gem, effort 4, rarity 5 | ~4000 |
+| item | band·base | effort | rarity | `= base×E×R` | buy | (old anchor) |
+|---|---|---|---|---|---|---|
+| cobblestone | raw_stone·5 | 1 (×1) | 1 (×1) | 5×1×1 | **5** | 5 |
+| coal | raw_metal·5 | 2 (×3) | 2 (×2) | 5×3×2 | **30** | 40 |
+| copper ingot | raw_metal·5 | 3 (×8) | 3 (×5) | 5×8×5 | **200** | 200 |
+| iron ingot | raw_metal·5 | 3 (×8) | 4 (×12) | 5×8×12 | **480** | 400 |
+| gold ingot | raw_metal·5 | 3 (×8) | 4 (×12) | 5×8×12 | **480** | 500 |
+| diamond | raw_gem·5 | 4 (×20) | 5 (×40) | 5×20×40 | **4000** | 4000 |
+| ancient_debris | raw_gem·5 | 4 (×20) | 5 (×40) | 5×20×40 | **4000** | 4000 |
+| ender_pearl | mob_drop·6 | 4 (×20) | 4 (×12) | 6×20×12 | **1440** | 1200 |
+| nether_star | — | — | — | `EXACT` | **700000** | 700000 |
 
 Calibration means: pick `band_base` and ladder factors so these reference cells produce
-prices in the target neighborhood, then let everything else fall out of its cell.
+prices in the target neighborhood, then let everything else fall out of its cell. The
+values above are the agreed starting point.
 
 ### Crafted buy price — unchanged
 
@@ -157,19 +171,18 @@ puts band assignment in the same one place where effort/rarity are tuned.
 A small set of root-bearing bands, since most roots are raw mats / natural blocks /
 mob drops:
 
-| band | example members | rough base |
+| band | example members | base |
 |---|---|---|
-| `raw_stone` | cobblestone, dirt, sand, gravel, netherrack | low |
-| `raw_metal` | iron/gold/copper ingots & ores, redstone, coal, quartz | mid |
-| `raw_gem` | diamond, amethyst, lapis | high |
-| `mob_drop` | bone, string, leather, blaze rod, ender pearl | mid |
-| `plant_produce` | wheat, crops, saplings, kelp | low |
-| `natural_block` | misc natural/terrain blocks not raw mats | low-mid |
-| `treasure` | structure/loot roots not covered by EXACT | high |
-| `default` | per-creative-tab fallback for anything unmatched | mid |
+| `raw_stone` | cobblestone, dirt, sand, gravel, netherrack | **5** |
+| `raw_metal` | iron/gold/copper ingots & ores, redstone, coal, quartz | **5** |
+| `raw_gem` | diamond, amethyst, lapis, ancient_debris | **5** |
+| `mob_drop` | bone, string, leather, blaze rod, ender pearl | **6** |
+| `plant_produce` | wheat, crops, saplings, kelp | **4** |
+| `natural_block` | misc natural/terrain blocks not raw mats | **6** |
+| `treasure` | structure/loot roots not covered by `EXACT` | **12** |
+| `default` | per-creative-tab fallback for anything unmatched | **5** |
 
-Exact base values are set during calibration. Genuinely unique items (nether star,
-templates, etc.) bypass bands via `EXACT`.
+Genuinely unique items (nether star, templates, etc.) bypass bands via `EXACT`.
 
 ## Layered classification (how a root gets band/effort/rarity)
 
