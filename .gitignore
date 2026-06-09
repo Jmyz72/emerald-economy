@@ -1,3 +1,5 @@
 worth.json.bak
 worth.json.bak2
 tools/pricing/work/
+__pycache__/
+*.pyc
