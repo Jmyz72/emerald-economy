@@ -114,6 +114,55 @@ CELL = {
     "minecraft:wheat": ("plant_produce", 2, 2),
     "minecraft:sugar_cane": ("plant_produce", 1, 2),
     "minecraft:bamboo": ("plant_produce", 1, 1),
+
+    # --- additional mob drops / simple ingredients ---------------------------
+    "minecraft:feather": ("mob_drop", 1, 1),          # chicken drop, trivial
+    "minecraft:ink_sac": ("mob_drop", 2, 2),          # squid
+    "minecraft:glow_ink_sac": ("mob_drop", 3, 3),     # glow squid, less common
+    "minecraft:honeycomb": ("plant_produce", 2, 2),   # bee farm
+    "minecraft:rabbit_foot": ("mob_drop", 3, 4),      # rare rabbit drop
+    "minecraft:rabbit_hide": ("mob_drop", 2, 2),
+    "minecraft:phantom_membrane": ("mob_drop", 3, 3), # phantom (night/insomnia)
+    "minecraft:nautilus_shell": ("treasure", 3, 4),   # fishing/drowned, gates conduit
+    "minecraft:prismarine_shard": ("mob_drop", 3, 3), # ocean monument guardian
+    "minecraft:prismarine_crystals": ("mob_drop", 3, 3),
+    "minecraft:turtle_scute": ("mob_drop", 3, 3),     # baby turtle growth
+    "minecraft:armadillo_scute": ("mob_drop", 2, 2),  # brushing armadillo
+    "minecraft:dragon_breath": ("mob_drop", 4, 4),    # bottle ender dragon breath
+    "minecraft:echo_shard": ("treasure", 4, 4),       # ancient city loot
+    "minecraft:breeze_rod": ("mob_drop", 4, 4),       # trial-chamber breeze drop
+    "minecraft:experience_bottle": ("treasure", 3, 3),
+    "minecraft:enchanted_book": ("treasure", 3, 3),
+
+    # --- trial-chamber keys (vault gating) -----------------------------------
+    "minecraft:trial_key": ("treasure", 4, 4),
+    "minecraft:ominous_trial_key": ("treasure", 5, 4),
+
+    # --- combat / utility one-offs -------------------------------------------
+    "minecraft:trident": ("mob_drop", 4, 4),          # drowned drop
+    "minecraft:goat_horn": ("treasure", 3, 4),        # goat ram / loot
+    "minecraft:snowball": ("raw_stone", 1, 1),        # snow, trivial
+    "minecraft:firework_star": ("default", 2, 2),
+
+    # --- archaeology / suspicious blocks -------------------------------------
+    "minecraft:suspicious_gravel": ("treasure", 3, 3),
+
+    # --- written/filled items: cheap player-made curios ----------------------
+    "minecraft:filled_map": ("default", 2, 2),
+    "minecraft:written_book": ("default", 2, 2),
+
+    # --- BoP ore-chunk gems (rose quartz raw chunk) --------------------------
+    "biomesoplenty:rose_quartz_chunk": ("raw_gem", 2, 3),
+
+    # --- natural-block one-offs that the natural_block default mis-tiers ------
+    "minecraft:wet_sponge": ("natural_block", 4, 4),   # ocean-monument gated
+    "minecraft:bee_nest": ("natural_block", 3, 3),     # find a bee tree
+    "minecraft:slime_block": ("natural_block", 2, 3),  # swamp/slime-chunk slimeballs
+    "minecraft:nether_wart": ("plant_produce", 3, 3),  # nether fortress, brewing gate
+    "minecraft:cocoa_beans": ("plant_produce", 2, 2),
+    "minecraft:glow_berries": ("plant_produce", 2, 2),
+    "minecraft:sweet_berries": ("plant_produce", 2, 2),
+    "minecraft:cobweb": ("mob_drop", 3, 3),            # shears + mineshaft/spawner
 }
 
 # ---------------------------------------------------------------- regex rules (ordered)
@@ -123,24 +172,110 @@ def _suf(*sfx):
     return re.compile("(" + "|".join(re.escape(s) for s in sfx) + ")$")
 
 RULES = [
+    # --- wood / foliage -------------------------------------------------------
     (_suf("_log", "_stem", "_hyphae", "_wood", "bamboo_block"), ("plant_produce", 2, 3)),
     (re.compile(r"^stripped_.*(_log|_stem|_wood|_hyphae|_bamboo_block)$"), ("plant_produce", 2, 3)),
     (_suf("_leaves"), ("plant_produce", 1, 1)),
     (_suf("_sapling", "_propagule"), ("plant_produce", 1, 3)),
+
+    # --- pottery sherds: archaeology-only treasure (brush suspicious blocks) ---
+    (re.compile(r"_pottery_sherd$"), ("treasure", 4, 4)),
+    # --- armor-trim smithing templates: structure-loot treasure (rest in EXACT) ---
+    (re.compile(r"_armor_trim_smithing_template$"), ("treasure", 4, 4)),
+    # --- banner patterns: loot/trade curios ----------------------------------
+    (re.compile(r"_banner_pattern$"), ("treasure", 3, 3)),
+    # --- music discs: loot/creeper-drop collectibles -------------------------
+    (re.compile(r"^music_disc_|^disc_fragment"), ("treasure", 3, 4)),
+
+    # --- ores / raw metals / ingots ------------------------------------------
     (re.compile(r"_ore$"), ("raw_metal", 3, 3)),
     (re.compile(r"^raw_"), ("raw_metal", 3, 3)),
+    (re.compile(r"^crushed_raw_"), ("raw_metal", 3, 3)),  # Create crushed raw ores
     (re.compile(r"_ingot$|_gem$|_crystal$"), ("raw_metal", 3, 3)),
+    (re.compile(r"_nugget$"), ("raw_metal", 2, 2)),  # 1/9 of an ingot — keep cheap
+
+    # --- copper oxidation states (exposed/weathered/oxidized copper family) ---
+    # All trace back to copper; price at the copper-ingot cell so variants stay flat.
+    (re.compile(r"^(exposed|weathered|oxidized)_copper"), ("raw_metal", 3, 3)),
+
+    # --- stone-ish blocks -----------------------------------------------------
     (re.compile(r"_concrete$|_concrete_powder$"), ("raw_stone", 2, 2)),
     (re.compile(r"_sand$"), ("raw_stone", 1, 1)),
+    (re.compile(r"^(basalt|blackstone|gilded_blackstone|end_stone|brimstone)$"),
+        ("raw_stone", 2, 2)),
+
+    # --- mob heads / skulls ---------------------------------------------------
     (re.compile(r"(creeper|zombie|skeleton|piglin|player)_head$|skeleton_skull$"),
         ("mob_drop", 3, 3)),
+
+    # --- coral ----------------------------------------------------------------
     (re.compile(r"coral(_block|_fan|_wall_fan)?$"), ("natural_block", 2, 2)),
+
+    # --- wool / carpet: sheared sheep or string-crafted, cheap ---------------
+    (re.compile(r"_wool$|^wool$|_carpet$"), ("plant_produce", 2, 2)),
+
+    # --- flowers / small plants (vanilla + BoP petal-blocks & wildflowers) ----
     (re.compile(r"(tulip|orchid|allium|cornflower|poppy|dandelion|daisy|"
-                r"lily_of_the_valley|rose_bush|sunflower|pink_petals)$"),
+                r"lily_of_the_valley|rose_bush|sunflower|pink_petals|wildflowers?|"
+                r"_flower_petal_block|hibiscus|hydrangea|lavender|cosmos|marigold|"
+                r"daffodil|violet|clover|goldenrod|lilac|peony|azure_bluet|"
+                r"eyeblossom|wither_rose|torchflower|spore_blossom|"
+                r"wilted_lily|burning_blossom|origin_rose|icy_iris|glowflower)$"),
         ("plant_produce", 1, 1)),
-    (re.compile(r"(short_grass|tall_grass|fern|dead_bush|seagrass|vine|kelp)$"),
+    (re.compile(r"(short_grass|tall_grass|_grass|fern|dead_bush|seagrass|vine|kelp|"
+                r"_roots$|sprouts?$|barley|reed|cattail|bramble|bush|shrub|"
+                r"sea_oats|spanish_moss|hanging_moss|hanging_roots|webbing|"
+                r"glow_lichen|nether_sprouts|twisting_vines|weeping_vines|"
+                r"dead_branch|dead_grass|tundra_shrub)$"),
         ("plant_produce", 1, 1)),
-    (re.compile(r"_mushroom$|mushroom_block$|mushroom_stem$"), ("plant_produce", 2, 2)),
+    (re.compile(r"_mushroom$|mushroom_block$|mushroom_stem$|fungus$|toadstool|"
+                r"glowshroom"), ("plant_produce", 2, 2)),
+
+    # --- amethyst / rose-quartz / dripstone clusters & buds (mining w/ care) --
+    (re.compile(r"(amethyst|rose_quartz).*(cluster|bud|chunk)$|^pointed_dripstone$"),
+        ("raw_gem", 2, 3)),
+
+    # --- froglights: nether (magma cube + frog) gated decorative blocks -------
+    (re.compile(r"_froglight$"), ("natural_block", 3, 3)),
+    # --- sculk family: deep-dark gated --------------------------------------
+    (re.compile(r"^sculk(_catalyst|_sensor|_shrieker|_vein)?$"), ("natural_block", 4, 4)),
+    # --- nether decorative growth / nylium / wart blocks ----------------------
+    (re.compile(r"^(crimson|warped)_nylium$|_wart_block$|^shroomlight$|^soul_soil$"),
+        ("natural_block", 3, 2)),
+    (re.compile(r"^crying_obsidian$"), ("raw_stone", 3, 3)),
+
+    # --- vanilla equipment that slipped through recipe pricing ---------------
+    # Material-tiered armor/tools/weapons. Chainmail has no craft recipe (loot/trade),
+    # so it gets a standalone cell; iron/gold equipment is mid-tier gear.
+    (re.compile(r"^chainmail_"), ("default", 4, 4)),
+    (re.compile(r"^iron_(sword|spear|pickaxe|axe|shovel|hoe|helmet|chestplate|"
+                r"leggings|boots|horse_armor)$"), ("raw_metal", 3, 3)),
+    (re.compile(r"^golden_(sword|spear|pickaxe|axe|shovel|hoe|helmet|chestplate|"
+                r"leggings|boots)$|^gold(en)?_horse_armor$"), ("raw_metal", 3, 3)),
+    (re.compile(r"^(copper|diamond|iron|golden)_(horse|nautilus)_armor$"),
+        ("default", 3, 3)),
+
+    # --- buckets of mobs/fluids: travel + capture, single-use novelty --------
+    (re.compile(r"_bucket$"), ("default", 3, 3)),
+
+    # --- eggs (chicken/blue/brown): trivial passive-mob drop -----------------
+    (re.compile(r"^(blue_|brown_)?egg$"), ("mob_drop", 2, 2)),
+
+    # --- prepared-food slices/portions across content mods -------------------
+    # Anything that reads as cooked/prepared food belongs in the food band, not
+    # the generic "default" tab fallback (which over-prices furniture-mod food).
+    (re.compile(r"_slice$|_cuts$|_chops$|^bacon$|^ham$|_pie$|_pie_slice$|"
+                r"^toast$|_sandwich$|_pizza_slice$|_flour$|^minced_beef$|"
+                r"^roast_chicken$|^honey_glazed_ham$|_cheesecake_slice$"),
+        ("plant_produce", 2, 2)),
+
+    # --- Create decorative palette blocks (pillars, alloy/metal blocks) ------
+    (re.compile(r"_pillar$|^(andesite_alloy|brass|zinc)_block$|^bound_cardboard_block$"),
+        ("raw_stone", 2, 2)),
+    # --- Create toolboxes (16 dye variants, identical utility) ---------------
+    (re.compile(r"_toolbox$"), ("default", 2, 3)),
+    # --- Create encased shafts / machine casings -----------------------------
+    (re.compile(r"_encased_shaft$|_casing$"), ("default", 2, 3)),
 ]
 
 # ---------------------------------------------------------------- per-category defaults
