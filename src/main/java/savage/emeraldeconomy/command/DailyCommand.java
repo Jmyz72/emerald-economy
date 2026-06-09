@@ -28,6 +28,8 @@ public class DailyCommand {
         UUID uuid = player.getUuid();
         EconomyConfig.RewardsConfig rewards = EconomyManager.getInstance().getConfig().rewards;
 
+        // Fabric command callbacks run on the server thread, and addBalance blocks on it, so this
+        // check -> pay -> markClaimed sequence runs atomically per player; no double-claim window.
         long now = System.currentTimeMillis();
         long remaining = DailyRewards.getInstance().cooldownRemainingFor(uuid, now, rewards.dailyCooldownHours);
         if (remaining > 0) {

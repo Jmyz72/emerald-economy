@@ -22,4 +22,14 @@ class DailyCommandTest {
     void formatsSubMinuteAsLessThanOne() {
         assertEquals("<1m", DailyCommand.formatDuration(30_000L));
     }
+
+    @Test
+    void formatsExactHourWithZeroMinutes() {
+        assertEquals("1h 0m", DailyCommand.formatDuration(60L * 60 * 1000L));
+    }
+
+    @Test
+    void formatsZeroAsLessThanOne() {
+        assertEquals("<1m", DailyCommand.formatDuration(0L));
+    }
 }
