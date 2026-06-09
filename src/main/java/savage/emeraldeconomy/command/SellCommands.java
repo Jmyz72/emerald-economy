@@ -19,11 +19,23 @@ import java.util.Map;
 
 public class SellCommands {
 
+    // Suggest only the sellable items the player actually has in their inventory (friendlier
+    // than listing the entire price book). Falls back to nothing for a non-player source.
     private static final com.mojang.brigadier.suggestion.SuggestionProvider<ServerCommandSource> SELLABLE_SUGGESTIONS =
-            (context, builder) -> CommandSupport.suggestItems(builder,
-                    EconomyManager.getInstance().getAllItemPrices().keySet().stream()
-                            .filter(id -> EconomyManager.getInstance().isSellable(id))
-                            .toList());
+            (context, builder) -> {
+                ServerPlayerEntity player = context.getSource().getPlayer();
+                java.util.LinkedHashSet<String> ids = new java.util.LinkedHashSet<>();
+                if (player != null) {
+                    EconomyManager eco = EconomyManager.getInstance();
+                    for (int i = 0; i < player.getInventory().size(); i++) {
+                        ItemStack s = player.getInventory().getStack(i);
+                        if (s.isEmpty()) continue;
+                        String id = Registries.ITEM.getId(s.getItem()).toString();
+                        if (eco.isSellable(id)) ids.add(id);
+                    }
+                }
+                return CommandSupport.suggestItems(builder, ids);
+            };
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(CommandManager.literal("worth")
