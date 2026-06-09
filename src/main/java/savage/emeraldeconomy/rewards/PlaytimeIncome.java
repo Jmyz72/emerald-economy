@@ -34,7 +34,10 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class PlaytimeIncome {
 
+    // In-memory only: a session is meaningful only while the player is online, so an in-progress
+    // session is intentionally NOT persisted (a hard crash drops it; see class javadoc).
     private static final Map<UUID, Long> sessionStart = new ConcurrentHashMap<>();
+    // Persisted to playtime.json so the welcome-back message survives a restart between payout and re-login.
     private static final Map<String, LastSession> lastSession = new ConcurrentHashMap<>();
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
