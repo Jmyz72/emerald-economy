@@ -112,6 +112,18 @@ CELL = {
     "minecraft:redstone": ("raw_metal", 2, 3),
     "minecraft:lapis_lazuli": ("raw_metal", 2, 3),
     "minecraft:quartz": ("raw_metal", 3, 3),
+    # Gem / multi-drop ores: the generic _ore$ rule's flat 200 is far below what these
+    # yield when mined (diamond_ore drops a 4000 diamond; lapis/redstone/copper drop
+    # 2-9 units), so without these they're a buy-ore/mine/sell-drop arbitrage. Priced at
+    # ~mining yield. (coal/emerald/quartz ores yield <=200 so the flat rule is safe there.)
+    "minecraft:diamond_ore": ("raw_gem", 4, 5),
+    "minecraft:deepslate_diamond_ore": ("raw_gem", 4, 5),
+    "minecraft:lapis_ore": ("raw_metal", 3, 4),
+    "minecraft:deepslate_lapis_ore": ("raw_metal", 3, 4),
+    "minecraft:redstone_ore": ("raw_metal", 3, 4),
+    "minecraft:deepslate_redstone_ore": ("raw_metal", 3, 4),
+    "minecraft:copper_ore": ("raw_metal", 3, 4),
+    "minecraft:deepslate_copper_ore": ("raw_metal", 3, 4),
     # Create alloys: ingot/raw forms pinned (same block-decompose collapse as vanilla).
     # brass ~= copper+zinc per unit (mixing makes 2 brass from 1 copper + 1 zinc).
     "create:zinc_ingot": ("raw_metal", 3, 3),
