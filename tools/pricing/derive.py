@@ -1,6 +1,6 @@
 """
 Derive buy/sell prices for every worth.json item from the extracted recipe graph
-+ anchors. Report-only by default; pass --write to update worth.json (with backup).
++ tiers. Report-only by default; pass --write to update worth.json (with backup).
 
   python tools/pricing/derive.py            # report + sanity table, writes nothing
   python tools/pricing/derive.py --write     # writes worth.json
