@@ -1,279 +1,141 @@
 # Emerald Economy
 
-A lightweight, **server-side only** economy mod for Minecraft 1.21.10 (Fabric), designed for SMP servers and multi-server networks. It provides a robust and modern economy system with support for JSON, SQLite, MySQL, and PostgreSQL storage, offline player support, leaderboards, physical bank notes, and player chest shops. No client installation required!
+A **server-side** economy mod for Minecraft **1.21.11** (Fabric). Vanilla **emeralds are the physical currency**: players convert emeralds to a stored balance and back, buy and sell items against an admin-curated price list, and trade through a clean chest-style shop GUI. No client mod required — everything renders on vanilla clients.
 
-## Features
+## Highlights
 
-*   **Economy System**: Tracks player balances with flexible storage options (JSON, SQLite, MySQL, PostgreSQL).
-*   **Server-Side Only**: No client installation required - fully compatible with vanilla clients.
-*   **Offline Support**: Supports payments and administrative actions for offline players who have joined the server at least once.
-*   **Common Economy API**: Full support for the [Common Economy API](https://github.com/Patbox/common-economy-api), allowing seamless integration with other mods like [Universal Shops](https://modrinth.com/mod/universal-shops), [Mob Money](https://modrinth.com/mod/mob-money), and other mods using the API.
-*   **Configuration**: Customizable default starting balance and currency formatting (symbol, position).
-*   **Autocompletion**: Smart tab completion for both online and offline player names.
-*   **Leaderboard**: View the top 10 richest players with `/baltop`.
-*   **Bank Notes**: Withdraw physical currency as vanilla paper items that can be traded or redeemed.
-*   **Sell System**: Configurable system to allow players to check item values and sell them (optional, disabled by default).
-*   **Chest Shops**: Player-owned shops using chests and signs with dynamic stock detection (optional, enabled by default).
-*   **Transaction Logging**: Comprehensive logging of all economy transactions with a searchable in-game command.
-*   **Database Support**: Choose between JSON (default), SQLite, MySQL, or PostgreSQL for data storage.
-*   **Multi-Server Ready**: Optimistic locking prevents race conditions, connection pooling for high-traffic networks.
-*   **Performance Caching**: Caffeine-based caching for instant balance lookups and reduced database load.
-*   **Redis Pub/Sub** (Optional): Real-time cross-server cache synchronization and transaction notifications.
+- **Emeralds as currency** — `$1 = 1 emerald`. Deposit emeralds to bank them, withdraw to get them back.
+- **Whitelist pricing** — items are tradeable only if you give them an explicit price in `worth.json`. A buy price makes an item buyable; a sell price makes it sellable; anything unpriced simply can't be traded. No global fallback price, no blacklist.
+- **Server-side shop GUI** (built on [sgui](https://github.com/Patbox/sgui)) — `/shop` opens a hub with Buy, Sell, Deposit, Withdraw, Transfer, and Top Balances screens. Works on vanilla clients.
+- **Commands** for everything the GUI does, for players who prefer typing.
+- **SQLite storage** with Caffeine caching and optimistic locking for safe concurrent updates.
+- **Common Economy API** provider (`emerald_economy`) — integrates with mods like [Universal Shops](https://modrinth.com/mod/universal-shops) and [Mob Money](https://modrinth.com/mod/mob-money).
+- **Permissions** via the [Fabric Permissions API](https://github.com/lucko/fabric-permissions-api) (LuckPerms etc.), with a vanilla OP-level fallback.
 
+## Requirements
 
-## Confirmed compatibility:
-[Universal Shops](https://modrinth.com/mod/universal-shops)
-[Mob Money](https://modrinth.com/mod/mob-money)
+- Minecraft 1.21.11, Fabric Loader ≥ 0.19.3
+- Fabric API
+- Java 21
 
+Bundled libraries (sgui, fabric-permissions-api, savdbcore, common-economy-api) are shipped inside the jar — no separate downloads needed.
+
+## Currency model
+
+- **Balance** is the banked money, shown with the currency symbol (default `$`).
+- **`/deposit`** converts emeralds in your inventory to balance, minus a configurable fee (`depositFeePercent`, default 20% burned → you keep 80%).
+- **`/withdraw`** converts balance back into whole emeralds (1 emerald = $1).
+- **`/buy`** spends balance and gives you the item; **`/sell`** removes items and credits balance.
+- **`/pay`** transfers balance between players.
+
+Emeralds themselves are never "priced" as a tradeable good — they are the currency.
 
 ## Commands
 
-### Player Commands
-*   `/bal` or `/balance`: Check your own balance.
-*   `/bal <player>`: Check another player's balance (Online or Offline).
-*   `/pay <player> <amount>`: Pay a specific amount to another player.
-*   `/baltop` or `/balancetop`: View the top 10 richest players on the server.
-*   `/withdraw <amount>`: Withdraw money as a physical bank note (vanilla paper item).
-*   `/worth`: Check the value of the item in your hand.
-*   `/worth all`: Check the value of all items in your inventory matching the one in your hand.
-*   `/worth list`: List all sellable items and their prices.
-*   `/worth <item>`: Check the value of a specific item (e.g., `minecraft:apple`).
-*   `/sell`: Sell the item stack currently in your hand.
-*   `/sell all`: Sell all items in your inventory matching the one in your hand.
+### Player
+| Command | Description |
+|---|---|
+| `/bal` · `/bal <player>` | Your balance, or another player's (online or offline). |
+| `/baltop` | Top balances. |
+| `/pay <player> <amount>` | Send balance to another player. |
+| `/deposit <amount>` · `/deposit all` | Convert emeralds → balance (minus deposit fee). |
+| `/withdraw <amount>` | Convert balance → emeralds. |
+| `/buy <item> <amount>` | Buy a priced item. |
+| `/sell` · `/sell all` | Sell the held stack / all matching it in your inventory. |
+| `/sell <item> <amount\|all>` | Sell a specific item by id from your inventory. |
+| `/worth` · `/worth all` · `/worth <item>` | Show an item's buy/sell price (or "not buyable/sellable"). |
+| `/worth list` | List every priced item. |
+| `/shop` | Open the shop GUI hub. |
 
-### Shop Commands
-*   `/shop create sell <price>`: Create a selling shop for the item in your hand (requires looking at a chest).
-*   `/shop create buy <price>`: Create a buying shop for the item in your hand.
-*   `/shop remove`: Enter "remove mode" - click your shop sign to remove it.
-*   `/shop list`: List all shops you own.
+### Shop GUI (`/shop`)
+Each hub slot is an item-button:
+- **Buy** — a creative-style screen with a category tab row (from your `worth.json` categories) and a paged item grid. Click to buy 1, shift-click to buy 64.
+- **Sell** — drop item stacks in and close; sellable items are sold and credited, everything else is returned. No items are ever lost, even on disconnect.
+- **Deposit** — drop emeralds in and close; they convert to balance (minus fee). Non-emeralds are returned.
+- **Withdraw** — type an amount, confirm, receive emeralds.
+- **Transfer** — pick an online player, type an amount, confirm.
+- **Top Balances** — read-only leaderboard.
 
-### Admin Commands (Level 2+)
-*   `/givemoney <player> <amount>`: Add money to a player's account.
-*   `/takemoney <player> <amount>`: Remove money from a player's account.
-*   `/setmoney <player> <amount>`: Set a player's balance to a specific amount.
-*   `/resetmoney <player>`: Reset a player's balance to the default starting value.
-*   `/shop create sell <price>` (then `/shop admin`): Create an Admin Shop (infinite stock).
-*   `/ecolog <target> <time> <unit> [page]`: Search transaction logs (e.g., `/ecolog * 1 h`).
-    *   `target`: Player name or `*` for all.
-    *   `time`: Number of time units (e.g., `1`, `30`).
-    *   `unit`: Time unit (`s`=seconds, `m`=minutes, `h`=hours, `d`=days).
-    *   `page`: Optional page number for pagination.
-*   `/ecodebug verify`: Test database connection and transaction safety (creates a temporary test account).
-*   `/ecodebug cleanup`: Remove the test account created by `/ecodebug verify`.
+### Admin (permission `emeraldeconomy.admin`, or OP level 2)
+| Command | Description |
+|---|---|
+| `/givemoney <player> <amount>` | Add balance. |
+| `/takemoney <player> <amount>` | Remove balance. |
+| `/setmoney <player> <amount>` | Set balance. |
+| `/resetmoney <player>` | Reset to the default starting balance. |
+| `/eco generateprices` | Populate `worth.json` with a price-less (`-`) entry for every item, grouped by creative tab — a skeleton for you to fill in. |
+| `/eco reload` | Reload `worth.json` after editing (no restart needed). |
+| `/ecolog <target> <time> <unit> [page]` | Search transaction logs (`unit` = `s`/`m`/`h`/`d`; `target` = name or `*`). |
+| `/ecodebug verify` · `cleanup` · `api` | Storage/transaction diagnostics. |
 
-## Configuration
+## Pricing (`worth.json`)
 
-The configuration file is located at `config/emerald-economy/config.json`.
+Located at `config/emerald-economy/worth.json`. Prices are grouped by creative-tab category. Each item has a `buy` and/or `sell` price; either may be `null` (shown as `-`), and an unlisted item has no price at all.
+
+```json
+{
+  "categories": {
+    "building_blocks": {
+      "minecraft:stone": { "buy": 5, "sell": 1 }
+    },
+    "ingredients": {
+      "minecraft:diamond": { "buy": 100, "sell": 60 },
+      "minecraft:emerald_ore": { "buy": null, "sell": 25 }
+    }
+  }
+}
+```
+
+- `buy` set → the item can be **bought**; `sell` set → it can be **sold**.
+- Both `null` → the item is listed but **not tradeable** (a skeleton awaiting prices).
+
+**Typical workflow:** run `/eco generateprices` once to source and categorize every item as `-` skeletons, hand-edit the prices you want, then `/eco reload`.
+
+## Configuration (`config/emerald-economy/config.json`)
 
 ```json
 {
   "defaultBalance": 1000,
   "currencySymbol": "$",
-  "symbolBeforeAmount": true,
-  "enableSellCommands": false,
-  "enableChestShops": true,
+  "depositFeePercent": 20,
   "storage": {
-    "type": "JSON",
-    "host": "localhost",
-    "port": 3306,
-    "database": "savs_economy",
-    "user": "root",
-    "password": "password",
     "tablePrefix": "emerald_eco_",
     "poolSize": 10,
     "connectionTimeout": 30000,
     "idleTimeout": 600000
-  },
-  "redis": {
-    "enabled": false,
-    "host": "localhost",
-    "port": 6379,
-    "password": "",
-    "channel": "savs-economy-updates",
-    "debugLogging": false
-  },
-  "apiNotificationMode": "ACTION_BAR",
-  "commandNotificationMode": "CHAT"
-}
-```
-
-*   `defaultBalance`: The amount of money new players start with (default: 1000).
-*   `currencySymbol`: The symbol used for currency (e.g., "$", "€", "Coins").
-*   `symbolBeforeAmount`: If true, shows "$100"; if false, shows "100$".
-*   `enableSellCommands`: Set to `true` to enable `/worth` and `/sell` commands.
-*   `enableChestShops`: Set to `true` to enable the chest shop system.
-*   `storage.type`: Storage backend to use (`JSON`, `SQLITE`, `MYSQL`, `POSTGRESQL`).
-*   `storage.host`: Database host (for MySQL/PostgreSQL).
-*   `storage.port`: Database port (for MySQL/PostgreSQL).
-*   `storage.database`: Database name (for MySQL/PostgreSQL).
-*   `storage.user`: Database username (for MySQL/PostgreSQL).
-*   `storage.password`: Database password (for MySQL/PostgreSQL).
-*   `storage.tablePrefix`: Prefix for database tables (for SQL backends).
-*   `storage.poolSize`: Connection pool size (default: 10, for SQL backends).
-*   `storage.connectionTimeout`: Connection timeout in milliseconds (default: 30000).
-*   `storage.idleTimeout`: Idle connection timeout in milliseconds (default: 600000).
-
-### Notification Settings
-*   `apiNotificationMode`: Controls generic notifications (e.g., "Balance updated") triggered by other mods via the API.
-    *   Options: `CHAT`, `ACTION_BAR`, `NONE`.
-    *   Default: `ACTION_BAR` (Recommended to reduce spam).
-*   `commandNotificationMode`: Controls feedback for direct commands (e.g., `/pay`, `/givemoney`).
-    *   Options: `CHAT`, `ACTION_BAR`, `NONE`.
-    *   Default: `CHAT`.
-
-### Redis Configuration (Optional)
-
-For multi-server networks, you can enable Redis Pub/Sub for real-time cache synchronization:
-
-```json
-"redis": {
-  "enabled": false,
-  "host": "localhost",
-  "port": 6379,
-  "password": "",
-  "channel": "savs-economy-updates",
-  "debugLogging": false
-}
-```
-
-*   `redis.enabled`: Set to `true` to enable Redis Pub/Sub (default: false).
-*   `redis.host`: Redis server hostname.
-*   `redis.port`: Redis server port (default: 6379).
-*   `redis.password`: Redis password (leave empty if no auth).
-*   `redis.channel`: Pub/Sub channel name (default: "savs-economy-updates").
-*   `redis.debugLogging`: Enable verbose Redis logging for debugging (default: false).
-
-## Database Support
-
-The mod supports multiple storage backends for economy data:
-
-### JSON (Default)
-- **File**: `config/emerald-economy/balances.json`
-- **Use Case**: Single servers, easy setup
-- **No additional setup required**
-
-### SQLite
-- **File**: `config/emerald-economy/economy_data.sqlite`
-- **Use Case**: Single servers with better performance than JSON
-- **Setup**: Just change `"type": "SQLITE"` in config
-
-### MySQL / MariaDB
-- **Use Case**: Multi-server networks, shared economy across servers
-- **Setup**:
-  1. Install MySQL/MariaDB on your server
-  2. Create database: `CREATE DATABASE savs_economy;`
-  3. Create user (optional): `CREATE USER 'minecraft'@'%' IDENTIFIED BY 'password';`
-  4. Grant permissions: `GRANT ALL PRIVILEGES ON savs_economy.* TO 'minecraft'@'%';`
-  5. Update config with connection details
-
-### PostgreSQL
-- **Use Case**: Advanced multi-server setups
-- **Setup**: Similar to MySQL, but use PostgreSQL commands
-
-**Example MySQL/MariaDB Config:**
-```json
-"storage": {
-  "type": "MYSQL",
-  "host": "your-database-server.com",
-  "port": 3306,
-  "database": "savs_economy",
-  "user": "minecraft",
-  "password": "your_secure_password",
-  "tablePrefix": "emerald_eco_"
-}
-```
-
-**Note**: For multi-server networks:
-- All servers should point to the same database with identical configuration
-- Enable Redis Pub/Sub for instant cache synchronization across servers
-- Transaction safety is ensured via optimistic locking (version-based concurrency control)
-- Connection pooling is automatically configured for high-traffic environments
-
-### Multi-Server Setup (Velocity/BungeeCord)
-
-For networks with multiple Minecraft servers sharing the same economy:
-
-1. **Database**: Use MySQL or PostgreSQL (not JSON/SQLite)
-2. **Redis** (Recommended): Install Redis and enable it in config for real-time sync
-3. **Configuration**: Ensure all servers have identical database and Redis settings
-
-**With Redis enabled:**
-- Players receive transaction notifications instantly across servers
-- Balance changes are synchronized in real-time
-- Cache invalidation happens automatically
-
-**Without Redis:**
-- Balance changes are still safe (optimistic locking prevents conflicts)
-- Players see updated balances when they check `/bal`
-- Slightly higher database load (no caching between servers)
-
-### Worth Configuration
-
-If `enableSellCommands` is true, a `worth.json` file will be created in the same directory. Use this to define item prices:
-
-```json
-{
-  "itemPrices": {
-    "minecraft:apple": 10.0,
-    "minecraft:diamond": 100.0
   }
 }
 ```
 
-## Chest Shops
-
-Chest shops allow players to buy and sell items using chests and signs.
-
-**How to create a Shop:**
-1. Place a chest and put items in it (if selling).
-2. Hold the item you want to trade in your main hand.
-3. Look at the chest.
-4. Run `/shop create sell <price>` to create a shop that **sells** to players.
-5. Run `/shop create buy <price>` to create a shop that **buys** from players.
-
-**Interaction:**
-- **Right-click** the sign to interact.
-- Type the amount you want to buy/sell in chat (or type `all`).
-- Signs automatically update to show current stock or available space!
-
-## Bank Notes
-
-Bank notes are physical representations of currency that can be traded between players or used with chest shop mods. They appear as vanilla paper items with a custom name showing their value.
-
-**How to use:**
-1. Use `/withdraw <amount>` to convert your balance into a bank note
-2. The bank note appears as a paper item in your inventory
-3. Trade it with other players or use it in chest shops
-4. Right-click the bank note to redeem it back into your balance
-
-**Features:**
-*   Fully vanilla-compatible (appears as paper to clients)
-*   Shows value in the item name (e.g., "Bank Note: $100.0")
-*   Can be stacked if same value
-*   Server-side validation prevents duplication
+- `defaultBalance` — starting balance for new players.
+- `currencySymbol` — currency display symbol.
+- `depositFeePercent` — percent of deposited emerald value burned as a fee (0–100; 20 = keep 80%).
+- `storage.*` — SQLite table prefix and connection-pool tuning. The database file (`economy_data.sqlite`) lives in the same config directory.
 
 ## Permissions
-This mod supports the [Fabric Permissions API](https://github.com/lucko/fabric-permissions-api). To manage these permissions, you will need a permissions management mod such as **[LuckPerms](https://luckperms.net/)** (recommended) or any other mod that implements the Fabric Permissions API.
 
-If no permissions mod is installed, the mod falls back to vanilla OP levels (Level 2 for admin commands).
+Uses the Fabric Permissions API; install LuckPerms (or any implementer) to manage nodes. Without a permissions mod, the mod falls back to vanilla OP levels (admin = level 2).
 
-### Player Permissions (Default: true)
-*   `emeraldeconomy.command.bal`: Access to `/bal` (self).
-*   `emeraldeconomy.command.bal.others`: Access to `/bal <player>`.
-*   `emeraldeconomy.command.pay`: Access to `/pay`.
-*   `emeraldeconomy.command.withdraw`: Access to `/withdraw`.
-*   `emeraldeconomy.command.baltop`: Access to `/baltop`.
-*   `emeraldeconomy.command.worth`: Access to `/worth`.
-*   `emeraldeconomy.command.sell`: Access to `/sell`.
-*   `emeraldeconomy.shop.create`: Access to `/shop create`.
-*   `emeraldeconomy.shop.remove`: Access to `/shop remove` (own shops).
-*   `emeraldeconomy.shop.info`: Access to `/shop info`.
-*   `emeraldeconomy.shop.list`: Access to `/shop list`.
+**Player nodes (default allowed):**
+`emeraldeconomy.command.bal`, `…bal.others`, `…baltop`, `…pay`, `…deposit`, `…withdraw`, `…buy`, `…sell`, `…worth`, `…shop`
 
-### Admin Permissions (Default: OP Level 2)
-*   `emeraldeconomy.admin`: Grants access to all admin features:
-    *   `/givemoney`, `/takemoney`, `/setmoney`, `/resetmoney`
-    *   `/ecolog` (view transaction logs)
-    *   `/ecodebug verify` and `/ecodebug cleanup` (database testing)
-    *   `/shop admin` (create admin shops)
-    *   **Shop Removal Override**: Ability to remove ANY player's shop.
+**Admin node (default OP level 2):**
+`emeraldeconomy.admin` — `/givemoney`, `/takemoney`, `/setmoney`, `/resetmoney`, `/eco`, `/ecolog`, `/ecodebug`.
+
+## Building
+
+Requires JDK 21. From the repo root:
+
+```bash
+./gradlew build
+```
+
+The mod jar is produced at `build/libs/emerald-economy-<version>.jar`.
+
+## Mod integration (Common Economy API)
+
+Emerald Economy registers a [Common Economy API](https://github.com/Patbox/common-economy-api) provider with id **`emerald_economy`** and currency **`emerald_economy:dollar`**, so other economy-aware mods can read and modify balances. See `src/main/java/savage/emeraldeconomy/integration/` for the provider implementation and integration notes.
+
+## License
+
+CC0-1.0.

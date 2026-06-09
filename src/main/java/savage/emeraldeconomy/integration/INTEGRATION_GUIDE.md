@@ -19,12 +19,12 @@ You need to implement three core interfaces:
 ### 1. EconomyProvider
 The main entry point. It manages currencies and accounts.
 - **Key Methods:** `getCurrencies()`, `getAccounts(GameProfile)`, `getAccount(GameProfile, currencyId)`.
-- **Singleton:** It's best to implement this as a singleton (e.g., `SavsEconomyProvider.INSTANCE`).
+- **Singleton:** It's best to implement this as a singleton (e.g., `EmeraldEconomyProvider.INSTANCE`).
 
 ### 2. EconomyCurrency
 Represents a specific currency (e.g., "Dollars").
 - **Key Methods:** `formatValue(long)`, `parseValue(String)`.
-- **ID:** Must be unique (e.g., `savs_common_economy:dollar`).
+- **ID:** Must be unique (e.g., `emerald_economy:dollar`).
 
 ### 3. EconomyAccount
 Represents a player's account for a specific currency.
@@ -38,7 +38,7 @@ Register your provider in your mod's initializer (`onInitialize` or `onInitializ
 import eu.pb4.common.economy.api.CommonEconomy;
 
 public void onInitialize() {
-    CommonEconomy.register("savs_common_economy", SavsEconomyProvider.INSTANCE);
+    CommonEconomy.register("emerald_economy", EmeraldEconomyProvider.INSTANCE);
 }
 ```
 
@@ -56,7 +56,7 @@ Version `1.1.1` attempts to access the `server` field in `ServerPlayerEntity`. I
 **Implementation:**
 To bridge this gap, we included a standard Fabric **Access Widener**. This allows the API to interact with the game field as intended, ensuring that version `1.1.1` functions perfectly within the 1.21 environment.
 
-1.  **Access Widener (`src/main/resources/savs-common-economy.accesswidener`):**
+1.  **Access Widener (`src/main/resources/emerald-economy.accesswidener`):**
     ```accesswidener
     accessWidener	v1	named
     accessible field net/minecraft/server/network/ServerPlayerEntity server Lnet/minecraft/server/MinecraftServer;
@@ -65,7 +65,7 @@ To bridge this gap, we included a standard Fabric **Access Widener**. This allow
 2.  **Configuration (`fabric.mod.json`):**
     ```json
     {
-      "accessWidener": "savs-common-economy.accesswidener",
+      "accessWidener": "emerald-economy.accesswidener",
       ...
     }
     ```

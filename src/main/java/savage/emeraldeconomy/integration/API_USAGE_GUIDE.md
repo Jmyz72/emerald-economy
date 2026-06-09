@@ -1,6 +1,6 @@
 # Common Economy API: Correct Usage Guide
 
-This guide documents the correct pattern for interacting with the **Common Economy API** to ensure compatibility with various providers (e.g., Savs Common Economy, Fuji, Impactor).
+This guide documents the correct pattern for interacting with the **Common Economy API** to ensure compatibility with various providers (e.g., Emerald Economy, Fuji, Impactor).
 
 ## The Lookup Pattern
 
@@ -11,7 +11,7 @@ When interacting with the API, you should follow a hierarchical lookup pattern: 
 
 ```java
 // CORRECT: Look up by namespace
-String providerId = "savs_common_economy"; // or "fuji", "impactor"
+String providerId = "emerald_economy"; // or "fuji", "impactor"
 EconomyProvider provider = CommonEconomy.getProvider(providerId);
 
 if (provider == null) {
