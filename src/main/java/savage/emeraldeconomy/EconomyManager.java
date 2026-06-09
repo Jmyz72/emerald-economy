@@ -147,6 +147,18 @@ public class EconomyManager {
                 this.config = new EconomyConfig();
             }
         }
+
+        // Gson leaves a missing or explicitly-null field at null; never let config or its
+        // nested blocks be null, so live consumers can dereference them unconditionally.
+        if (this.config == null) {
+            this.config = new EconomyConfig();
+        }
+        if (this.config.rewards == null) {
+            this.config.rewards = new EconomyConfig.RewardsConfig();
+        }
+        if (this.config.storage == null) {
+            this.config.storage = new EconomyConfig.StorageConfig();
+        }
     }
 
     /** Re-read config.json into memory so /eco reload retunes reward/economy knobs live. */
