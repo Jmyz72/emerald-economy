@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "savs-common-economy",
+	"id": "emerald-economy",
 	"version": "${version}",
-	"name": "Savs Common Economy",
+	"name": "Emerald Economy",
 	"description": "Server-side economy for Fabric: a server-wide buy/sell command economy with vanilla emeralds as physical currency, SQLite storage, and Common Economy API integration.",
 	"authors": [
 		"Jmyz72"
@@ -13,17 +13,17 @@
 		"issues": "https://github.com/Jmyz72/emerald-economy/issues"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/savs-common-economy/icon.png",
+	"icon": "assets/emerald-economy/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"savage.commoneconomy.SavsCommonEconomy"
+			"savage.emeraldeconomy.EmeraldEconomy"
 		],
 		"fabric-datagen": [
-			"savage.commoneconomy.SavsCommonEconomyDataGenerator"
+			"savage.emeraldeconomy.EmeraldEconomyDataGenerator"
 		]
 	},
-	"accessWidener": "savs-common-economy.accesswidener",
+	"accessWidener": "emerald-economy.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.19.3",
 		"minecraft": "~1.21.11",

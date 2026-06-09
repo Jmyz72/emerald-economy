@@ -1,4 +1,4 @@
-# Savs Common Economy
+# Emerald Economy
 
 A lightweight, **server-side only** economy mod for Minecraft 1.21.10 (Fabric), designed for SMP servers and multi-server networks. It provides a robust and modern economy system with support for JSON, SQLite, MySQL, and PostgreSQL storage, offline player support, leaderboards, physical bank notes, and player chest shops. No client installation required!
 
@@ -63,7 +63,7 @@ A lightweight, **server-side only** economy mod for Minecraft 1.21.10 (Fabric), 
 
 ## Configuration
 
-The configuration file is located at `config/savs-common-economy/config.json`.
+The configuration file is located at `config/emerald-economy/config.json`.
 
 ```json
 {
@@ -79,7 +79,7 @@ The configuration file is located at `config/savs-common-economy/config.json`.
     "database": "savs_economy",
     "user": "root",
     "password": "password",
-    "tablePrefix": "savs_eco_",
+    "tablePrefix": "emerald_eco_",
     "poolSize": 10,
     "connectionTimeout": 30000,
     "idleTimeout": 600000
@@ -148,12 +148,12 @@ For multi-server networks, you can enable Redis Pub/Sub for real-time cache sync
 The mod supports multiple storage backends for economy data:
 
 ### JSON (Default)
-- **File**: `config/savs-common-economy/balances.json`
+- **File**: `config/emerald-economy/balances.json`
 - **Use Case**: Single servers, easy setup
 - **No additional setup required**
 
 ### SQLite
-- **File**: `config/savs-common-economy/economy_data.sqlite`
+- **File**: `config/emerald-economy/economy_data.sqlite`
 - **Use Case**: Single servers with better performance than JSON
 - **Setup**: Just change `"type": "SQLITE"` in config
 
@@ -179,7 +179,7 @@ The mod supports multiple storage backends for economy data:
   "database": "savs_economy",
   "user": "minecraft",
   "password": "your_secure_password",
-  "tablePrefix": "savs_eco_"
+  "tablePrefix": "emerald_eco_"
 }
 ```
 
@@ -258,20 +258,20 @@ This mod supports the [Fabric Permissions API](https://github.com/lucko/fabric-p
 If no permissions mod is installed, the mod falls back to vanilla OP levels (Level 2 for admin commands).
 
 ### Player Permissions (Default: true)
-*   `savscommoneconomy.command.bal`: Access to `/bal` (self).
-*   `savscommoneconomy.command.bal.others`: Access to `/bal <player>`.
-*   `savscommoneconomy.command.pay`: Access to `/pay`.
-*   `savscommoneconomy.command.withdraw`: Access to `/withdraw`.
-*   `savscommoneconomy.command.baltop`: Access to `/baltop`.
-*   `savscommoneconomy.command.worth`: Access to `/worth`.
-*   `savscommoneconomy.command.sell`: Access to `/sell`.
-*   `savscommoneconomy.shop.create`: Access to `/shop create`.
-*   `savscommoneconomy.shop.remove`: Access to `/shop remove` (own shops).
-*   `savscommoneconomy.shop.info`: Access to `/shop info`.
-*   `savscommoneconomy.shop.list`: Access to `/shop list`.
+*   `emeraldeconomy.command.bal`: Access to `/bal` (self).
+*   `emeraldeconomy.command.bal.others`: Access to `/bal <player>`.
+*   `emeraldeconomy.command.pay`: Access to `/pay`.
+*   `emeraldeconomy.command.withdraw`: Access to `/withdraw`.
+*   `emeraldeconomy.command.baltop`: Access to `/baltop`.
+*   `emeraldeconomy.command.worth`: Access to `/worth`.
+*   `emeraldeconomy.command.sell`: Access to `/sell`.
+*   `emeraldeconomy.shop.create`: Access to `/shop create`.
+*   `emeraldeconomy.shop.remove`: Access to `/shop remove` (own shops).
+*   `emeraldeconomy.shop.info`: Access to `/shop info`.
+*   `emeraldeconomy.shop.list`: Access to `/shop list`.
 
 ### Admin Permissions (Default: OP Level 2)
-*   `savscommoneconomy.admin`: Grants access to all admin features:
+*   `emeraldeconomy.admin`: Grants access to all admin features:
     *   `/givemoney`, `/takemoney`, `/setmoney`, `/resetmoney`
     *   `/ecolog` (view transaction logs)
     *   `/ecodebug verify` and `/ecodebug cleanup` (database testing)
