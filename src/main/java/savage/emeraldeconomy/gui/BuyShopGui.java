@@ -138,10 +138,10 @@ public class BuyShopGui extends SimpleGui {
         ServerPlayerEntity p = getPlayer();
         switch (r.status()) {
             case OK -> p.sendMessage(Text.literal("Bought " + r.amount() + "x " + itemId
-                    + " for " + EconomyManager.getInstance().format(r.total())), true);
-            case INSUFFICIENT_FUNDS -> p.sendMessage(Text.literal("Insufficient funds."), true);
-            case NOT_TRADEABLE -> p.sendMessage(Text.literal("Not available."), true);
-            default -> p.sendMessage(Text.literal("Transaction failed."), true);
+                    + " for " + EconomyManager.getInstance().format(r.total())), false);
+            case INSUFFICIENT_FUNDS -> p.sendMessage(Text.literal("Insufficient funds."), false);
+            case NOT_TRADEABLE -> p.sendMessage(Text.literal("Not available."), false);
+            default -> p.sendMessage(Text.literal("Transaction failed."), false);
         }
     }
 }

@@ -28,7 +28,7 @@ public class ShopHubGui extends SimpleGui {
         setButton(11, Items.HOPPER, "Sell", () -> new SellShopGui(p).open());
         setButton(13, Items.EMERALD_BLOCK, "Deposit", () -> new DepositShopGui(p).open());
         setButton(14, Items.GOLD_INGOT, "Withdraw", () -> new WithdrawShopGui(p).open());
-        setButton(15, Items.PAPER, "Transfer", () -> new TransferShopGui(p).open());
+        setButton(15, Items.PAPER, "Pay", () -> new TransferShopGui(p).open());
         setButton(16, Items.PLAYER_HEAD, "Top Balances", () -> new TopBalancesShopGui(p).open());
     }
 

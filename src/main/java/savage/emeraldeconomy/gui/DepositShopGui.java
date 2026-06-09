@@ -11,36 +11,40 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import savage.emeraldeconomy.EconomyManager;
 
-/** Drop emeralds in; on close they convert to balance (minus fee). Non-emeralds are returned. */
+/**
+ * Drop emeralds in and click "Deposit" to convert them to balance (minus fee); the screen
+ * stays open. "Back" returns to the hub, handing back anything still in the grid.
+ * Closing/Esc/disconnect always RETURNS the dropped items — converting only happens on an
+ * explicit "Deposit" click, and items are never destroyed.
+ */
 public class DepositShopGui extends SimpleGui {
     private static final int DROP_SLOTS = 45;
     private final SimpleInventory inv = new SimpleInventory(DROP_SLOTS);
-    private boolean settled = false; // guards against onClose firing twice (Back button -> double close)
+    private boolean returned = false; // guards the return-items pass (runs once)
 
     public DepositShopGui(ServerPlayerEntity player) {
         super(ScreenHandlerType.GENERIC_9X6, player, false);
-        setTitle(Text.literal("Deposit — drop emeralds, close to convert"));
+        setTitle(Text.literal("Deposit — drop emeralds, then click Deposit"));
         for (int i = 0; i < DROP_SLOTS; i++) {
             setSlotRedirect(i, new Slot(inv, i, 0, 0));
         }
-        setSlot(49, new GuiElementBuilder(Items.BARRIER).setName(Text.literal("Back / Deposit & close"))
-                .setCallback((i, t, a, g) -> close()));
-        // Ensure dropped emeralds are settled even on an abrupt disconnect (sgui onClose won't fire then).
-        ShopDropGuis.register(player.getUuid(), this::settle);
+        setSlot(48, new GuiElementBuilder(Items.EMERALD_BLOCK).setName(Text.literal("Deposit dropped emeralds"))
+                .setCallback((i, t, a, g) -> depositDropped()));
+        setSlot(50, new GuiElementBuilder(Items.BARRIER).setName(Text.literal("Back"))
+                .setCallback((i, t, a, g) -> { returnAll(); new ShopHubGui(getPlayer()).open(); }));
+        // If the player disconnects with items in the grid, return them (onClose won't fire then).
+        ShopDropGuis.register(player.getUuid(), this::returnAll);
     }
 
     @Override
     public void onClose() {
-        settle();
+        returnAll(); // closing / Esc / disconnect returns dropped items, never deposits
         super.onClose();
     }
 
-    /** Convert dropped emeralds / return non-emeralds. Runs once (guards against double close and disconnect). */
-    private void settle() {
-        if (settled) return;
-        settled = true;
+    /** Convert dropped emeralds to balance; immediately hand back any non-emeralds. Screen stays open. */
+    private void depositDropped() {
         ServerPlayerEntity p = getPlayer();
-        ShopDropGuis.unregister(p.getUuid());
         int emeralds = 0;
         for (int i = 0; i < inv.size(); i++) {
             ItemStack stack = inv.getStack(i);
@@ -48,20 +52,35 @@ public class DepositShopGui extends SimpleGui {
             if (stack.getItem() == Items.EMERALD) {
                 emeralds += stack.getCount();
             } else {
-                p.getInventory().offerOrDrop(stack.copy()); // return non-emeralds
+                p.getInventory().offerOrDrop(stack.copy()); // non-emeralds go straight back
             }
+            inv.setStack(i, ItemStack.EMPTY);
+        }
+        if (emeralds == 0) {
+            p.sendMessage(Text.literal("No emeralds in the grid to deposit."), false);
+            return;
+        }
+        EconomyManager.DepositResult dr = EconomyManager.getInstance().depositEmeralds(p.getUuid(), emeralds);
+        if (dr.ok()) {
+            p.sendMessage(Text.literal("Deposited " + emeralds + " emeralds → "
+                    + EconomyManager.getInstance().format(dr.net()) + " (fee " + dr.feePercent() + "%)"), false);
+        } else {
+            // credit failed: return the emeralds so nothing is lost
+            p.getInventory().offerOrDrop(new ItemStack(Items.EMERALD, emeralds));
+            p.sendMessage(Text.literal("Deposit failed; emeralds returned."), false);
+        }
+    }
+
+    /** Return every dropped stack to the player (no deposit). Runs once. */
+    private void returnAll() {
+        if (returned) return;
+        returned = true;
+        ServerPlayerEntity p = getPlayer();
+        ShopDropGuis.unregister(p.getUuid());
+        for (int i = 0; i < inv.size(); i++) {
+            ItemStack stack = inv.getStack(i);
+            if (!stack.isEmpty()) p.getInventory().offerOrDrop(stack.copy());
         }
         inv.clear();
-        if (emeralds > 0) {
-            EconomyManager.DepositResult dr = EconomyManager.getInstance().depositEmeralds(p.getUuid(), emeralds);
-            if (dr.ok()) {
-                p.sendMessage(Text.literal("Deposited " + emeralds + " emeralds → "
-                        + EconomyManager.getInstance().format(dr.net()) + " (fee " + dr.feePercent() + "%)"), false);
-            } else {
-                // credit failed: return the emeralds so nothing is lost
-                p.getInventory().offerOrDrop(new ItemStack(Items.EMERALD, emeralds));
-                p.sendMessage(Text.literal("Deposit failed; emeralds returned."), false);
-            }
-        }
     }
 }

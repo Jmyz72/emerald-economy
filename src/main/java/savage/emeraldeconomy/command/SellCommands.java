@@ -83,35 +83,27 @@ public class SellCommands {
 
     private static int checkAllWorth(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerPlayerEntity player = context.getSource().getPlayerOrThrow();
-        ItemStack handStack = player.getMainHandStack();
+        EconomyManager eco = EconomyManager.getInstance();
 
-        if (handStack.isEmpty()) {
-            context.getSource().sendError(Text.literal("You are not holding any item."));
-            return 0;
-        }
-
-        String itemId = Registries.ITEM.getId(handStack.getItem()).toString();
-        if (EconomyManager.getInstance().isCurrencyItem(itemId)) {
-            context.getSource().sendError(Text.literal("Emeralds are currency — use /deposit instead."));
-            return 0;
-        }
-        if (!EconomyManager.getInstance().isSellable(itemId)) {
-            context.getSource().sendError(Text.literal("This item cannot be sold."));
-            return 0;
-        }
-        BigDecimal price = EconomyManager.getInstance().getSellPrice(itemId);
-
-        int totalCount = 0;
+        BigDecimal total = BigDecimal.ZERO;
+        int count = 0;
         for (int i = 0; i < player.getInventory().size(); i++) {
             ItemStack stack = player.getInventory().getStack(i);
-            if (!stack.isEmpty() && stack.getItem() == handStack.getItem()) {
-                totalCount += stack.getCount();
-            }
+            if (stack.isEmpty()) continue;
+            String itemId = Registries.ITEM.getId(stack.getItem()).toString();
+            if (eco.isCurrencyItem(itemId) || !eco.isSellable(itemId)) continue;
+            total = total.add(eco.getSellPrice(itemId).multiply(BigDecimal.valueOf(stack.getCount())));
+            count += stack.getCount();
         }
 
-        BigDecimal totalValue = price.multiply(BigDecimal.valueOf(totalCount));
-        int finalTotalCount = totalCount;
-        context.getSource().sendFeedback(() -> Text.literal("Worth of all " + finalTotalCount + "x " + itemId + " in inventory: " + EconomyManager.getInstance().format(totalValue)), false);
+        if (count == 0) {
+            context.getSource().sendError(Text.literal("You have no sellable items."));
+            return 0;
+        }
+        final BigDecimal finalTotal = total;
+        final int finalCount = count;
+        context.getSource().sendFeedback(() -> Text.literal("Your " + finalCount
+                + " sellable item(s) are worth " + eco.format(finalTotal) + " total"), false);
         return 1;
     }
 
@@ -172,17 +164,19 @@ public class SellCommands {
 
     private static int sellAll(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerPlayerEntity player = context.getSource().getPlayerOrThrow();
-        ItemStack handStack = player.getMainHandStack();
-
-        if (handStack.isEmpty()) {
-            context.getSource().sendError(Text.literal("You are not holding any item."));
+        savage.emeraldeconomy.economy.TradeService.Result r =
+                savage.emeraldeconomy.economy.TradeService.sellEverything(player);
+        if (r.status() == savage.emeraldeconomy.economy.TradeService.Status.NONE_HELD) {
+            context.getSource().sendError(Text.literal("You have no sellable items."));
             return 0;
         }
-
-        String itemId = Registries.ITEM.getId(handStack.getItem()).toString();
-        savage.emeraldeconomy.economy.TradeService.Result r =
-                savage.emeraldeconomy.economy.TradeService.sell(player, itemId, Integer.MAX_VALUE);
-        return reportSell(context, r, itemId);
+        if (!r.ok()) {
+            context.getSource().sendError(Text.literal("Transaction failed. Please try again."));
+            return 0;
+        }
+        context.getSource().sendFeedback(() -> Text.literal("Sold " + r.amount() + " item(s) for "
+                + EconomyManager.getInstance().format(r.total())), false);
+        return 1;
     }
 
     private static int sellItem(CommandContext<ServerCommandSource> context, int maxAmount) throws CommandSyntaxException {

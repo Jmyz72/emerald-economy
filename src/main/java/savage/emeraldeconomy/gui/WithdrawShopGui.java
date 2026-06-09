@@ -18,6 +18,8 @@ public class WithdrawShopGui extends AnvilInputGui {
         // setDefaultInputValue seeds the input text AND configures slot 0 (the paper item).
         // Do not override slot 0 manually; getInput() is initialized to "" and never null.
         setDefaultInputValue("");
+        setSlot(1, new GuiElementBuilder(Items.BARRIER).setName(Text.literal("Back"))
+                .setCallback((i, t, a, g) -> new ShopHubGui(getPlayer()).open()));
         setSlot(2, new GuiElementBuilder(Items.LIME_CONCRETE).setName(Text.literal("Confirm"))
                 .setCallback((i, t, a, g) -> confirm()));
     }

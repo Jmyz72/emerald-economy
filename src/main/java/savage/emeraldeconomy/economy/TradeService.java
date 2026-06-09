@@ -87,4 +87,28 @@ public final class TradeService {
                 "Sold " + toSell + "x " + itemId);
         return new Result(Status.OK, toSell, total);
     }
+
+    /**
+     * Sell every sellable stack in the player's whole inventory (across all item types).
+     * Returns NONE_HELD if the inventory has nothing sellable; otherwise OK with the total
+     * item count and total credited.
+     */
+    public static Result sellEverything(ServerPlayerEntity player) {
+        EconomyManager eco = EconomyManager.getInstance();
+        java.util.LinkedHashSet<String> ids = new java.util.LinkedHashSet<>();
+        for (int i = 0; i < player.getInventory().size(); i++) {
+            ItemStack s = player.getInventory().getStack(i);
+            if (s.isEmpty()) continue;
+            String id = Registries.ITEM.getId(s.getItem()).toString();
+            if (!eco.isCurrencyItem(id) && eco.isSellable(id)) ids.add(id);
+        }
+        if (ids.isEmpty()) return Result.of(Status.NONE_HELD);
+        BigDecimal grandTotal = BigDecimal.ZERO;
+        int totalItems = 0;
+        for (String id : ids) {
+            Result r = sell(player, id, Integer.MAX_VALUE);
+            if (r.ok()) { grandTotal = grandTotal.add(r.total()); totalItems += r.amount(); }
+        }
+        return new Result(Status.OK, totalItems, grandTotal);
+    }
 }

@@ -19,6 +19,8 @@ public class TransferAmountGui extends AnvilInputGui {
         setTitle(Text.literal("Pay " + target.getName().getString()));
         // Do NOT setSlot(0): AnvilInputGui.setDefaultInputValue owns slot 0.
         setDefaultInputValue("");
+        setSlot(1, new GuiElementBuilder(Items.BARRIER).setName(Text.literal("Back"))
+                .setCallback((i, t, a, g) -> new TransferShopGui(getPlayer()).open()));
         setSlot(2, new GuiElementBuilder(Items.LIME_CONCRETE).setName(Text.literal("Confirm"))
                 .setCallback((i, t, a, g) -> confirm()));
     }

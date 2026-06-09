@@ -22,7 +22,7 @@ public class TransferShopGui extends SimpleGui {
     }
 
     private void render() {
-        setTitle(Text.literal("Transfer — pick a player"));
+        setTitle(Text.literal("Pay — pick a player"));
         List<ServerPlayerEntity> online = new ArrayList<>(
                 EconomyManager.getInstance().getServer().getPlayerManager().getPlayerList());
         online.removeIf(t -> t.getUuid().equals(getPlayer().getUuid())); // not yourself
