@@ -3,6 +3,8 @@ package savage.emeraldeconomy.command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
+import com.mojang.brigadier.suggestion.Suggestions;
+import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.minecraft.command.CommandSource;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -10,8 +12,11 @@ import net.minecraft.text.Text;
 import savage.emeraldeconomy.EconomyManager;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 /** Shared helpers used by the balance and admin-money command groups. */
 final class CommandSupport {
@@ -53,5 +58,22 @@ final class CommandSupport {
 
     static void sendCommandFeedback(CommandContext<ServerCommandSource> context, String message, boolean broadcastToOps) {
         context.getSource().sendFeedback(() -> Text.literal(message), broadcastToOps);
+    }
+
+    /**
+     * Suggest item ids, matching the typed text against BOTH the full id and the bare
+     * path. Vanilla {@code suggestMatching} only matches the start of the full id, so
+     * typing "elytra" would suggest nothing; here it suggests "minecraft:elytra".
+     */
+    static CompletableFuture<Suggestions> suggestItems(SuggestionsBuilder builder, Collection<String> ids) {
+        String rem = builder.getRemaining().toLowerCase(Locale.ROOT);
+        for (String id : ids) {
+            int colon = id.indexOf(':');
+            String path = colon >= 0 ? id.substring(colon + 1) : id;
+            if (id.startsWith(rem) || path.startsWith(rem)) {
+                builder.suggest(id);
+            }
+        }
+        return builder.buildFuture();
     }
 }

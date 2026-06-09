@@ -20,11 +20,10 @@ import java.util.Map;
 public class SellCommands {
 
     private static final com.mojang.brigadier.suggestion.SuggestionProvider<ServerCommandSource> SELLABLE_SUGGESTIONS =
-            (context, builder) -> net.minecraft.command.CommandSource.suggestMatching(
+            (context, builder) -> CommandSupport.suggestItems(builder,
                     EconomyManager.getInstance().getAllItemPrices().keySet().stream()
                             .filter(id -> EconomyManager.getInstance().isSellable(id))
-                            .toList(),
-                    builder);
+                            .toList());
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(CommandManager.literal("worth")

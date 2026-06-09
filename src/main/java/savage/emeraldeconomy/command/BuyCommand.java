@@ -5,38 +5,34 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
-import net.minecraft.command.CommandSource;
 import net.minecraft.command.argument.IdentifierArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import savage.emeraldeconomy.EconomyManager;
 
 public class BuyCommand {
 
     private static final SuggestionProvider<ServerCommandSource> ITEM_SUGGESTIONS = (context, builder) ->
-            CommandSource.suggestMatching(
+            CommandSupport.suggestItems(builder,
                     EconomyManager.getInstance().getAllItemPrices().keySet().stream()
                             .filter(id -> EconomyManager.getInstance().isBuyable(id))
-                            .toList(),
-                    builder);
+                            .toList());
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(CommandManager.literal("buy")
                 .requires(source -> savage.emeraldeconomy.util.PermissionsHelper.check(source, "emeraldeconomy.command.buy", true))
                 .then(CommandManager.argument("item", IdentifierArgumentType.identifier())
                         .suggests(ITEM_SUGGESTIONS)
+                        .executes(ctx -> buy(ctx, 1))
                         .then(CommandManager.argument("amount", IntegerArgumentType.integer(1))
-                                .executes(BuyCommand::buy))));
+                                .executes(ctx -> buy(ctx, IntegerArgumentType.getInteger(ctx, "amount"))))));
     }
 
-    private static int buy(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+    private static int buy(CommandContext<ServerCommandSource> context, int amount) throws CommandSyntaxException {
         ServerPlayerEntity player = context.getSource().getPlayerOrThrow();
-        Identifier id = IdentifierArgumentType.getIdentifier(context, "item");
-        String itemId = id.toString();
-        int amount = IntegerArgumentType.getInteger(context, "amount");
+        String itemId = IdentifierArgumentType.getIdentifier(context, "item").toString();
 
         savage.emeraldeconomy.economy.TradeService.Result r =
                 savage.emeraldeconomy.economy.TradeService.buy(player, itemId, amount);
