@@ -103,12 +103,12 @@ Survives restarts. Loaded on `SERVER_STARTING`, written on each successful claim
      `rewards.mobKillPassive`.
 - Skip payment entirely when the resolved amount is `null` or `<= 0` (so setting a rate or
   an override to `0` cleanly turns that pay off — no payment, no log).
-- Feedback is a **chat** message (`player.sendMessage(text, false)`) — e.g.
-  `"Mob kill reward: +$100"`. All reward feedback in this feature goes to chat; no
-  action-bar overlays are used. (At the generous rates this means one chat line per
-  player-dealt kill — accepted per the chat-everything decision.) Each paid kill writes a
-  `MOBKILL` transaction whose details are the entity-type id (the same id used for the
-  override lookup).
+- Feedback is an **action-bar** overlay (`player.sendMessage(text, true)`) — e.g. `+$100` —
+  so it never spams chat even at the generous rates (mob kills are frequent). This is the
+  one feedback channel that is *not* chat; `/daily` and the welcome-back message are chat
+  because they fire at most once per claim/login. Each paid kill writes a `MOBKILL`
+  transaction whose details are the entity-type id (the same id used for the override
+  lookup).
 
 ### 3c. Session-based playtime income
 
