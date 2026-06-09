@@ -26,4 +26,11 @@ class DailyRewardsTest {
         long last = now - (25L * HOUR); // 25h ago, > 24h cooldown
         assertEquals(0L, DailyRewards.remainingCooldownMillis(last, now, 24));
     }
+
+    @Test
+    void exactlyAtCooldownIsClaimable() {
+        long now = 100_000_000L;
+        long last = now - 24L * HOUR; // exactly the cooldown elapsed -> claimable, not 1ms left
+        assertEquals(0L, DailyRewards.remainingCooldownMillis(last, now, 24));
+    }
 }
