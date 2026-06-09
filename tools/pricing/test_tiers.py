@@ -2,7 +2,7 @@
     python tools/pricing/test_tiers.py -v
 """
 import os, sys, unittest
-sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
+sys.path.insert(0, os.path.dirname(__file__))
 import tiers as T
 
 
@@ -65,6 +65,14 @@ class TestRootSell(unittest.TestCase):
 
     def test_floor(self):
         self.assertEqual(T.root_sell("minecraft:anything", 0, "ingredients"), T.SELL_FLOOR)
+
+    def test_exact_only_item_sell_uses_category_default_rarity(self):
+        # dragon_egg has an EXACT buy but no CELL entry; its sell rarity comes from the
+        # category default. functional_blocks default is (default,3,3) -> rarity 3 -> 40%.
+        self.assertAlmostEqual(
+            T.root_sell("minecraft:dragon_egg", 1000000, "functional_blocks"),
+            1000000 * T.SELL_FRACTION[3],
+        )
 
 
 if __name__ == "__main__":

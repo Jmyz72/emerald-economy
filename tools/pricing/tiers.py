@@ -14,6 +14,10 @@ Classification of an item into a (band, effort, rarity) cell is resolved in laye
   3. RULES              -> first matching regex on the id path -> (band, effort, rarity)
   4. CATEGORY_DEFAULT   -> per-creative-tab fallback so nothing is unclassified
 
+Note: layer 1 (EXACT) is applied in root_buy(); classify() handles only layers 2-4
+(it returns a (band, effort, rarity) cell, and EXACT items have no cell — they bypass
+the formula entirely).
+
 Sell is a rarity-scaled fraction of buy. Crafted items do NOT use this module — their
 buy/sell are derived from the recipe graph in derive.py.
 """
@@ -119,12 +123,12 @@ def _suf(*sfx):
     return re.compile("(" + "|".join(re.escape(s) for s in sfx) + ")$")
 
 RULES = [
-    (_suf("_log", "_stem", "_hyphae", "_wood"), ("plant_produce", 2, 3)),
-    (re.compile(r"^stripped_.*(_log|_stem|_wood|_hyphae)$"), ("plant_produce", 2, 3)),
+    (_suf("_log", "_stem", "_hyphae", "_wood", "bamboo_block"), ("plant_produce", 2, 3)),
+    (re.compile(r"^stripped_.*(_log|_stem|_wood|_hyphae|_bamboo_block)$"), ("plant_produce", 2, 3)),
     (_suf("_leaves"), ("plant_produce", 1, 1)),
     (_suf("_sapling", "_propagule"), ("plant_produce", 1, 3)),
     (re.compile(r"_ore$"), ("raw_metal", 3, 3)),
-    (re.compile(r"(raw_).*"), ("raw_metal", 3, 3)),
+    (re.compile(r"^raw_"), ("raw_metal", 3, 3)),
     (re.compile(r"_ingot$|_gem$|_crystal$"), ("raw_metal", 3, 3)),
     (re.compile(r"_concrete$|_concrete_powder$"), ("raw_stone", 2, 2)),
     (re.compile(r"_sand$"), ("raw_stone", 1, 1)),
@@ -178,6 +182,8 @@ def classify(item_id, category):
 def formula_price(cell):
     """band_base × effort_factor × rarity_factor for a (band, effort, rarity) cell."""
     band, effort, rarity = cell
+    if effort not in EFFORT or rarity not in RARITY:
+        raise ValueError(f"bad cell {cell!r}: effort must be 1-5 and rarity 1-5")
     return BAND_BASE.get(band, BAND_BASE["default"]) * EFFORT[effort] * RARITY[rarity]
 
 
