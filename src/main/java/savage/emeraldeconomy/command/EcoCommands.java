@@ -81,9 +81,10 @@ public class EcoCommands {
     }
 
     private static int reload(CommandContext<ServerCommandSource> context) {
+        EconomyManager.getInstance().reloadConfig();
         EconomyManager.getInstance().reloadPrices();
         int total = EconomyManager.getInstance().getAllItemPrices().size();
-        context.getSource().sendFeedback(() -> Text.literal("Reloaded worth.json ("
+        context.getSource().sendFeedback(() -> Text.literal("Reloaded config.json and worth.json ("
                 + total + " priced items)."), true);
         return 1;
     }

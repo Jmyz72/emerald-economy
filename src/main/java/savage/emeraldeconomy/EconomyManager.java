@@ -132,7 +132,7 @@ public class EconomyManager {
         if (!configFile.exists()) {
             // Ensure directory exists
             configFile.getParentFile().mkdirs();
-            
+
             this.config = new EconomyConfig();
             try (FileWriter writer = new FileWriter(configFile)) {
                 gson.toJson(this.config, writer);
@@ -147,6 +147,11 @@ public class EconomyManager {
                 this.config = new EconomyConfig();
             }
         }
+    }
+
+    /** Re-read config.json into memory so /eco reload retunes reward/economy knobs live. */
+    public void reloadConfig() {
+        loadConfig();
     }
 
     public void load() {
