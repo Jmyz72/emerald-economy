@@ -293,8 +293,12 @@ public class DailyRewards {
         }
     }
 
-    /** Millis until {@code uuid} may claim again; 0 if claimable now. */
-    public long remainingCooldownMillis(UUID uuid, long nowMillis, int cooldownHours) {
+    /**
+     * Millis until {@code uuid} may claim again; 0 if claimable now. Named distinctly from
+     * the static overload below: two same-named overloads taking Long vs UUID are ambiguous
+     * on a null argument.
+     */
+    public long cooldownRemainingFor(UUID uuid, long nowMillis, int cooldownHours) {
         return remainingCooldownMillis(lastClaim.get(uuid.toString()), nowMillis, cooldownHours);
     }
 
@@ -418,7 +422,7 @@ public class DailyCommand {
         EconomyConfig.RewardsConfig rewards = EconomyManager.getInstance().getConfig().rewards;
 
         long now = System.currentTimeMillis();
-        long remaining = DailyRewards.getInstance().remainingCooldownMillis(uuid, now, rewards.dailyCooldownHours);
+        long remaining = DailyRewards.getInstance().cooldownRemainingFor(uuid, now, rewards.dailyCooldownHours);
         if (remaining > 0) {
             context.getSource().sendError(Text.literal("Come back in " + formatDuration(remaining) + "."));
             return 0;
