@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import savage.emeraldeconomy.command.AdminMoneyCommands;
 import savage.emeraldeconomy.command.BalanceCommands;
 import savage.emeraldeconomy.command.BuyCommand;
+import savage.emeraldeconomy.command.DailyCommand;
 import savage.emeraldeconomy.command.DebugCommands;
 import savage.emeraldeconomy.command.DepositCommand;
 import savage.emeraldeconomy.command.EcoCommands;
@@ -35,6 +36,7 @@ public class EmeraldEconomy implements ModInitializer {
 		// Register commands
 		List<EconomyCommand> commands = List.of(
 				BalanceCommands::register,
+				DailyCommand::register,
 				AdminMoneyCommands::register,
 				SellCommands::register,
 				BuyCommand::register,
@@ -51,6 +53,8 @@ public class EmeraldEconomy implements ModInitializer {
 			EconomyManager.getInstance().initStorage();
 			EconomyManager.getInstance().setServer(server);
 			EconomyManager.getInstance().load();
+			savage.emeraldeconomy.rewards.DailyRewards.getInstance().load();
+			savage.emeraldeconomy.rewards.PlaytimeIncome.load();
 		});
 
 		// Save economy data when server stops
@@ -70,5 +74,11 @@ public class EmeraldEconomy implements ModInitializer {
 		// never lost (sgui's onClose does not fire on an abrupt disconnect).
 		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) ->
 				savage.emeraldeconomy.gui.ShopDropGuis.settleOnDisconnect(handler.player.getUuid()));
+
+		// New-player income: reward players for killing mobs.
+		savage.emeraldeconomy.rewards.MobKillRewards.register();
+
+		// New-player income: session-based playtime payout, shown as a welcome-back message.
+		savage.emeraldeconomy.rewards.PlaytimeIncome.register();
 	}
 }

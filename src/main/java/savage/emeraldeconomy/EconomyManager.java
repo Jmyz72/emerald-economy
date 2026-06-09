@@ -132,7 +132,7 @@ public class EconomyManager {
         if (!configFile.exists()) {
             // Ensure directory exists
             configFile.getParentFile().mkdirs();
-            
+
             this.config = new EconomyConfig();
             try (FileWriter writer = new FileWriter(configFile)) {
                 gson.toJson(this.config, writer);
@@ -147,6 +147,23 @@ public class EconomyManager {
                 this.config = new EconomyConfig();
             }
         }
+
+        // Gson leaves a missing or explicitly-null field at null; never let config or its
+        // nested blocks be null, so live consumers can dereference them unconditionally.
+        if (this.config == null) {
+            this.config = new EconomyConfig();
+        }
+        if (this.config.rewards == null) {
+            this.config.rewards = new EconomyConfig.RewardsConfig();
+        }
+        if (this.config.storage == null) {
+            this.config.storage = new EconomyConfig.StorageConfig();
+        }
+    }
+
+    /** Re-read config.json into memory so /eco reload retunes reward/economy knobs live. */
+    public void reloadConfig() {
+        loadConfig();
     }
 
     public void load() {
