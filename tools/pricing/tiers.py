@@ -83,16 +83,47 @@ CELL = {
     "minecraft:deepslate": ("raw_stone", 1, 2),
     "minecraft:cobbled_deepslate": ("raw_stone", 1, 1),
     "minecraft:obsidian": ("raw_stone", 3, 3),
-    # raw metals / ores
+    # raw metals / ores. The ore, raw form, and ingot of a metal must share a value:
+    # they convert 1:1 by mining/smelting, so any gap is a buy-low/smelt/sell-high
+    # arbitrage. The *_ingot entries also MUST be here (not left to the recipe graph):
+    # the "9 ingots from 1 block" decompose recipe otherwise turns the storage block
+    # into a spurious root and collapses the ingot to ~block/9. (copper's ore is left
+    # to the generic _ore$ rule since copper raw/ingot are already 200 = that rule.)
     "minecraft:coal": ("raw_metal", 2, 2),
     "minecraft:charcoal": ("raw_metal", 2, 2),
     "minecraft:raw_copper": ("raw_metal", 3, 3),
     "minecraft:copper_ingot": ("raw_metal", 3, 3),
     "minecraft:raw_iron": ("raw_metal", 3, 4),
+    "minecraft:iron_ingot": ("raw_metal", 3, 4),
+    "minecraft:iron_ore": ("raw_metal", 3, 4),
+    "minecraft:deepslate_iron_ore": ("raw_metal", 3, 4),
     "minecraft:raw_gold": ("raw_metal", 3, 4),
+    "minecraft:gold_ingot": ("raw_metal", 3, 4),
+    "minecraft:gold_ore": ("raw_metal", 3, 4),
+    "minecraft:deepslate_gold_ore": ("raw_metal", 3, 4),
+    # gold_nugget pinned (= ~ingot/9, slightly above so crafting 9->ingot is no
+    # arbitrage) because Create crushing of gilded_blackstone / nether_gold_ore yields
+    # 18 nuggets and would otherwise set gold_nugget at ~block/18.
+    "minecraft:gold_nugget": ("raw_metal", 2, 3),
+    # Create crushing turns 1 of these into 18 gold_nuggets (= 2 ingots), so they must
+    # be priced at their crushed yield, else buy-block/crush/sell-metal is profitable.
+    "minecraft:gilded_blackstone": ("raw_metal", 4, 4),
+    "minecraft:nether_gold_ore": ("raw_metal", 4, 4),
     "minecraft:redstone": ("raw_metal", 2, 3),
     "minecraft:lapis_lazuli": ("raw_metal", 2, 3),
     "minecraft:quartz": ("raw_metal", 3, 3),
+    # Create alloys: ingot/raw forms pinned (same block-decompose collapse as vanilla).
+    # brass ~= copper+zinc per unit (mixing makes 2 brass from 1 copper + 1 zinc).
+    "create:zinc_ingot": ("raw_metal", 3, 3),
+    "create:raw_zinc": ("raw_metal", 3, 3),
+    "create:brass_ingot": ("raw_metal", 3, 3),
+    # Units that have a "9 units from 1 _block" decompose recipe but no CELL of their own
+    # collapse (the block becomes a spurious root). Pin the unit; the block then prices up
+    # from it. andesite_alloy is Create's foundational material (gates the whole tech tree).
+    "create:andesite_alloy": ("raw_metal", 2, 3),     # ~= andesite + nugget mixing cost
+    "create:experience_nugget": ("raw_metal", 2, 2),
+    "minecraft:bone_meal": ("mob_drop", 1, 1),        # ~= bone / 3
+    "minecraft:resin_clump": ("mob_drop", 2, 2),      # pale-oak/creaking drop (estimate)
     "minecraft:glowstone_dust": ("raw_metal", 3, 3),
     # raw gems
     "minecraft:diamond": ("raw_gem", 4, 5),
@@ -201,8 +232,8 @@ RULES = [
     # --- stone-ish blocks -----------------------------------------------------
     (re.compile(r"_concrete$|_concrete_powder$"), ("raw_stone", 2, 2)),
     (re.compile(r"_sand$"), ("raw_stone", 1, 1)),
-    (re.compile(r"^(basalt|blackstone|gilded_blackstone|end_stone|brimstone)$"),
-        ("raw_stone", 2, 2)),
+    (re.compile(r"^(basalt|blackstone|end_stone|brimstone)$"),
+        ("raw_stone", 2, 2)),  # plain blackstone only; gilded_blackstone is CELL'd (gold-bearing)
 
     # --- mob heads / skulls ---------------------------------------------------
     (re.compile(r"(creeper|zombie|skeleton|piglin|player)_head$|skeleton_skull$"),
