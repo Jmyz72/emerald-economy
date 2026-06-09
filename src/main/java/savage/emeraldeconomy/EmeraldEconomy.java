@@ -73,5 +73,8 @@ public class EmeraldEconomy implements ModInitializer {
 		// never lost (sgui's onClose does not fire on an abrupt disconnect).
 		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) ->
 				savage.emeraldeconomy.gui.ShopDropGuis.settleOnDisconnect(handler.player.getUuid()));
+
+		// New-player income: reward players for killing mobs.
+		savage.emeraldeconomy.rewards.MobKillRewards.register();
 	}
 }
