@@ -10,7 +10,7 @@ import json, os, sys, collections, math
 HERE = os.path.dirname(__file__)
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, HERE)
-import anchors as A
+import tiers as T
 
 MARKUP = 1.05
 INF = math.inf
@@ -76,9 +76,15 @@ class Deriver:
     def price(self, item):
         if item in self.memo:
             return self.memo[item]
-        # anchors win, unconditionally
-        if item in A.EXACT:
-            self.memo[item] = A.EXACT[item]
+        # EXACT overrides win, unconditionally (currency + true one-offs)
+        if item in T.EXACT:
+            self.memo[item] = float(T.EXACT[item])
+            self.via[item] = "anchor"
+            return self.memo[item]
+        # explicitly-classified roots (raw mats) win over recipes, so decompose
+        # recipes (e.g. block -> 9 ingots) can't undervalue them via a spurious root
+        if item in T.CELL:
+            self.memo[item] = float(T.formula_price(T.CELL[item]))
             self.via[item] = "anchor"
             return self.memo[item]
         if item in self.stack:
@@ -119,24 +125,24 @@ class Deriver:
             self.via[item] = "recipe:" + best_type
             self.best_inputs[item] = best_inputs
         else:
-            # no recipe resolved -> treat as root
-            self.memo[item] = float(A.anchor_price(item, cat))
+            # no recipe resolved -> treat as root, price by effort×rarity formula
+            self.memo[item] = T.root_buy(item, cat)
             self.via[item] = "anchor"
             self.best_inputs[item] = None
         return self.memo[item]
 
     def sell(self, item):
         """Crafted item sell = sum of ingredient sells (arbitrage-free); root
-        sell = farm-tier value. Capped just under buy."""
+        sell = rarity-scaled fraction of buy. Capped just under buy."""
         if item in self.sell_memo:
             return self.sell_memo[item]
-        if item in A.CURRENCY_FACE:
-            self.sell_memo[item] = A.CURRENCY_FACE[item]
+        if item in T.CURRENCY_FACE:
+            self.sell_memo[item] = float(T.CURRENCY_FACE[item])
             return self.sell_memo[item]
         buy = self.price(item)
         inputs = self.best_inputs.get(item)
         if not inputs or item in self.sell_stack:   # root or cycle
-            s = A.root_sell(item, buy)
+            s = T.root_sell(item, buy, self.cat_of.get(item))
         else:
             self.sell_stack.add(item)
             s = 0.0
@@ -144,7 +150,7 @@ class Deriver:
                 s += self.sell(who) * n
             self.sell_stack.discard(item)
         s = min(s, buy * 0.95)
-        self.sell_memo[item] = max(round(s, 2), A.SELL_FLOOR)
+        self.sell_memo[item] = max(round(s, 2), T.SELL_FLOOR)
         return self.sell_memo[item]
 
 
