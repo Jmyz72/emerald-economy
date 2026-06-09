@@ -4,7 +4,7 @@ and its (band, effort, rarity) cell + computed buy. Category-default roots are t
 worklist: they fell through to the crude per-tab fallback and likely want a CELL or RULE.
 Usage:  python tools/pricing/audit.py [category]
 """
-import json, sys, statistics
+import sys, statistics
 sys.path.insert(0, "tools/pricing")
 import importlib, tiers as T; importlib.reload(T)
 import derive as D
