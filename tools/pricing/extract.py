@@ -1,16 +1,23 @@
 """
 Extract & normalize recipe + item-tag data from the vanilla + mod jars into
-work/recipes.json and work/tags.json for the price deriver.
+work/recipes.json, work/conversions.json and work/tags.json.
 
 A normalized recipe = {
-  "out": "<item id>", "count": <int>,
+  "out": "<item id>", "count": <int>, ["chance": <float 0-1>,]
   "inputs": [{"id": "<item or #tag>", "count": <int>, "catalyst": <bool>}, ...],
   "type": "<recipe type>", "source": "<jar label>"
 }
-Only CONSTRUCTION recipe types are emitted (things that build an item up from
-parts). Decomposition/processing-down types (cutting) are skipped so they can't
-undervalue raw materials. crushing/milling ARE kept (they legitimately produce
-modded processed items) but anchors win over them in the deriver.
+recipes.json: only CONSTRUCTION recipe types (things that build an item up from
+parts) - these feed the price deriver. Decomposition/processing-down types
+(cutting) are skipped so they can't undervalue raw materials. crushing/milling
+ARE kept (they legitimately produce modded processed items) but anchors win
+over them in the deriver.
+
+conversions.json: EVERY parseable item conversion - construction AND the
+skipped decomposition types - with full output lists including chance
+byproducts. The price deriver ignores it; arbitrage.py audits it, because a
+conversion excluded from pricing still moves items in-game and must not turn
+shop-bought inputs into a larger sell value.
 """
 import zipfile, json, os, sys
 
@@ -74,26 +81,62 @@ def norm_ingredient(v):
 
 
 def result_id_count(d):
+    """(id, count, chance) of the MAIN output. Entries without a 'chance' key are
+    certain. If EVERY output is chance-based (e.g. crushing Create's ore-stones),
+    the first entry is the main output and its chance must carry into the price -
+    treating a 40%-roll as a certain output is how crimsite-crushing underpriced
+    crushed_raw_iron."""
     r = d.get("result")
     if r is None and "results" in d:
-        rs = [x for x in d["results"] if "chance" not in x]  # main outputs only
+        rs = [x for x in d["results"] if not (isinstance(x, dict) and "chance" in x)]
         r = rs[0] if rs else d["results"][0]
     if isinstance(r, list):
         r = r[0]
     if isinstance(r, str):
-        return r, 1
+        return r, 1, 1.0
     if isinstance(r, dict):
+        chance = min(float(r.get("chance", 1.0) or 1.0), 1.0)
         if "item" in r and isinstance(r["item"], dict):
             r = r["item"]
-        return r.get("id") or r.get("item"), int(r.get("count", 1) or 1)
-    return None, 1
+        return r.get("id") or r.get("item"), int(r.get("count", 1) or 1), chance
+    return None, 1, 1.0
+
+
+def all_outputs(d):
+    """[(id, count, chance)] for every result entry, byproducts included.
+    Used for conversions.json so the arbitrage audit sees full expected yield."""
+    rs = d.get("results")
+    if rs is None:
+        rs = d.get("result")
+    if rs is None:
+        return []
+    if not isinstance(rs, list):
+        rs = [rs]
+    outs = []
+    for e in rs:
+        if isinstance(e, str):
+            outs.append((e, 1, 1.0))
+            continue
+        if not isinstance(e, dict):
+            continue
+        ch = min(float(e.get("chance", 1.0) or 1.0), 1.0)
+        it = e.get("item")
+        if isinstance(it, dict):                 # {"item": {"id":..,"count":..}}
+            e = dict(it)
+        elif isinstance(it, str):                # {"item": "id", "count": n}
+            outs.append((it, int(e.get("count", 1) or 1), ch))
+            continue
+        oid = e.get("id")
+        if isinstance(oid, str):
+            outs.append((oid, int(e.get("count", 1) or 1), ch))
+    return outs
 
 
 def parse(d, source):
     t = d.get("type")
     if t not in CONSTRUCT:
         return None
-    out, cnt = result_id_count(d)
+    out, cnt, chance = result_id_count(d)
     if not out:
         return None
     inputs = []
@@ -132,6 +175,12 @@ def parse(d, source):
         else:
             add(d.get("ingredient"), 1, catalyst=True)
     elif t == "create:filling":
+        # potion fluids are real brewing cost (2700mb ~ 11 bottles of night
+        # vision/strength/...) that this model can't price; water/lava/honey
+        # are renewable-cheap and priced at 0
+        fl = d.get("fluid_ingredient") or {}
+        if fl.get("fluid") == "create:potion":
+            return None
         add(d.get("ingredient"), 1)
     elif t == "create:item_application":
         add(d.get("target"), 1)        # the converted block
@@ -140,16 +189,19 @@ def parse(d, source):
         add(d.get("base"), 1)
         add(d.get("addition"), 1)
         if d.get("template"):
-            add(d.get("template"), 1, catalyst=True)  # reusable, near-free
+            add(d.get("template"), 1)  # CONSUMED on use (since 1.20), not a catalyst
     elif t == "minecraft:crafting_transmute":
         add(d.get("input"), 1)
         add(d.get("material"), 1)
     elif t == "create:sequenced_assembly":
         add(d.get("ingredient"), 1)
+        # the sequence repeats `loops` times, so each consumed deploy item is
+        # spent once PER LOOP (precision_mechanism: loops=5)
+        loops = int(d.get("loops", 1) or 1)
         for step in d.get("sequence", []):
             if isinstance(step, dict) and step.get("type") == "create:deploying":
                 if not step.get("keep_held_item"):
-                    add(step.get("ingredient"), 1)
+                    add(step.get("ingredient"), loops)
     elif t in ("refurbished_furniture:workbench_constructing",
                "refurbished_furniture:oven_baking",
                "refurbished_furniture:frying_pan_cooking"):
@@ -162,11 +214,34 @@ def parse(d, source):
 
     if not inputs:
         return None
-    return {"out": out, "count": cnt, "inputs": inputs, "type": t, "source": source}
+    r = {"out": out, "count": cnt, "inputs": inputs, "type": t, "source": source}
+    if chance < 1.0:
+        r["chance"] = chance   # expected cost per success = cost / count / chance
+    return r
+
+
+def parse_skip(d, source):
+    """Conversions the pricer deliberately ignores (cutting, splashing, ...) still
+    move items in-game, so the arbitrage audit needs them in conversions.json."""
+    ins = []
+    raw = d.get("ingredients")
+    if raw is None and "ingredient" in d:
+        raw = [d["ingredient"]]
+    if raw is None and "input" in d:
+        raw = [d["input"]]
+    for ing in raw or []:
+        n = norm_ingredient(ing)
+        if n:
+            ins.append({"id": n, "count": 1})
+    outs = [{"id": i, "count": c, "chance": ch} for (i, c, ch) in all_outputs(d)]
+    if not ins or not outs:
+        return None
+    return {"in": ins, "out": outs, "type": d["type"], "source": source}
 
 
 def main():
     recipes, type_counts, skipped, untyped = [], {}, 0, 0
+    conversions = []
     tags = {}
     here = os.path.dirname(__file__)
     for label, jp in JARS.items():
@@ -207,10 +282,23 @@ def main():
                     untyped += 1; continue
                 type_counts[t] = type_counts.get(t, 0) + 1
                 if t in SKIP:
-                    skipped += 1; continue
+                    skipped += 1
+                    cv = parse_skip(d, label)
+                    if cv:
+                        conversions.append(cv)
+                    continue
                 r = parse(d, label)
                 if r:
                     recipes.append(r)
+                    outs = all_outputs(d)   # full yield incl. chance byproducts
+                    if not outs:
+                        outs = [(r["out"], r["count"], r.get("chance", 1.0))]
+                    conversions.append({
+                        "in": [i for i in r["inputs"] if not i.get("catalyst")],
+                        "out": [{"id": i, "count": c, "chance": ch}
+                                for (i, c, ch) in outs],
+                        "type": t, "source": label,
+                    })
                 elif t in CONSTRUCT:
                     skipped += 1
 
@@ -219,8 +307,11 @@ def main():
         json.dump(recipes, f)
     with open(os.path.join(here, "work", "tags.json"), "w") as f:
         json.dump(tags, f)
+    with open(os.path.join(here, "work", "conversions.json"), "w") as f:
+        json.dump(conversions, f)
 
     print(f"recipes emitted: {len(recipes)}")
+    print(f"conversions emitted (for arbitrage audit): {len(conversions)}")
     print(f"item tags: {len(tags)}")
     print(f"untyped recipe files skipped: {untyped}")
     print("recipe type counts (all seen):")

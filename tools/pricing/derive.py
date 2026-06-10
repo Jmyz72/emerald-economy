@@ -23,6 +23,81 @@ def load():
     return worth, recipes, tags
 
 
+def merge_inputs(r):
+    """Non-catalyst inputs merged by identical ingredient spec -> [(ing, count)].
+    (Shapeless recipes record '9 ingots' as nine count-1 entries.)"""
+    acc = {}
+    for i in r["inputs"]:
+        if i.get("catalyst"):
+            continue
+        key = json.dumps(i["id"], sort_keys=True)
+        if key in acc:
+            acc[key] = (acc[key][0], acc[key][1] + i.get("count", 1))
+        else:
+            acc[key] = (i["id"], i.get("count", 1))
+    return list(acc.values())
+
+
+def concrete_ids(ing, tags, _seen=None):
+    """Set of concrete item ids an ingredient spec (id / #tag / choices) can be."""
+    out, seen = set(), _seen if _seen is not None else set()
+
+    def go(v):
+        if isinstance(v, dict) and "choices" in v:
+            for c in v["choices"]:
+                go(c)
+        elif isinstance(v, str) and v.startswith("#"):
+            if v not in seen:
+                seen.add(v)
+                for m in tags.get(v, []):
+                    go(m)
+        elif isinstance(v, str):
+            out.add(v)
+
+    go(ing)
+    return out
+
+
+def prune_decompose(by_out, tags):
+    """Break reciprocal recipe pairs (1 B -> k U  and  m U -> 1 B). With both
+    directions in the graph, pricing depends on evaluation order: the cycle
+    guard breaks the recursion at an arbitrary point and whichever item is
+    inside gets memoized as a formula root (the 'spurious root' collapse the
+    CELL pins were patching pair by pair). Which direction to keep depends on
+    which item is the primary one:
+
+      k >= 3 (storage blocks, ingot->nuggets, crates): the UNIT is primary -
+        drop the decompose, keep compose (block = 9 x unit); the unit prices
+        from its own source or root cell.
+      k == 2 (slabs, half-mats, cabbage->leaves): the BLOCK is primary - drop
+        the compose, keep decompose (slab = block / 2); the block prices from
+        its own source.
+
+    Returns the list of dropped (out, input) pairs for diagnostics."""
+    dropped, drop_ids = [], set()
+    for u in list(by_out):
+        for r in by_out[u]:
+            ins = merge_inputs(r)
+            k = max(1, r.get("count", 1))
+            if len(ins) != 1 or ins[0][1] != 1 or k < 2:
+                continue
+            for b in concrete_ids(ins[0][0], tags):
+                for r2 in by_out.get(b, []):
+                    ins2 = merge_inputs(r2)
+                    if (max(1, r2.get("count", 1)) == 1 and len(ins2) == 1
+                            and ins2[0][1] >= 2
+                            and u in concrete_ids(ins2[0][0], tags)):
+                        if k >= 3:
+                            drop_ids.add(id(r))      # drop decompose B -> kU
+                            dropped.append((u, ins[0][0]))
+                        else:
+                            drop_ids.add(id(r2))     # drop compose mU -> B
+                            dropped.append((b, u))
+    for u in list(by_out):
+        by_out[u] = [r for r in by_out[u] if id(r) not in drop_ids]
+    return dropped
+
+
 def build():
     worth, recipes, tags = load()
     cat_of = {}
@@ -32,6 +107,9 @@ def build():
     by_out = collections.defaultdict(list)
     for r in recipes:
         by_out[r["out"]].append(r)
+    pruned = prune_decompose(by_out, tags)
+    if pruned:
+        print(f"(pruned {len(pruned)} reciprocal decompose recipes from the pricing graph)")
     return worth, by_out, tags, cat_of
 
 
@@ -112,7 +190,9 @@ class Deriver:
             if not ok:
                 continue
             cnt = max(1, r.get("count", 1))
-            unit = cost / cnt * MARKUP
+            # chance-based outputs (e.g. sequenced assembly @0.8): expected cost
+            # per success is cost / chance
+            unit = cost / cnt / r.get("chance", 1.0) * MARKUP
             if unit < best:
                 best = unit
                 best_type = r["type"]
@@ -138,6 +218,9 @@ class Deriver:
             return self.sell_memo[item]
         if item in T.CURRENCY_FACE:
             self.sell_memo[item] = float(T.CURRENCY_FACE[item])
+            return self.sell_memo[item]
+        if item in T.EXACT_SELL:
+            self.sell_memo[item] = float(T.EXACT_SELL[item])
             return self.sell_memo[item]
         buy = self.price(item)
         inputs = self.best_inputs.get(item)
@@ -182,6 +265,35 @@ def round_buy(v):
     return round(v, 2)
 
 
+def clamp_sells(priced):
+    """Cap every sell at 95% of the item's cheapest shop-acquisition cost over
+    ALL in-game conversions (work/conversions.json: construction recipes plus
+    the cutting/washing/... types pricing ignores). This is the arbitrage.py
+    invariant enforced at generation time: whatever a player can replicate from
+    shop-bought goods must pay out less than it cost. Currency stays at face."""
+    import arbitrage as AR
+    conv_path = os.path.join(HERE, "work", "conversions.json")
+    if not os.path.exists(conv_path):
+        print("(no work/conversions.json - sell clamp skipped; run extract.py)")
+        return 0
+    conv = json.load(open(conv_path))
+    tags = json.load(open(os.path.join(HERE, "work", "tags.json")))
+    buy = dict(AR.CURRENCY)
+    for k, (b, s) in priced.items():
+        if b is not None:
+            buy[k] = float(b)
+    A = AR.acquisition(buy, conv, tags)
+    clamped = 0
+    for k, (b, s) in priced.items():
+        if k in AR.CURRENCY or s is None:
+            continue
+        a = A.get(k, math.inf)
+        if math.isfinite(a) and s > a * 0.95:
+            priced[k] = (b, max(round(a * 0.95, 2), T.SELL_FLOOR))
+            clamped += 1
+    return clamped
+
+
 def main():
     write = "--write" in sys.argv
     worth, by_out, tags, cat_of = build()
@@ -200,6 +312,10 @@ def main():
                     buy = bb
                     sell = d.sell(b)
             priced[k] = (buy, sell)
+
+    clamped = clamp_sells(priced)
+    if clamped:
+        print(f"(sell clamped to 95% of cheapest conversion-chain cost on {clamped} items)")
 
     # diagnostics
     via_counts = collections.Counter(d.via.get(k, "?") for k in priced)
