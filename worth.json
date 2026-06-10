@@ -3094,8 +3094,8 @@
         "sell": 3.6
       },
       "minecraft:chorus_flower": {
-        "buy": 12.0,
-        "sell": 3.6
+        "buy": 240,
+        "sell": 96.0
       },
       "minecraft:glow_lichen": {
         "buy": 4.0,
@@ -3110,8 +3110,8 @@
         "sell": 3.6
       },
       "minecraft:turtle_egg": {
-        "buy": 12.0,
-        "sell": 3.6
+        "buy": 240,
+        "sell": 96.0
       },
       "minecraft:sniffer_egg": {
         "buy": 8000,
@@ -3142,12 +3142,12 @@
         "sell": 7.2
       },
       "minecraft:torchflower_seeds": {
-        "buy": 12.0,
-        "sell": 3.6
+        "buy": 480,
+        "sell": 192.0
       },
       "minecraft:pitcher_pod": {
-        "buy": 12.0,
-        "sell": 3.6
+        "buy": 480,
+        "sell": 192.0
       },
       "minecraft:glow_berries": {
         "buy": 24.0,
@@ -3318,12 +3318,12 @@
         "sell": 28.8
       },
       "minecraft:carved_pumpkin": {
-        "buy": 12.0,
-        "sell": 3.6
+        "buy": 24.0,
+        "sell": 7.2
       },
       "minecraft:jack_o_lantern": {
-        "buy": 23.1,
-        "sell": 6.6
+        "buy": 35.7,
+        "sell": 10.2
       },
       "minecraft:hay_block": {
         "buy": 227,
@@ -3504,12 +3504,12 @@
         "sell": 8184.0
       },
       "minecraft:chipped_anvil": {
-        "buy": 200,
-        "sell": 80.0
+        "buy": 10800,
+        "sell": 4320.0
       },
       "minecraft:damaged_anvil": {
-        "buy": 200,
-        "sell": 80.0
+        "buy": 5400,
+        "sell": 2160.0
       },
       "minecraft:composter": {
         "buy": 60.8,
@@ -3568,8 +3568,8 @@
         "sell": 57.6
       },
       "minecraft:suspicious_sand": {
-        "buy": 5.0,
-        "sell": 1.25
+        "buy": 480,
+        "sell": 192.0
       },
       "minecraft:suspicious_gravel": {
         "buy": 480,
@@ -3840,8 +3840,8 @@
         "sell": 96.0
       },
       "minecraft:wither_skeleton_skull": {
-        "buy": 240,
-        "sell": 96.0
+        "buy": 175000,
+        "sell": 70000.0
       },
       "minecraft:player_head": {
         "buy": 240,
@@ -4988,8 +4988,8 @@
         "sell": 1.25
       },
       "minecraft:ominous_bottle": {
-        "buy": 24.0,
-        "sell": 7.2
+        "buy": 480,
+        "sell": 192.0
       },
       "minecraft:potion": {
         "buy": 24.0,
@@ -5338,8 +5338,8 @@
         "sell": 98.4
       },
       "minecraft:skull_banner_pattern": {
-        "buy": 261,
-        "sell": 98.4
+        "buy": 183760,
+        "sell": 70002.4
       },
       "minecraft:mojang_banner_pattern": {
         "buy": 84010,

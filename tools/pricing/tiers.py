@@ -75,6 +75,14 @@ EXACT = {
     "minecraft:emerald": 1,
     "minecraft:emerald_block": 9,
     "minecraft:nether_star": 700000,
+    # 3 skulls + 4 soul sand summon a Wither that drops a nether star (sell
+    # 490000); at the 240 mob-head rule price that was a ~660x money printer.
+    # 3 x 175000 = 525000 keeps the summon above the star's payout.
+    "minecraft:wither_skeleton_skull": 175000,
+    # damaged anvils work exactly like fresh ones (16300); the 200 functional-tab
+    # default sold a near-perfect substitute for 1.2% of the price.
+    "minecraft:chipped_anvil": 10800,
+    "minecraft:damaged_anvil": 5400,
     "minecraft:dragon_egg": 1000000,
     "minecraft:dragon_head": 50000,
     "minecraft:elytra": 50000,
@@ -267,6 +275,10 @@ CELL = {
 
     # --- archaeology / suspicious blocks -------------------------------------
     "minecraft:suspicious_gravel": ("treasure", 3, 3),
+    "minecraft:suspicious_sand": ("treasure", 3, 3),   # was falling to _sand$ rule (5)
+    # ominous_bottle gates ominous trials/vault loot; the food-tab default (24)
+    # wildly undersold it. Raid-captain renewable, so treasure mid-tier.
+    "minecraft:ominous_bottle": ("treasure", 3, 3),
 
     # --- written/filled items: cheap player-made curios ----------------------
     "minecraft:filled_map": ("default", 2, 2),
@@ -284,6 +296,13 @@ CELL = {
     "minecraft:slime_ball": ("mob_drop", 1, 2),
     "minecraft:nether_wart": ("plant_produce", 3, 3),  # nether fortress, brewing gate
     "minecraft:cocoa_beans": ("plant_produce", 2, 2),
+    "minecraft:carved_pumpkin": ("plant_produce", 2, 2),  # sheared pumpkin, not a 12 natural
+    "minecraft:chorus_flower": ("natural_block", 3, 3),   # End-gated growth block
+    "minecraft:turtle_egg": ("natural_block", 3, 3),      # silk-touch beach raid
+    # sniffer-dug ancient seeds: the 12-emerald natural default ignored that the
+    # sniffer line is gated behind an 8000 egg
+    "minecraft:pitcher_pod": ("treasure", 3, 3),
+    "minecraft:torchflower_seeds": ("treasure", 3, 3),
     "minecraft:glow_berries": ("plant_produce", 2, 2),
     "minecraft:sweet_berries": ("plant_produce", 2, 2),
     "minecraft:cobweb": ("mob_drop", 3, 3),            # shears + mineshaft/spawner

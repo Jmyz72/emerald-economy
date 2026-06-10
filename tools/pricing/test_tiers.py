@@ -95,6 +95,13 @@ class TestExploitGuards(unittest.TestCase):
             self.assertEqual(T.formula_price(T.CELL[crushed]),
                              T.formula_price(T.CELL[ingot]), crushed)
 
+    def test_wither_summon_cost_exceeds_star_payout(self):
+        # 3 skulls + 4 soul sand -> Wither -> 1 nether star; the summon must
+        # cost more than the star sells for or it's a money printer
+        summon = 3 * T.EXACT["minecraft:wither_skeleton_skull"]
+        star_sell = T.EXACT["minecraft:nether_star"] * T.SELL_FRACTION[5]
+        self.assertGreater(summon, star_sell)
+
     def test_template_sells_below_duplication_cost(self):
         # one template + 7 diamonds + a base block duplicates into two (~28005
         # marginal cost per copy); selling above that is a money printer
